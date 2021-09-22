@@ -1,0 +1,36 @@
+﻿Mike Schommer
+Quinn Nimmer
+Rick Bowman
+Seth Frevert
+
+
+Proposal 1:
+        Rock Tester(#6 for Beth Johnson)
+
+
+The motivation:
+        Beth Johnson needed an app that would help students practice mineral identification. There are numerous tests that one can do to identify rocks but not everyone has access to these rocks as there is only a certain amount of lab time. Also with this past pandemic it was tough for students to get hands-on experience with physical testing. This app would be used by students who a)couldn’t make it to the lab, b)need extra practice with lesson material or c)have to take online lessons due to a global pandemic. Other Geology instructors have attempted to create similar rock testing apps but haven’t come close to getting in perfect/correct, so there is definitely a need for this app.
+
+
+Features:
+        There would be two different types of logins, one for professors and one for students. When professors are logged in, they would be able to input information about various rocks and their corresponding results for identification techniques such as hardness, magnetism and hydrochloric acid testing. They would also be able to post some practice questions that students would be able to answer while testing.  When students are logged in, they will see the first problem posted from the professor. From that, they are able to select and swap between various rocks and identification techniques. Once the rock and identification technique are chosen, students would interact with them and find the results. When this is over the students can then answer the question from the professor.
+
+
+Proposal 2:
+        Fitness Tracker (#2 for Dr. Julie Zuleger)
+
+
+The motivation:
+        While Dr. Zuleger doesn’t give much description of her app idea, we can infer that she needs an app that is more narrow in scope than most fitness apps and is generally suited to her UWO classes. Dr. Zuleger is a Human Kinetics & Health Education professor so likely her students would use this app for tracking workouts, self care activities and yoga routines. What makes this app novel is that it would be specifically suited to her curriculum/department. What makes this a cool idea is that I don’t think UWO has a fitness app, this app has the potential to be used by anyone outside of her classroom. This app could also be useful to any Rec-plex employees/gym-goers.
+
+
+Features:
+        The app would feature a login system for each individual user. Once the user is logged in, the user would be able to document their workout/activity for the day in the app. Each workout would keep track of what type of workout was done and the amount of time spent on the workout. The app would then calculate the calories potentially lost during the activity. The app would then store this information into a calendar to be able to keep a record of what they have done throughout the year. Dr. Julie Zuleger could also post specific workouts for her students to do for the day/week. If the app is expanded for the Rec, employees could also post workouts for the day. 
+
+
+Preferred app: 
+        Proposal #1 (Rock Tester #6 for Beth Johnson)
+
+
+Team Communication Channel:
+        Discord
