@@ -5,7 +5,7 @@ Seth Frevert
 
 
 Proposal 1:
-        Rock Tester(#6 for Beth Johnson)
+        Mineral Tester(#6 for Beth Johnson)
 
 
 The motivation:
@@ -29,7 +29,7 @@ Features:
 
 
 Preferred app: 
-        Proposal #1 (Rock Tester #6 for Beth Johnson)
+        Proposal #1 (Mineral Tester #6 for Beth Johnson)
 
 
 Team Communication Channel:
