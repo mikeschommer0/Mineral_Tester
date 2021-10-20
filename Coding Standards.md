@@ -15,7 +15,7 @@
         - Local variables
         - Parameters
     - camelCase with _ prefix
-        -Private, protected, internal, and protected internal fields and properties
+        - Private, protected, internal, and protected internal fields and properties
 - Interface names being with I
     - IDatabase, IAnimal
 - Do not use prefixes in file names
