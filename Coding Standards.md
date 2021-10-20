@@ -80,3 +80,31 @@
         ```cs
             int a = 1; int b = 2;
         ```
+ - Declare only one field or variable per line
+    -Correct:
+        ```cs
+            string firstName;
+            string lastName;
+         ```
+    -Incorrect:
+        ```cs
+            string firstName, lastName
+        ```
+- Comments being with an uppercase letter and end with a period
+    -Correct:\
+        ```cs
+            // Code comment.
+    -Incorrect:\
+            // code comment
+         ```
+- Insert one space between a comment delimiter and the comment
+    -Correct:\
+        ```cs
+            // Code comment.
+    -Incorrect:\
+            //Code comment.
+         ```
+- Each source file should only contain one class
+- There should be exactly one line between each method
+         
+    
