@@ -29,18 +29,18 @@
     - Incorrect: colour
 - Braces belong on their own line
     - Correct:
-        -class MyClass
-        -{
-            -void DoSomething()
-            -{
-                -if (condition)
-                -{
-                -}
-                -else
-                -{
-                -}
-            -}
-        -}
+        class MyClass
+        {
+            void DoSomething()
+            {
+                if (condition)
+                {
+                }
+                else
+                {
+                }
+            }
+        }
     - Incorrect:
         class MyClass{
             void DoSomething(){
