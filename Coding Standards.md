@@ -106,5 +106,21 @@
          ```
 - Each source file should only contain one class
 - There should be exactly one line between each method
-         
+### SQL
+- General
+    - SQL keywords will be uppercase
+        - Correct: SELECT * FROM table
+        - Incorrect: select * FROM table
+    - Whenever a name is set, such as the name of a table, column, stored procedure, etc…, it will be in snake case
+        - Correct: start_date, first_name, mineral, user_id
+        - Incorrect: StartDate, firstName, FIRST_NAME
+    - When using a number in a name do not type the word
+        - Correct: alternative_contact_1, alternative_contact_2
+        - Incorrect: alternative_contact_one, alternative_contact_two
+- Tables
+    - Table names do not have a prefix
+        - Correct: minerals
+        - Incorrect: tbl_minerals
+    - Prioritize naming tables using a collective when possible, otherwise use plural form 
+        - staff, minerals, questions, answers
     
