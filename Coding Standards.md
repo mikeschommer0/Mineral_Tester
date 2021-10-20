@@ -27,3 +27,41 @@
 - User American English spellings
     - Correct: color
     - Incorrect: colour
+- Braces belong on their own line
+    - Correct:
+        class MyClass
+        {
+            void DoSomething()
+            {
+                if (condition)
+                {
+                }
+                else
+                {
+                }
+            }
+        }
+    - Incorrect:
+        class MyClass{
+            void DoSomething(){
+                if (condition){
+                } else {
+                }
+            }
+        }
+- Use braces even if they are optional
+    - Correct:
+        if (condition)
+        {
+            return true;
+        }
+    - Incorrect:
+        if (condition)
+            return true;
+- Write only one statement per line
+    - Correct:
+        int a = 1;
+        int b = 2;
+    - Incorrect:
+        int a = 1; int b = 2;
+-
