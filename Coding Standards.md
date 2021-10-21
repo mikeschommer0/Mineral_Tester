@@ -123,4 +123,28 @@
         - Incorrect: tbl_minerals
     - Prioritize naming tables using a collective when possible, otherwise use plural form 
         - staff, minerals, questions, answers
+
+- Columns
+    - Column names are always in singular form
+        - Correct: user_id
+        - Incorrect: user_ids
+    - Always use the AS keyword when aliasing columns
+        - Correct: mineral_name AS mn
+        - Incorrect: mineral_name mn
+- Stored procedures
+    - Stored procedures will be written with the format table_action
+        - Correct: mineral_insert, user_delete
+        - Incorrect: insert_mineral, delete_user
+    - Stored procedures do not have a prefix
+        - Correct: user_insert
+        - Incorrect: sp_user_insert
+- Comments
+    - Single line comments use -- syntax
+        - SELECT * FROM table -- selects everything from table
+    - Multi line comments use /* / syntax
+        - /\
+        comment line 1\
+        comment line 2\
+        comment line 3\
+        */
     
