@@ -81,31 +81,28 @@
             int a = 1; int b = 2;
         ```
  - Declare only one field or variable per line
-    -Correct:
+    - Correct:
         ```cs
             string firstName;
             string lastName;
-         ```
-    -Incorrect:
-        ```cs
-            string firstName, lastName
         ```
-- Comments being with an uppercase letter and end with a period
-    -Correct:\
+    - Incorrect:
         ```cs
-            // Code comment.
-    -Incorrect:\
-            // code comment
-         ```
+            string firstName, lastName;
+        ```
+- Comments begin with an uppercase letter and end with a period
+    - Correct:\
+        // Code comment.
+    - Incorrect:\
+        // code comment
 - Insert one space between a comment delimiter and the comment
-    -Correct:\
-        ```cs
-            // Code comment.
-    -Incorrect:\
-            //Code comment.
-         ```
+    - Correct:\
+        // Code comment.
+    - Incorrect:\
+        //Code comment.
 - Each source file should only contain one class
 - There should be exactly one line between each method
+
 ### SQL
 - General
     - SQL keywords will be uppercase
@@ -123,7 +120,6 @@
         - Incorrect: tbl_minerals
     - Prioritize naming tables using a collective when possible, otherwise use plural form 
         - staff, minerals, questions, answers
-
 - Columns
     - Column names are always in singular form
         - Correct: user_id
@@ -141,10 +137,9 @@
 - Comments
     - Single line comments use -- syntax
         - SELECT * FROM table -- selects everything from table
-    - Multi line comments use /* / syntax
-        - /\
+    - Multi line comments use /* */ syntax
+        - /*\
         comment line 1\
         comment line 2\
         comment line 3\
         */
-    
