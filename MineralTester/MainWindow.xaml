@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Label Content="Mineral Tester" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" FontSize="35.0"/>
+        <Button Content="Sign In" HorizontalAlignment="Center" Margin="0,269,0,0" VerticalAlignment="Top" Width="150"/>
+        <Button Content="Forgot Password" HorizontalAlignment="Center" Margin="0,308,0,0" VerticalAlignment="Top" Width="150"/>
     </Grid>
 </Window>

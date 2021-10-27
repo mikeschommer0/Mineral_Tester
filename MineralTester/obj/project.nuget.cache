@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qJK0GDnhsG3R1v2SbpJdEEBm/Of3JqMB94yksEGeu1M5ImHr1pG2nWFtS6nHJ/7Cs6pJbbWqjEEL40hDQEEZVw==",
+  "dgSpecHash": "vo8AH989w30tu6kblWwFh4D15xyuNFo1TXSptSj9s2RsZQGXa5AUXVMaFjwoD53lgAcsAOUn0/DSmssWDvhXdw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rickp\\Documents\\GitHub\\Mineral_Tester\\MineralTester\\MineralTester.csproj",
+  "projectFilePath": "C:\\Users\\Rick\\Documents\\GitHub\\Mineral_Tester\\MineralTester\\MineralTester.UI.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
