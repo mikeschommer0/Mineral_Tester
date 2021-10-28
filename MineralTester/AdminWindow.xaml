@@ -12,7 +12,7 @@
         <Button Content="Create Faculty" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Width="150" Click="CreateFacultyButton"/>
         <Button Content="Create Question" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Top" Width="150" Click="CreateQuestionButton"/>
         <Button Content="Add Mineral" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" Width="150" Click="AddMineralButton"/>
-        <Button Content="Playground(TEST)" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="150" Click="PlaygroundButton"/>
+        <Button Content="Student Minerals(TEST)" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="150" Click="PlaygroundButton"/>
         <Button Content="Exit" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Width="150" Click="ExitAdminButton"/>
     </Grid>
 </Window>

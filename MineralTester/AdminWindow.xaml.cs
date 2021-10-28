@@ -55,8 +55,8 @@ namespace MineralTester.UI
 
         private void PlaygroundButton(object sender, RoutedEventArgs e)
         {
-            PlaygroundWindow playground = new PlaygroundWindow();
-            playground.Show();
+            StudentMineralWindow studentMineral = new StudentMineralWindow();
+            studentMineral.Show();
             Close();
         }
     }

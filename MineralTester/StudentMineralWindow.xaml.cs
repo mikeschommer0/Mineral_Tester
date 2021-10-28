@@ -17,9 +17,9 @@ namespace MineralTester.UI
     /// <summary>
     /// Interaction logic for StudentMineral.xaml
     /// </summary>
-    public partial class StudentMineral : Window
+    public partial class StudentMineralWindow : Window
     {
-        public StudentMineral()
+        public StudentMineralWindow()
         {
             InitializeComponent();
         }
@@ -27,12 +27,15 @@ namespace MineralTester.UI
         private void GoStudyButton(object sender, RoutedEventArgs e)
         {
             PlaygroundWindow playground = new PlaygroundWindow();
+            playground.Show();
             Close();
         }
 
         private void ExitStudentMineral(object sender, RoutedEventArgs e)
         {
-
+            AdminWindow adminWindow = new AdminWindow();
+            adminWindow.Show();
+            Close();
         }
     }
 }

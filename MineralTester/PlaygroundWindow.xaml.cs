@@ -26,8 +26,8 @@ namespace MineralTester.UI
 
         private void ExitPlayground(object sender, RoutedEventArgs e)
         {
-            AdminWindow adminWindow = new AdminWindow();
-            adminWindow.Show();
+            StudentMineralWindow studentMineralWindow = new StudentMineralWindow();
+            studentMineralWindow.Show();
             Close();
         }
     }
