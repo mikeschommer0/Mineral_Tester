@@ -15,24 +15,20 @@ using System.Windows.Shapes;
 namespace MineralTester.UI
 {
     /// <summary>
-    /// Interaction logic for StudentMineral.xaml
+    /// Interaction logic for PlaygroundWindow.xaml
     /// </summary>
-    public partial class StudentMineral : Window
+    public partial class PlaygroundWindow : Window
     {
-        public StudentMineral()
+        public PlaygroundWindow()
         {
             InitializeComponent();
         }
 
-        private void GoStudyButton(object sender, RoutedEventArgs e)
+        private void ExitPlayground(object sender, RoutedEventArgs e)
         {
-            PlaygroundWindow playground = new PlaygroundWindow();
+            AdminWindow adminWindow = new AdminWindow();
+            adminWindow.Show();
             Close();
-        }
-
-        private void ExitStudentMineral(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
