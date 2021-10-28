@@ -26,12 +26,14 @@ namespace MineralTester.UI
 
         private void CreateStudentButton(object sender, RoutedEventArgs e)
         {
-
+            CreateUserWindow userWindow = new CreateUserWindow();
+            userWindow.Show();
         }
 
         private void CreateFacultyButton(object sender, RoutedEventArgs e)
         {
-
+            CreateUserWindow userWindow = new CreateUserWindow();
+            userWindow.Show();
         }
 
         private void CreateQuestionButton(object sender, RoutedEventArgs e)
