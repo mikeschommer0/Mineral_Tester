@@ -1,0 +1,17 @@
+﻿<Window x:Class="MineralTester.UI.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MineralTester.UI"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Admin Window" HorizontalAlignment="Center" Margin="0,28,0,0" VerticalAlignment="Top" FontSize="35"/>
+        <Button Content="Create Student" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="150" Click="CreateStudentButton"/>
+        <Button Content="Create Faculty" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Width="150" Click="CreateFacultyButton"/>
+        <Button Content="Create Question" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Top" Width="150" Click="CreateQuestionButton"/>
+        <Button Content="Add Mineral" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" Width="150" Click="AddMineralButton"/>
+        <Button Content="Exit" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Width="150" Click="ExitAdminButton"/>
+    </Grid>
+</Window>

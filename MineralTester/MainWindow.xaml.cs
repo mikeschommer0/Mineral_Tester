@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MineralTester
+namespace MineralTester.UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,6 +23,18 @@ namespace MineralTester
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void SignInButton(object sender, RoutedEventArgs e)
+        {
+            AdminWindow adminWindow = new AdminWindow();
+            adminWindow.Show();
+            Close();
+        }
+
+        private void ForgotPasswordButton(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

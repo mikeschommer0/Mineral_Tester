@@ -1,14 +1,18 @@
-﻿<Window x:Class="MineralTester.MainWindow"
+﻿<Window x:Class="MineralTester.UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MineralTester"
+        xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Label Content="Mineral Tester" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" FontSize="35.0"/>
-        <Button Content="Sign In" HorizontalAlignment="Center" Margin="0,269,0,0" VerticalAlignment="Top" Width="150"/>
-        <Button Content="Forgot Password" HorizontalAlignment="Center" Margin="0,308,0,0" VerticalAlignment="Top" Width="150"/>
+        <Button Content="Sign In" HorizontalAlignment="Center" Margin="0,288,0,0" VerticalAlignment="Top" Width="150" Click="SignInButton"/>
+        <Button Content="Forgot Password" HorizontalAlignment="Center" Margin="0,326,0,0" VerticalAlignment="Top" Width="150" Click="ForgotPasswordButton"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="240,140,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="240,193,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Margin="393,155,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="393,201,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
