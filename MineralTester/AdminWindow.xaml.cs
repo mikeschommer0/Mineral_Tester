@@ -38,13 +38,14 @@ namespace MineralTester.UI
 
         private void CreateQuestionButton(object sender, RoutedEventArgs e)
         {
-
+            CreateQuestionWindow createQuestion = new CreateQuestionWindow();
+            createQuestion.Show();
         }
 
         private void AddMineralButton(object sender, RoutedEventArgs e)
         {
-            CreateQuestion createQuestion = new CreateQuestion();
-            createQuestion.Show();
+            AddMineralWindow addMineral = new AddMineralWindow();
+            addMineral.Show();
         }
 
         private void ExitAdminButton(object sender, RoutedEventArgs e)

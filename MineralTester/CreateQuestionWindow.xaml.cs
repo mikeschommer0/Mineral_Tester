@@ -17,9 +17,9 @@ namespace MineralTester.UI
     /// <summary>
     /// Interaction logic for CreateQuestion.xaml
     /// </summary>
-    public partial class CreateQuestion : Window
+    public partial class CreateQuestionWindow : Window
     {
-        public CreateQuestion()
+        public CreateQuestionWindow()
         {
             InitializeComponent();
         }
