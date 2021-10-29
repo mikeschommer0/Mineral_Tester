@@ -11,10 +11,13 @@
         <Label Content="Hardness" HorizontalAlignment="Left" Margin="184,125,0,0" VerticalAlignment="Top" FontSize="25"/>
         <TextBox HorizontalAlignment="Left" Margin="400,88,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Margin="400,138,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-       
+
         <Button Content="Add Another Mineral" HorizontalAlignment="Center" Margin="0,331,0,0" VerticalAlignment="Top" Width="150" Click="AddAnotherMineral"/>
         <Button Content="Finish" HorizontalAlignment="Center" Margin="0,371,0,0" VerticalAlignment="Top" Width="150" Click="ExitMineralWindow"/>
         <CheckBox  Content="Reacts With Acid" HorizontalAlignment="Left" Margin="184,175,0,0" VerticalAlignment="Top" FontSize="25"/>
         <CheckBox Content="Magnetic" HorizontalAlignment="Left" Margin="184,225,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <Button Content="Add An Image" HorizontalAlignment="Left" Margin="184,279,0,0" Width="100" VerticalAlignment="Top" Click="AddAnImageButton_Click"/>
+        <TextBox Name ="AddAnImageTextBox" HorizontalAlignment="Left" Margin="400,280,0,0"  TextWrapping="NoWrap" VerticalAlignment="Top" Width="250"/>
+        <Image Name ="MineralImage" HorizontalAlignment="Left" Height="132" Margin="564,97,0,0" VerticalAlignment="Top" Width="201"/>
     </Grid>
 </Window>

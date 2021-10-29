@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,22 @@ namespace MineralTester.UI
         private void ExitMineralWindow(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void AddAnImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = "c:\\";
+            dlg.Filter = "Image files (*.jpg)|*.jpg|(*.png)|*.png";
+            dlg.RestoreDirectory = true;
+
+            if (dlg.ShowDialog() == true)
+            {
+                string selectedFileName = dlg.FileName;
+                Uri fileUri = new Uri(selectedFileName);
+                AddAnImageTextBox.Text = selectedFileName;
+                MineralImage.Source = new BitmapImage(fileUri);
+            }
         }
     }
 }
