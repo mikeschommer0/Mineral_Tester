@@ -24,5 +24,36 @@ namespace MineralTester.Classes
             }
             return validFields;
         }
+
+        public List<bool> ValidateUserData(List<string> fields)
+        {
+            List<bool> validFields = new List<bool> { true, true, true, true};
+            string firstName = fields[0];
+            string lastName = fields[1];
+            string username = fields[2];
+            string password = fields[3];
+
+            if (firstName.Length == 0 || firstName.Length > 50)
+            {
+                validFields[0] = false;
+            }
+
+            if (lastName.Length == 0 || lastName.Length > 50)
+            {
+                validFields[1] = false;
+            }
+
+            if (username.Length == 0 || username.Length > 8)
+            {
+                validFields[2] = false;
+            }
+
+            if (password.Length < 8)
+            {
+                validFields[3] = false;
+            }
+
+            return validFields;
+        }
     }
 }
