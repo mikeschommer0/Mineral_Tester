@@ -33,8 +33,8 @@ namespace MineralTester.UI
             List<object> fields = new List<object>(); 
             String name = MineralNameTextBox.Text;
             fields.Add(name);
-            float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0;
-            fields.Add(hardness);  // Try to parse as float, if it fails it will default to zero.
+            float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0; // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
+            fields.Add(hardness);  
             List<bool> validFields = bl.ValidateMineralData(fields);
 
             if (validFields.Contains(false)) // If any invaild fields, show message box for appropriate invalid field.
