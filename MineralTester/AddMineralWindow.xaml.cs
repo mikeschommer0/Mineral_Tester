@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MineralTester.Classes;
+
 
 namespace MineralTester.UI
 {
@@ -20,6 +22,7 @@ namespace MineralTester.UI
     /// </summary>
     public partial class AddMineralWindow : Window
     {
+        IBusinessLogic bl = new BusinessLogic();
         public AddMineralWindow()
         {
             InitializeComponent();
@@ -27,7 +30,33 @@ namespace MineralTester.UI
 
         private void AddAnotherMineral(object sender, RoutedEventArgs e)
         {
+            List<object> fields = new List<object>(); 
+            String name = MineralNameTextBox.Text;
+            fields.Add(name);
+            float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0;
+            fields.Add(hardness);  // Try to parse as float, if it fails it will default to zero.
+            List<bool> validFields = bl.ValidateMineralData(fields);
 
+            if (validFields.Contains(false)) // If any invaild fields, show message box for appropriate invalid field.
+            { 
+                EntryErrors(validFields);
+            }
+        }
+
+        private void EntryErrors(List<bool> validFields)
+        {
+            if (validFields[0] == false)
+            {
+                MessageBox.Show("Error while adding Mineral:\nInvalidNameLength");
+            }
+            if (validFields[1] == false)
+            {
+                MessageBox.Show("Error while adding Mineral:\nInvalidHardnessLevel");
+            }
+            if (MineralImage.Source == null)
+            {
+                MessageBox.Show("Error while adding Mineral:\nNoPhotoChosen");
+            }
         }
 
         private void ExitMineralWindow(object sender, RoutedEventArgs e)
@@ -39,14 +68,13 @@ namespace MineralTester.UI
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.InitialDirectory = "c:\\";
-            dlg.Filter = "Image files (*.jpg)|*.jpg|(*.png)|*.png";
+            dlg.Filter = "Image files (*.jpg)|*.jpg|(*.png)|*.png"; // Allows user to only choose jpeg or png files.
             dlg.RestoreDirectory = true;
 
             if (dlg.ShowDialog() == true)
             {
                 string selectedFileName = dlg.FileName;
                 Uri fileUri = new Uri(selectedFileName);
-                AddAnImageTextBox.Text = selectedFileName;
                 MineralImage.Source = new BitmapImage(fileUri);
             }
         }
