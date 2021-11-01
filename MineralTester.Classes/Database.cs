@@ -87,5 +87,37 @@ namespace MineralTester.Classes
 
             return result;
         }
+
+        /// <summary>
+        /// ASSUMES: That CheckUserExists has been ran and return
+        /// false prior to call.
+        /// 
+        /// POSSIBLY: Changing return type for testing (return rows effect) TBT
+        /// 
+        /// Takes in a user to insert into DB.
+        /// </summary>
+        /// <param name="newUser">New User to add to DB</param>
+        public void AddUser(User newUser)
+        {
+            //open connection
+            MySqlConnection conn = new MySqlConnection(connectionStringToDB);
+            conn.Open();
+
+            //create command to insert new user and populate
+            MySqlCommand addNewUser = new MySqlCommand("INSERT INTO users " +
+                "(first_name, last_name, user_name, password, account_type)" +
+                " VALUES(@first_name, @last_name, @user_name, @password, @account_type)", conn);
+            addNewUser.Parameters.Add(new MySqlParameter("first_name", newUser.FirstName));
+            addNewUser.Parameters.Add(new MySqlParameter("last_name", newUser.LastName));
+            addNewUser.Parameters.Add(new MySqlParameter("user_name", newUser.Username));
+            addNewUser.Parameters.Add(new MySqlParameter("password", newUser.Password));
+            addNewUser.Parameters.Add(new MySqlParameter("account_type", newUser.AccountType));
+
+            //run insert and close connection
+            //ExecuteNonQuery is used as it will be usefull in
+            //testing at later date to see if insertion has ran.
+            int rowsEffected = addNewUser.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }
