@@ -12,6 +12,8 @@ namespace MineralTester.Classes
     {
         private string connectionStringToDB = ConfigurationManager.ConnectionStrings["MySQLDB"].ConnectionString;
 
+        private int RowsEffected = 0;
+
         /// <summary>
         /// Method to check if a user does exist before
         /// attempting to pull user from DB.
@@ -92,13 +94,16 @@ namespace MineralTester.Classes
         /// ASSUMES: That CheckUserExists has been ran and return
         /// false prior to call.
         /// 
-        /// POSSIBLY: Changing return type for testing (return rows effect) TBD
+        /// UPDATES: RowsEffected for testing.
         /// 
         /// Takes in a user to insert into DB.
         /// </summary>
         /// <param name="newUser">New User to add to DB</param>
         public void AddUser(User newUser)
         {
+            //planned to be used for testing
+            this.RowsEffected = 0;
+
             //open connection
             MySqlConnection conn = new MySqlConnection(connectionStringToDB);
             conn.Open();
@@ -116,7 +121,7 @@ namespace MineralTester.Classes
             //run insert and close connection
             //ExecuteNonQuery is used as it will be usefull in
             //testing at later date to see if insertion has occured.
-            int rowsEffected = addNewUser.ExecuteNonQuery();
+            this.RowsEffected = addNewUser.ExecuteNonQuery();
             conn.Close();
         }
 
@@ -124,13 +129,16 @@ namespace MineralTester.Classes
         /// ASSUMES: That CheckUserExists has been ran and return
         /// true prior to call.
         /// 
-        /// POSSIBLY: Changing return type for testing (return rows effect) TBD
+        /// UPDATES: RowsEffected for testing.
         /// 
         /// Takes in a user to delete from DB.
         /// </summary>
         /// <param name="userToDelete">User to delete from DB</param>
         public void DeleteUser(User userToDelete)
         {
+            //planned to be used for testing
+            this.RowsEffected = 0;
+
             //open connection
             MySqlConnection conn = new MySqlConnection(connectionStringToDB);
             conn.Open();
@@ -143,8 +151,26 @@ namespace MineralTester.Classes
             //run delete and close connection
             //ExecuteNonQuery is used as it will be usefull in
             //testing at later date to see if deletion has occured.
-            int rowsEffected = deleteUser.ExecuteNonQuery();
+            this.RowsEffected = deleteUser.ExecuteNonQuery();
             conn.Close();
+        }
+
+        /// <summary>
+        /// Simple method to allow for validation of command execution.
+        /// </summary>
+        /// <param name="expectedEffected">How many rows were expected to be
+        /// effected</param>
+        /// <returns>true if matched else false.</returns>
+        public Boolean ValidateExecution(int expectedEffected)
+        {
+            if(this.RowsEffected == expectedEffected)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
