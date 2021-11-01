@@ -36,13 +36,13 @@
             set;
         }
 
-        public string AccountType
+        public int AccountType
         {
             get;
             set;
         }
 
-        public User(int id, string firstName, string lastName, string username, string password, string accountType)
+        public User(int id, string firstName, string lastName, string username, string password, int accountType)
         {
             _ID = id;
             FirstName = firstName;
