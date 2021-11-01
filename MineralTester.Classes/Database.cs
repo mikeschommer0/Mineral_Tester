@@ -11,7 +11,7 @@ namespace MineralTester.Classes
     class Database
     {
         private string connectionStringToDB = ConfigurationManager.ConnectionStrings["MySQLDB"].ConnectionString;
-    
+
         /// <summary>
         /// Method to check if a user does exist before
         /// attempting to pull user from DB.
@@ -27,7 +27,7 @@ namespace MineralTester.Classes
             //command to check user is real
             MySqlCommand checkUser = new MySqlCommand("SELECT COUNT(*) FROM users WHERE" + " user_name = @userName", conn);
             checkUser.Parameters.Add(new MySqlParameter("userName", userName));
-            
+
             //run command
             MySqlDataReader reader = checkUser.ExecuteReader();
             reader.Read();
@@ -92,7 +92,7 @@ namespace MineralTester.Classes
         /// ASSUMES: That CheckUserExists has been ran and return
         /// false prior to call.
         /// 
-        /// POSSIBLY: Changing return type for testing (return rows effect) TBT
+        /// POSSIBLY: Changing return type for testing (return rows effect) TBD
         /// 
         /// Takes in a user to insert into DB.
         /// </summary>
@@ -117,6 +117,33 @@ namespace MineralTester.Classes
             //ExecuteNonQuery is used as it will be usefull in
             //testing at later date to see if insertion has ran.
             int rowsEffected = addNewUser.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        /// <summary>
+        /// ASSUMES: That CheckUserExists has been ran and return
+        /// true prior to call.
+        /// 
+        /// POSSIBLY: Changing return type for testing (return rows effect) TBD
+        /// 
+        /// Takes in a user to delete from DB.
+        /// </summary>
+        /// <param name="userToDelete">User to delete from DB</param>
+        public void DeleteUser(User userToDelete)
+        {
+            //open connection
+            MySqlConnection conn = new MySqlConnection(connectionStringToDB);
+            conn.Open();
+
+            //create command to delete entry and populate
+            MySqlCommand deleteUser = new MySqlCommand("DELETE FROM users WHERE" +
+                " user_id = @user_id", conn);
+            deleteUser.Parameters.Add(new MySqlParameter("user_id", userToDelete.ID));
+
+            //run delete and close connection
+            //ExecuteNonQuery is used as it will be usefull in
+            //testing at later date to see if insertion has ran.
+            int rowsEffected = deleteUser.ExecuteNonQuery();
             conn.Close();
         }
     }
