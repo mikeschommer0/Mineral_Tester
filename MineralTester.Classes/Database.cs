@@ -115,7 +115,7 @@ namespace MineralTester.Classes
 
             //run insert and close connection
             //ExecuteNonQuery is used as it will be usefull in
-            //testing at later date to see if insertion has ran.
+            //testing at later date to see if insertion has occured.
             int rowsEffected = addNewUser.ExecuteNonQuery();
             conn.Close();
         }
@@ -142,7 +142,7 @@ namespace MineralTester.Classes
 
             //run delete and close connection
             //ExecuteNonQuery is used as it will be usefull in
-            //testing at later date to see if insertion has ran.
+            //testing at later date to see if deletion has occured.
             int rowsEffected = deleteUser.ExecuteNonQuery();
             conn.Close();
         }
