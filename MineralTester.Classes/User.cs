@@ -1,6 +1,6 @@
 ﻿namespace MineralTester.Classes
 {
-    class User
+    public class User
     {
         private int _ID;
 

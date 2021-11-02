@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace MineralTester.Classes
 {
-    class Database
+    public class Database
     {
         private string connectionStringToDB = ConfigurationManager.ConnectionStrings["MySQLDB"].ConnectionString;
 
@@ -119,8 +119,8 @@ namespace MineralTester.Classes
             addNewUser.Parameters.Add(new MySqlParameter("account_type", newUser.AccountType));
 
             //run insert and close connection
-            //ExecuteNonQuery is used as it will be usefull in
-            //testing at later date to see if insertion has occured.
+            //ExecuteNonQuery is used as it will be useful in
+            //testing at later date to see if insertion has occurred.
             this.RowsEffected = addNewUser.ExecuteNonQuery();
             conn.Close();
         }
@@ -149,8 +149,8 @@ namespace MineralTester.Classes
             deleteUser.Parameters.Add(new MySqlParameter("user_id", userToDelete.ID));
 
             //run delete and close connection
-            //ExecuteNonQuery is used as it will be usefull in
-            //testing at later date to see if deletion has occured.
+            //ExecuteNonQuery is used as it will be useful in
+            //testing at later date to see if deletion has occurred.
             this.RowsEffected = deleteUser.ExecuteNonQuery();
             conn.Close();
         }
@@ -170,6 +170,32 @@ namespace MineralTester.Classes
             else
             {
                 return false;
+            }
+        }
+
+
+        /**
+         * Gets a list of answers for a given question
+         * param question_id is the question to get answers for
+         * return a list of answers
+         */
+        public List<Answer> GetAnswers(int question_id)
+        {
+            List<Answer> answers = new List<Answer>();
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                MySqlCommand getAnswers = new MySqlCommand("CALL getAnswers(@question_id)", connection);
+                getAnswers.Parameters.Add(new MySqlParameter("question_id", question_id));
+                MySqlDataReader reader = getAnswers.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        answers.Add(new Answer((int)reader["question_id"], (string)reader["description"], Convert.ToBoolean((sbyte)reader["is_correct"])));
+                    }
+                }
+                return answers;
             }
         }
     }
