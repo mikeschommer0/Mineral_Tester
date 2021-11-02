@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MineralTester.Classes
 {
-    public class Database
+    public class Database : IDatabase
     {
         private string connectionStringToDB = "server=titansreallyrule.info;user=d6304c5_bowmanr;password=sql_915466;database=d6304c5_bowmanr;port=3306;SSL Mode=Required";
 
@@ -171,6 +171,8 @@ namespace MineralTester.Classes
             }
         }
 
+        // Gets a list of all questions from the database
+        // Returns a list of all questions in the database if there are any, otherwise returns an empty list
         public List<Question> GetQuestions()
         {
             List<Question> questions = new List<Question>();
@@ -191,6 +193,8 @@ namespace MineralTester.Classes
             }
         }
 
+        // Inserts a new question into the database
+        // Param description is the string representation of the question
         public void InsertQuestion(string description)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -203,6 +207,9 @@ namespace MineralTester.Classes
             }
         }
 
+        // Updates an existing question in the database
+        // Param idToUpdate is the question id being updated
+        // Param description is the string representation of the question
         public void UpdateQuestion(int idToUpdate, string description)
         {
             List<Question> questions = GetQuestions();
@@ -224,6 +231,8 @@ namespace MineralTester.Classes
             }
         }
 
+        // Deletes an existing question in the database
+        // Param idToDelete is the question id to delete
         public void DeleteQuestion(int idToDelete)
         {
             List<Question> questions = GetQuestions();
@@ -244,6 +253,8 @@ namespace MineralTester.Classes
             }
         }
 
+        // Gets a list of all answers in the database
+        // Returns a list of all answers in the database if there are any, otherwise returns an empty list
         public List<Answer> GetAnswers()
         {
             List<Answer> answers = new List<Answer>();
@@ -264,6 +275,8 @@ namespace MineralTester.Classes
             }
         }
 
+        // Inserts a new answer into the database
+        // Param description is the string representation of the answer
         public void InsertAnswer(string description)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -276,6 +289,9 @@ namespace MineralTester.Classes
             }
         }
 
+        // Updates an existing answer in the database
+        // Param idtoUpdate is the answer id being updated
+        // Param description is the string representation of the answer
         public void UpdateAnswer(int idToUpdate, string description)
         {
             List<Answer> answers = GetAnswers();
@@ -297,6 +313,8 @@ namespace MineralTester.Classes
             }
         }
 
+        // Deletes an existing answer in the database
+        // Param idToDelete is the answer id to delete
         public void DeleteAnswer(int idToDelete)
         {
             List<Answer> answers = GetAnswers();
@@ -317,6 +335,8 @@ namespace MineralTester.Classes
             }
         }
 
+        // Inserts a question and its corresponding answers into the question_answer junction table
+        // Param question is the question whose data will be inserted
         public void InsertQuestionAnswers(Question question)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -334,6 +354,8 @@ namespace MineralTester.Classes
             }
         }
 
+        // Deletes all of the answers to the selected question from the question_answer junction table
+        // Param questionID is the question that will have all of its answers deleted from the junction table
         public void DeleteQuestionAnswers(int questionID)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -345,14 +367,17 @@ namespace MineralTester.Classes
             }
         }
 
-        public List<Answer> GetQuestionAnswers(int question_id)
+        // Gets a list of answers for the input question id
+        // Param questionID is the ID to get answers for from the question_answer junction table
+        // Returns a list of answers for the given question if there are any, or an empty list if there are none
+        public List<Answer> GetQuestionAnswers(int questionID)
         {
             List<Answer> answers = new List<Answer>();
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
                 connection.Open();
                 MySqlCommand command = new MySqlCommand("CALL get_answers(@question_id)", connection);
-                command.Parameters.Add(new MySqlParameter("question_id", question_id));
+                command.Parameters.Add(new MySqlParameter("question_id", questionID));
                 MySqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
