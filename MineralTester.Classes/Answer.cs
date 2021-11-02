@@ -12,6 +12,12 @@ namespace MineralTester.Classes
         public string Description { get; set; }
         public bool IsCorrect { get; set; }
 
+        public Answer(int answerID, string description)
+        {
+            AnswerID = answerID;
+            Description = description;
+        }
+
         public Answer(int answerID, string description, bool isCorrect)
         {
             AnswerID = answerID;

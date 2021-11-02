@@ -161,7 +161,7 @@ namespace MineralTester.Classes
         /// <param name="expectedEffected">How many rows were expected to be
         /// effected</param>
         /// <returns>true if matched else false.</returns>
-        public Boolean ValidateExecution(int expectedEffected)
+        public bool ValidateExecution(int expectedEffected)
         {
             if(this.RowsEffected == expectedEffected)
             {
@@ -173,21 +173,189 @@ namespace MineralTester.Classes
             }
         }
 
+        public List<Question> GetQuestions()
+        {
+            List<Question> questions = new List<Question>();
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT * FROM questions", connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        questions.Add(new Question((int)reader["question_id"], (string)reader["description"]));
+                    }
+                }
+                connection.Close();
+                return questions;
+            }
+        }
 
-        /**
-         * Gets a list of answers for a given question
-         * param question_id is the question to get answers for
-         * return a list of answers
-         */
-        public List<Answer> GetAnswers(int question_id)
+        public void InsertQuestion(string description)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("INSERT INTO questions (description) VALUES (@description)", connection);
+                command.Parameters.Add(new MySqlParameter("description", description));
+                MySqlDataReader reader = command.ExecuteReader();
+                connection.Close();
+            }
+        }
+
+        public void UpdateQuestion(int idToUpdate, string description)
+        {
+            List<Question> questions = GetQuestions();
+            if (!questions.Any(q => q.QuestionID == idToUpdate))
+            {
+                throw new ArgumentException("Error updating question, ID not found");
+            }
+            else
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand("UPDATE questions SET description = @description WHERE question_id = @id_to_update", connection);
+                    command.Parameters.Add(new MySqlParameter("description", description));
+                    command.Parameters.Add(new MySqlParameter("id_to_update", idToUpdate));
+                    MySqlDataReader reader = command.ExecuteReader();
+                    connection.Close();
+                }
+            }
+        }
+
+        public void DeleteQuestion(int idToDelete)
+        {
+            List<Question> questions = GetQuestions();
+            if (!questions.Any(q => q.QuestionID == idToDelete))
+            {
+                throw new ArgumentException("Error deleting question, ID not found");
+            }
+            else
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand("DELETE FROM questions WHERE question_id == @id_to_delete");
+                    command.Parameters.Add(new MySqlParameter("id_to_delete", idToDelete));
+                    MySqlDataReader reader = command.ExecuteReader();
+                    connection.Close();
+                }
+            }
+        }
+
+        public List<Answer> GetAnswers()
         {
             List<Answer> answers = new List<Answer>();
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
                 connection.Open();
-                MySqlCommand getAnswers = new MySqlCommand("CALL getAnswers(@question_id)", connection);
-                getAnswers.Parameters.Add(new MySqlParameter("question_id", question_id));
-                MySqlDataReader reader = getAnswers.ExecuteReader();
+                MySqlCommand command = new MySqlCommand("SELECT * FROM answers", connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        answers.Add(new Answer((int)reader["answer_id"], (string)reader["description"]));
+                    }
+                }
+                connection.Close();
+                return answers;
+            }
+        }
+
+        public void InsertAnswer(string description)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("INSERT INTO answers (description) VALUES (@description)", connection);
+                command.Parameters.Add(new MySqlParameter("description", description));
+                MySqlDataReader reader = command.ExecuteReader();
+                connection.Close();
+            }
+        }
+
+        public void UpdateAnswer(int idToUpdate, string description)
+        {
+            List<Answer> answers = GetAnswers();
+            if (!answers.Any(q => q.AnswerID == idToUpdate))
+            {
+                throw new ArgumentException("Error updating answer, ID not found");
+            }
+            else
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand("UPDATE answers SET description = @description WHERE answer_id = @id_to_update", connection);
+                    command.Parameters.Add(new MySqlParameter("description", description));
+                    command.Parameters.Add(new MySqlParameter("id_to_update", idToUpdate));
+                    MySqlDataReader reader = command.ExecuteReader();
+                    connection.Close();
+                }
+            }
+        }
+
+        public void DeleteAnswer(int idToDelete)
+        {
+            List<Answer> answers = GetAnswers();
+            if (!answers.Any(q => q.AnswerID == idToDelete))
+            {
+                throw new ArgumentException("Error deleting answer, ID not found");
+            }
+            else
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand("DELETE FROM answers WHERE answer_id == @id_to_delete");
+                    command.Parameters.Add(new MySqlParameter("id_to_delete", idToDelete));
+                    MySqlDataReader reader = command.ExecuteReader();
+                    connection.Close();
+                }
+            }
+        }
+
+        public void InsertQuestionAnswers(Question question)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                foreach (Answer answer in question.Answers)
+                {
+                    MySqlCommand command = new MySqlCommand("INSERT INTO question_answers (question_id, answer_id, is_correct) VALUES (@question_id, @answer_id, @is_correct)");
+                    command.Parameters.Add(new MySqlParameter("question_id", question.QuestionID));
+                    command.Parameters.Add(new MySqlParameter("answer_id", answer.AnswerID));
+                    command.Parameters.Add(new MySqlParameter("is_correct", Convert.ToSByte(answer.IsCorrect)));
+                    MySqlDataReader reader = command.ExecuteReader();
+                    connection.Close();
+                }
+            }
+        }
+
+        public void DeleteQuestionAnswers(int questionID)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                MySqlCommand command = new MySqlCommand("DELETE FROM question_answers WHERE question_id = @question_id");
+                command.Parameters.Add(new MySqlParameter("question_id", questionID));
+                MySqlDataReader reader = command.ExecuteReader();
+                connection.Close();
+            }
+        }
+
+        public List<Answer> GetQuestionAnswers(int question_id)
+        {
+            List<Answer> answers = new List<Answer>();
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("CALL get_answers(@question_id)", connection);
+                command.Parameters.Add(new MySqlParameter("question_id", question_id));
+                MySqlDataReader reader = command.ExecuteReader();
                 if(reader.HasRows)
                 {
                     while (reader.Read())
@@ -195,6 +363,7 @@ namespace MineralTester.Classes
                         answers.Add(new Answer((int)reader["question_id"], (string)reader["description"], Convert.ToBoolean((sbyte)reader["is_correct"])));
                     }
                 }
+                connection.Close();
                 return answers;
             }
         }

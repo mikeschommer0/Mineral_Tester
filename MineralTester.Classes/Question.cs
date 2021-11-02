@@ -4,21 +4,15 @@ namespace MineralTester.Classes
 {
     public class Question
     {
-        private Database database = new Database();
-
         public int QuestionID { get; set; }
         public string Description { get; set; }
 
         public List<Answer> Answers { get; set; }
 
-        public Question()
+        public Question(int questionID, string description)
         {
-            Answers = new List<Answer>();
-        }
-
-        public void LoadAnswers()
-        {
-            
+            QuestionID = questionID;
+            Description = description;
         }
     }
 }

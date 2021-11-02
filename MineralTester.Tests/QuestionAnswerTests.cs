@@ -11,7 +11,7 @@ namespace MineralTester.Tests
         public void LoadAnswerTests()
         {
             Database database = new Database();
-            List<Answer> answers = database.GetAnswers(1);
+            List<Answer> answers = database.GetQuestionAnswers(1);
             Assert.AreEqual(4, answers.Count);
         }
     }
