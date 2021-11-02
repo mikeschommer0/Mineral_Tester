@@ -8,7 +8,7 @@ namespace MineralTester.Classes
 {
     public class Database : IDatabase
     {
-        private string connectionStringToDB = "server=titansreallyrule.info;user=d6304c5_bowmanr;password=sql_915466;database=d6304c5_bowmanr;port=3306;SSL Mode=Required";
+        private string connectionStringToDB = ConfigurationManager.ConnectionStrings["MySQLDB"].ConnectionString;
 
         private int _RowsEffected = 0;
 
@@ -280,8 +280,10 @@ namespace MineralTester.Classes
             }
         }
 
-        // Inserts a new answer into the database
-        // Param description is the string representation of the answer
+        /// <summary>
+        /// Inserts a new answer into the database
+        /// </summary>
+        /// <param name="description">Is the string representation of the answer</param>
         public void InsertAnswer(string description)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -294,9 +296,11 @@ namespace MineralTester.Classes
             }
         }
 
-        // Updates an existing answer in the database
-        // Param idtoUpdate is the answer id being updated
-        // Param description is the string representation of the answer
+        /// <summary>
+        /// Updates an existing answer in the database
+        /// </summary>
+        /// <param name="idToUpdate">Is the answer id being updated</param>
+        /// <param name="description">It the string representation of the answer</param>
         public void UpdateAnswer(int idToUpdate, string description)
         {
             List<Answer> answers = GetAnswers();
@@ -318,8 +322,10 @@ namespace MineralTester.Classes
             }
         }
 
-        // Deletes an existing answer in the database
-        // Param idToDelete is the answer id to delete
+        /// <summary>
+        /// Deletes an existing answer in the database
+        /// </summary>
+        /// <param name="idToDelete">Is the answer id to delete</param>
         public void DeleteAnswer(int idToDelete)
         {
             List<Answer> answers = GetAnswers();
@@ -340,8 +346,10 @@ namespace MineralTester.Classes
             }
         }
 
-        // Inserts a question and its corresponding answers into the question_answer junction table
-        // Param question is the question whose data will be inserted
+        /// <summary>
+        /// Inserts a question and its corresponding answers into the question_answer junction table
+        /// </summary>
+        /// <param name="question">Is the question whose data will be inserted</param>
         public void InsertQuestionAnswers(Question question)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -359,8 +367,10 @@ namespace MineralTester.Classes
             }
         }
 
-        // Deletes all of the answers to the selected question from the question_answer junction table
-        // Param questionID is the question that will have all of its answers deleted from the junction table
+        /// <summary>
+        /// Deletes all of the answers to the selected question form the question_answer junction table
+        /// </summary>
+        /// <param name="questionID">Is the question that will have all of its answers deleted from the junction table</param>
         public void DeleteQuestionAnswers(int questionID)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -372,9 +382,11 @@ namespace MineralTester.Classes
             }
         }
 
-        // Gets a list of answers for the input question id
-        // Param questionID is the ID to get answers for from the question_answer junction table
-        // Returns a list of answers for the given question if there are any, or an empty list if there are none
+        /// <summary>
+        /// Gets a list of answers for the input question id
+        /// </summary>
+        /// <param name="questionID">Is the question to get answers for from the question_answer junction table</param>
+        /// <returns>A list of answers for the given question if there are any, or an empty list if there are none</returns>
         public List<Answer> GetQuestionAnswers(int questionID)
         {
             List<Answer> answers = new List<Answer>();
