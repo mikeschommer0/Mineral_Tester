@@ -1,10 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
-using MySql.Data.MySqlClient;
+using System.Linq;
 
 namespace MineralTester.Classes
 {
@@ -163,7 +161,7 @@ namespace MineralTester.Classes
         /// <returns>true if matched else false.</returns>
         public bool ValidateExecution(int expectedEffected)
         {
-            if(this.RowsEffected == expectedEffected)
+            if (this.RowsEffected == expectedEffected)
             {
                 return true;
             }
@@ -356,7 +354,7 @@ namespace MineralTester.Classes
                 MySqlCommand command = new MySqlCommand("CALL get_answers(@question_id)", connection);
                 command.Parameters.Add(new MySqlParameter("question_id", question_id));
                 MySqlDataReader reader = command.ExecuteReader();
-                if(reader.HasRows)
+                if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
