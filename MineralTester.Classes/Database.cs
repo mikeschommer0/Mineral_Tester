@@ -166,8 +166,10 @@ namespace MineralTester.Classes
             }
         }
 
-        // Gets a list of all questions from the database
-        // Returns a list of all questions in the database if there are any, otherwise returns an empty list
+        /// <summary>
+        /// Gets a list of all questions from the database
+        /// </summary>
+        /// <returns>Returns a list of all questions in the database if there are any, otherwise returns an empty list</returns>
         public List<Question> GetQuestions()
         {
             List<Question> questions = new List<Question>();
@@ -188,8 +190,10 @@ namespace MineralTester.Classes
             }
         }
 
-        // Inserts a new question into the database
-        // Param description is the string representation of the question
+        /// <summary>
+        /// Inserts a new question into the database
+        /// </summary>
+        /// <param name="description">description is the string representation of the question</param>
         public void InsertQuestion(string description)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -202,9 +206,11 @@ namespace MineralTester.Classes
             }
         }
 
-        // Updates an existing question in the database
-        // Param idToUpdate is the question id being updated
-        // Param description is the string representation of the question
+        /// <summary>
+        /// Updates an existing question in the database
+        /// </summary>
+        /// <param name="idToUpdate">/>Is the question id being updated</param>
+        /// <param name="description">is the string representation of the question</param>
         public void UpdateQuestion(int idToUpdate, string description)
         {
             List<Question> questions = GetQuestions();
@@ -226,8 +232,10 @@ namespace MineralTester.Classes
             }
         }
 
-        // Deletes an existing question in the database
-        // Param idToDelete is the question id to delete
+        /// <summary>
+        /// Deletes an existing question in the database
+        /// </summary>
+        /// <param name="idToDelete">Is the question id to delete</param>
         public void DeleteQuestion(int idToDelete)
         {
             List<Question> questions = GetQuestions();
@@ -248,8 +256,10 @@ namespace MineralTester.Classes
             }
         }
 
-        // Gets a list of all answers in the database
-        // Returns a list of all answers in the database if there are any, otherwise returns an empty list
+        /// <summary>
+        /// Gets a list of all answers in the database
+        /// </summary>
+        /// <returns>A list of all answers in the database if there are any, otherwise returns an empty list</returns>
         public List<Answer> GetAnswers()
         {
             List<Answer> answers = new List<Answer>();
