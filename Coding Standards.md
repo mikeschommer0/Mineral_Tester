@@ -57,7 +57,7 @@
                 }
             }
         ```
-- 10 Use braces even if they are optional
+- 9 Use braces even if they are optional
     - Correct:
         ```cs
             if (someCondition)
@@ -70,7 +70,7 @@
             if (someCondition)
                 return true;
         ```
-- 11 Write only one statement per line
+- 10 Write only one statement per line
     - Correct:
         ```cs
             int a = 1;
@@ -80,7 +80,7 @@
         ```cs
             int a = 1; int b = 2;
         ```
- - Declare only one field or variable per line
+ - 11 Declare only one field or variable per line
     - Correct:
         ```cs
             string firstName;
