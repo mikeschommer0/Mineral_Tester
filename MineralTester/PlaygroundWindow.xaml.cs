@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MineralTester.Classes;
 
 namespace MineralTester.UI
 {
@@ -19,14 +20,15 @@ namespace MineralTester.UI
     /// </summary>
     public partial class PlaygroundWindow : Window
     {
-        public PlaygroundWindow()
+        public PlaygroundWindow(User currentUser)
         {
             InitializeComponent();
+            user = currentUser;
         }
-
+        private User user;
         private void ExitPlayground(object sender, RoutedEventArgs e)
         {
-            StudentMineralWindow studentMineralWindow = new StudentMineralWindow();
+            StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
             studentMineralWindow.Show();
             Close();
         }

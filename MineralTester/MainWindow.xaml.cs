@@ -47,13 +47,13 @@ namespace MineralTester.UI
             }
             if(user.AccountType == 3 || user.AccountType == 2)
             {
-                AdminWindow adminWindow = new AdminWindow();
+                AdminWindow adminWindow = new AdminWindow(user);
                 adminWindow.Show();
                 Close();
             }
             if(user.AccountType == 1)
             {
-                StudentMineralWindow studentMineralWindow = new StudentMineralWindow();
+                StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
                 studentMineralWindow.Show();
                 Close();
             }

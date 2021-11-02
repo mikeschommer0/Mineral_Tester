@@ -21,11 +21,12 @@ namespace MineralTester.UI
     public partial class CreateUserWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
-        public CreateUserWindow()
+        public CreateUserWindow(User currentUser)
         {
             InitializeComponent();
+            user = currentUser;
         }
-
+        private User user;
         private void SubmitUserInfo(object sender, RoutedEventArgs e)
         {
             List<String> fields = new List<String>();
@@ -45,7 +46,7 @@ namespace MineralTester.UI
             }
             else
             {
-                AdminWindow adminWindow = new AdminWindow();
+                AdminWindow adminWindow = new AdminWindow(user);
                 Close();
             }
         }
@@ -73,7 +74,7 @@ namespace MineralTester.UI
 
         private void ExitUserInfo(object sender, RoutedEventArgs e)
         {
-            AdminWindow adminWindow = new AdminWindow();
+            AdminWindow adminWindow = new AdminWindow(user);
             Close();
         }
     }
