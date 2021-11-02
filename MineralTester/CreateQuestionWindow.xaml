@@ -5,16 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="CreateQuestion" Height="450" Width="800">
+        Title="Quiz Maker" Height="196.879" Width="395">
     <Grid>
-        <Label Content="Minerals:" HorizontalAlignment="Left" Margin="112,111,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label Content="Question:" HorizontalAlignment="Left" Margin="106,264,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label Content="Answer:" HorizontalAlignment="Left" Margin="414,264,0,0" VerticalAlignment="Top" FontSize="24"/>
-
-        <TextBox HorizontalAlignment="Left" Margin="222,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="512,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ListBox Margin="237,40,237,190"/>
-        <Button Content="Add Another Question" HorizontalAlignment="Center" Margin="0,331,0,0" VerticalAlignment="Top" Width="150" Click="AddAnotherProblemButton"/>
-        <Button Content="Finish" HorizontalAlignment="Center" Margin="0,371,0,0" VerticalAlignment="Top" Width="150" Click="ExitQuestonWindow"/>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="CornflowerBlue" Offset="1"/>
+                <GradientStop Color="White"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Button x:Name="btnQuestions" Content="Edit Questions" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="285,14,0,0" Click="btnQuestions_Click"/>
+        <Button x:Name="btnAnswers" Content="Edit Answers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="285,39,0,0" Click="btnAnswers_Click"/>
+        <ComboBox x:Name="cboQuestions" HorizontalAlignment="Left" Margin="80,14,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="cboQuestions_SelectionChanged"/>
+        <Label Content="Questions:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="65"/>
+        <RadioButton x:Name="rdoAnswer1" HorizontalAlignment="Left" Margin="60,45,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rdoAnswer2" HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rdoAnswer3" HorizontalAlignment="Left" Margin="60,99,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rdoAnswer4" HorizontalAlignment="Left" Margin="60,126,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboAnswer1" HorizontalAlignment="Left" Margin="80,41,0,0" VerticalAlignment="Top" Width="200"/>
+        <ComboBox x:Name="cboAnswer2" HorizontalAlignment="Left" Margin="80,68,0,0" VerticalAlignment="Top" Width="200"/>
+        <ComboBox x:Name="cboAnswer3" HorizontalAlignment="Left" Margin="80,95,0,0" VerticalAlignment="Top" Width="200"/>
+        <ComboBox x:Name="cboAnswer4" HorizontalAlignment="Left" Margin="80,122,0,0" VerticalAlignment="Top" Width="200"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="285,64,0,0" VerticalAlignment="Top" Width="92" Click="btnSave_Click"/>
     </Grid>
 </Window>

@@ -8,7 +8,7 @@ namespace MineralTester.Classes
 {
     public class Database
     {
-        private string connectionStringToDB = ConfigurationManager.ConnectionStrings["MySQLDB"].ConnectionString;
+        private string connectionStringToDB = "server=titansreallyrule.info;user=d6304c5_bowmanr;password=sql_915466;database=d6304c5_bowmanr;port=3306;SSL Mode=Required";
 
         private int RowsEffected = 0;
 

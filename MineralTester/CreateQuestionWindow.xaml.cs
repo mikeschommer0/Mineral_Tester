@@ -1,37 +1,77 @@
-﻿using System;
+﻿using MineralTester.Classes;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MineralTester.UI
 {
-    /// <summary>
-    /// Interaction logic for CreateQuestion.xaml
-    /// </summary>
+    public enum ScreenMode
+    {
+        Question = 1,
+        Answer
+    }
+
     public partial class CreateQuestionWindow : Window
     {
+        Database database = new Database();
+        List<Question> questions;
+        List<Answer> answers;
+
         public CreateQuestionWindow()
         {
             InitializeComponent();
+            DisplayQuestions();
+            DisplayAnswers();
         }
 
-        private void AddAnotherProblemButton(object sender, RoutedEventArgs e)
+        private void DisplayQuestions()
+        {
+            cboQuestions.ItemsSource = null;
+            questions = database.GetQuestions();
+            cboQuestions.ItemsSource = questions;
+            cboQuestions.DisplayMemberPath = "Description";
+            cboQuestions.SelectedValuePath = "QuestionID";
+        }
+
+        private void DisplayAnswers()
+        {
+            cboAnswer1.ItemsSource = null;
+            cboAnswer2.ItemsSource = null;
+            cboAnswer3.ItemsSource = null;
+            cboAnswer4.ItemsSource = null;
+            answers = database.GetAnswers();
+            cboAnswer1.ItemsSource = answers;
+            cboAnswer1.DisplayMemberPath = "Description";
+            cboAnswer1.SelectedValuePath = "AnswerID";
+            cboAnswer2.ItemsSource = answers;
+            cboAnswer2.DisplayMemberPath = "Description";
+            cboAnswer2.SelectedValuePath = "AnswerID";
+            cboAnswer3.ItemsSource = answers;
+            cboAnswer3.DisplayMemberPath = "Description";
+            cboAnswer3.SelectedValuePath = "AnswerID";
+            cboAnswer4.ItemsSource = answers;
+            cboAnswer4.DisplayMemberPath = "Description";
+            cboAnswer4.SelectedValuePath = "AnswerID"; 
+        }
+
+        private void btnQuestions_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void ExitQuestonWindow(object sender, RoutedEventArgs e)
+        private void btnAnswers_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+
+        }
+
+        private void cboQuestions_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
