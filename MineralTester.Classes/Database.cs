@@ -10,7 +10,7 @@ namespace MineralTester.Classes
     {
         private string connectionStringToDB = ConfigurationManager.ConnectionStrings["MySQLDB"].ConnectionString;
 
-        private int _RowsEffected = 0;
+        private int _rowsEffected = 0; // MODIFIED.
 
         /// <summary>
         /// Method to check if a user does exist before
@@ -25,7 +25,7 @@ namespace MineralTester.Classes
             conn.Open();
 
             // Command to check user is real.
-            MySqlCommand checkUser = new MySqlCommand("SELECT COUNT(*) FROM users WHERE" + " user_name = @userName", conn);
+            MySqlCommand checkUser = new MySqlCommand("SELECT COUNT(*) FROM users WHERE user_name = @userName", conn);
             checkUser.Parameters.Add(new MySqlParameter("userName", userName));
 
             // Run command.
@@ -95,7 +95,7 @@ namespace MineralTester.Classes
         public void AddUser(User newUser)
         {
             // Planned to be used for testing.
-            this._RowsEffected = 0;
+            this._rowsEffected = 0;
 
             // Open connection.
             MySqlConnection conn = new MySqlConnection(connectionStringToDB);
@@ -114,7 +114,7 @@ namespace MineralTester.Classes
             // Run insert and close connection
             // ExecuteNonQuery is used as it will be useful in
             // Testing at later date to see if insertion has occurred.
-            this._RowsEffected = addNewUser.ExecuteNonQuery();
+            this._rowsEffected = addNewUser.ExecuteNonQuery();
             conn.Close();
         }
 
@@ -130,7 +130,7 @@ namespace MineralTester.Classes
         public void DeleteUser(User userToDelete)
         {
             // Planned to be used for testing.
-            this._RowsEffected = 0;
+            this._rowsEffected = 0;
 
             // Open connection.
             MySqlConnection conn = new MySqlConnection(connectionStringToDB);
@@ -144,7 +144,7 @@ namespace MineralTester.Classes
             // Run delete and close connection
             // ExecuteNonQuery is used as it will be useful in
             // Testing at later date to see if deletion has occurred.
-            this._RowsEffected = deleteUser.ExecuteNonQuery();
+            this._rowsEffected = deleteUser.ExecuteNonQuery();
             conn.Close();
         }
 
@@ -156,7 +156,7 @@ namespace MineralTester.Classes
         /// <returns>true if matched else false.</returns>
         public bool ValidateExecution(int expectedEffected)
         {
-            if (this._RowsEffected == expectedEffected)
+            if (this._rowsEffected == expectedEffected)
             {
                 return true;
             }
@@ -167,9 +167,9 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Gets a list of all questions from the database
+        /// Gets a list of all questions from the database. (MODIFIED)
         /// </summary>
-        /// <returns>Returns a list of all questions in the database if there are any, otherwise returns an empty list</returns>
+        /// <returns> Returns a list of all questions in the database if there are any, otherwise returns an empty list. (MODIFIED)</returns>
         public List<Question> GetQuestions()
         {
             List<Question> questions = new List<Question>();
@@ -191,9 +191,9 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Inserts a new question into the database
+        /// Inserts a new question into the database. (MODIFIED)
         /// </summary>
-        /// <param name="description">description is the string representation of the question</param>
+        /// <param name="description"> Description is the string representation of the question. (MODIFIED)</param>
         public void InsertQuestion(string description)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -207,10 +207,10 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Updates an existing question in the database
+        /// Updates an existing question in the database. (MODIFIED)
         /// </summary>
-        /// <param name="idToUpdate">/>Is the question id being updated</param>
-        /// <param name="description">is the string representation of the question</param>
+        /// <param name="idToUpdate">/> Is the question id being updated. (MODIFIED)</param>
+        /// <param name="description"> Is the string representation of the question. (MODIFIED)</param>
         public void UpdateQuestion(int idToUpdate, string description)
         {
             List<Question> questions = GetQuestions();
@@ -233,9 +233,9 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Deletes an existing question in the database
+        /// Deletes an existing question in the database. (MODIFIED)
         /// </summary>
-        /// <param name="idToDelete">Is the question id to delete</param>
+        /// <param name="idToDelete"> Is the question id to delete. (MODIFIED)</param>
         public void DeleteQuestion(int idToDelete)
         {
             List<Question> questions = GetQuestions();
@@ -257,9 +257,9 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Gets a list of all answers in the database
+        /// Gets a list of all answers in the database. (MODIFIED)
         /// </summary>
-        /// <returns>A list of all answers in the database if there are any, otherwise returns an empty list</returns>
+        /// <returns> A list of all answers in the database if there are any, otherwise returns an empty list. (MODIFIED)</returns>
         public List<Answer> GetAnswers()
         {
             List<Answer> answers = new List<Answer>();
@@ -281,9 +281,9 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Inserts a new answer into the database
+        /// Inserts a new answer into the database. (MODIFIED)
         /// </summary>
-        /// <param name="description">Is the string representation of the answer</param>
+        /// <param name="description"> Is the string representation of the answer. (MODIFIED)</param>
         public void InsertAnswer(string description)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -297,10 +297,10 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Updates an existing answer in the database
+        /// Updates an existing answer in the database. (MODIFIED)
         /// </summary>
-        /// <param name="idToUpdate">Is the answer id being updated</param>
-        /// <param name="description">It the string representation of the answer</param>
+        /// <param name="idToUpdate"> Is the answer id being updated. (MODIFIED)</param>
+        /// <param name="description"> It the string representation of the answer. (MODIFIED)</param>
         public void UpdateAnswer(int idToUpdate, string description)
         {
             List<Answer> answers = GetAnswers();
@@ -323,9 +323,9 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Deletes an existing answer in the database
+        /// Deletes an existing answer in the database. (MODIFIED)
         /// </summary>
-        /// <param name="idToDelete">Is the answer id to delete</param>
+        /// <param name="idToDelete"> Is the answer id to delete. (MODIFIED)</param>
         public void DeleteAnswer(int idToDelete)
         {
             List<Answer> answers = GetAnswers();
@@ -347,9 +347,9 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Inserts a question and its corresponding answers into the question_answer junction table
+        /// Inserts a question and its corresponding answers into the question_answer junction table. (MODIFIED)
         /// </summary>
-        /// <param name="question">Is the question whose data will be inserted</param>
+        /// <param name="question"> Is the question whose data will be inserted. (MODIFIED)</param>
         public void InsertQuestionAnswers(Question question)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -368,9 +368,9 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Deletes all of the answers to the selected question form the question_answer junction table
+        /// Deletes all of the answers to the selected question form the question_answer junction table. (MODIFIED)
         /// </summary>
-        /// <param name="questionID">Is the question that will have all of its answers deleted from the junction table</param>
+        /// <param name="questionID"> Is the question that will have all of its answers deleted from the junction table. (MODIFIED)</param>
         public void DeleteQuestionAnswers(int questionID)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -383,10 +383,12 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// Gets a list of answers for the input question id
+        /// Gets a list of answers for the input question id. (MODIFIED)
         /// </summary>
-        /// <param name="questionID">Is the question to get answers for from the question_answer junction table</param>
-        /// <returns>A list of answers for the given question if there are any, or an empty list if there are none</returns>
+        /// <param name="questionID"> Is the question to get answers for from 
+        /// the question_answer junction table. (MODIFIED)</param>
+        /// <returns> A list of answers for the given question if
+        /// there are any, or an empty list if there are none. (MODIFIED)</returns>
         public List<Answer> GetQuestionAnswers(int questionID)
         {
             List<Answer> answers = new List<Answer>();
