@@ -21,29 +21,26 @@ namespace MineralTester.Classes
         public bool CheckUserExists(string userName)
         {
             // Build connection and open.
-            MySqlConnection conn = new MySqlConnection(connectionStringToDB);
-            conn.Open();
-
-            // Command to check user is real.
-            MySqlCommand checkUser = new MySqlCommand("SELECT COUNT(*) FROM users WHERE user_name = @userName", conn);
-            checkUser.Parameters.Add(new MySqlParameter("userName", userName));
-
-            // Run command.
-            MySqlDataReader reader = checkUser.ExecuteReader();
-            reader.Read();
-
-            // Pull result and close reader & connection.
-            int result = reader.GetInt32(0);
-            reader.Close();
-            conn.Close();
-
-            if (result == 1)// If result is a match user exist.
+            // (MODIFIED).
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                connection.Open();
+
+                // Command to check user is real.
+                MySqlCommand checkUser = new MySqlCommand("SELECT COUNT(*) FROM users WHERE user_name = @userName", connection);
+                checkUser.Parameters.Add(new MySqlParameter("userName", userName));
+
+                // Run command.
+                MySqlDataReader reader = checkUser.ExecuteReader();
+                reader.Read();
+
+                // Pull result and close reader & connection.
+                int result = reader.GetInt32(0);
+                reader.Close();
+                connection.Close();
+
+                // (MODIFIED).
+                return result == 1;
             }
         }
 
@@ -59,28 +56,31 @@ namespace MineralTester.Classes
         public User GetUser(string userName)
         {
             // Build connection and open.
-            MySqlConnection conn = new MySqlConnection(connectionStringToDB);
-            conn.Open();
+            // (MODIFIED).
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
 
-            // Command to get user info from DB.
-            MySqlCommand getUser = new MySqlCommand("SELECT * FROM users WHERE" + " user_name = @userName", conn);
-            getUser.Parameters.Add(new MySqlParameter("userName", userName));
+                // Command to get user info from DB.
+                MySqlCommand getUser = new MySqlCommand("SELECT * FROM users WHERE" + " user_name = @userName", connection);
+                getUser.Parameters.Add(new MySqlParameter("userName", userName));
 
-            // Run command.
-            MySqlDataReader reader = getUser.ExecuteReader();
-            reader.Read();
+                // Run command.
+                MySqlDataReader reader = getUser.ExecuteReader();
+                reader.Read();
 
-            // Create user (int id, string firstName,
-            // String lastName, string username,
-            // String password, int accountType).
-            User result = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
-                reader.GetString(3), reader.GetString(4), reader.GetInt32(5));
+                // Create user (int id, string firstName,
+                // String lastName, string username,
+                // String password, int accountType).
+                User result = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
+                    reader.GetString(3), reader.GetString(4), reader.GetInt32(5));
 
-            // Close reader & conn and return user.
-            reader.Close();
-            conn.Close();
+                // Close reader & conn and return user.
+                reader.Close();
+                connection.Close();
 
-            return result;
+                return result;
+            }
         }
 
         /// <summary>
@@ -98,24 +98,27 @@ namespace MineralTester.Classes
             this._rowsEffected = 0;
 
             // Open connection.
-            MySqlConnection conn = new MySqlConnection(connectionStringToDB);
-            conn.Open();
+            // (MODIFIED).
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
 
-            // Create command to insert new user and populate.
-            MySqlCommand addNewUser = new MySqlCommand("INSERT INTO users " +
-                "(first_name, last_name, user_name, password, account_type)" +
-                " VALUES(@first_name, @last_name, @user_name, @password, @account_type)", conn);
-            addNewUser.Parameters.Add(new MySqlParameter("first_name", newUser.FirstName));
-            addNewUser.Parameters.Add(new MySqlParameter("last_name", newUser.LastName));
-            addNewUser.Parameters.Add(new MySqlParameter("user_name", newUser.Username));
-            addNewUser.Parameters.Add(new MySqlParameter("password", newUser.Password));
-            addNewUser.Parameters.Add(new MySqlParameter("account_type", newUser.AccountType));
+                // Create command to insert new user and populate.
+                MySqlCommand addNewUser = new MySqlCommand("INSERT INTO users " +
+                    "(first_name, last_name, user_name, password, account_type)" +
+                    " VALUES(@first_name, @last_name, @user_name, @password, @account_type)", connection);
+                addNewUser.Parameters.Add(new MySqlParameter("first_name", newUser.FirstName));
+                addNewUser.Parameters.Add(new MySqlParameter("last_name", newUser.LastName));
+                addNewUser.Parameters.Add(new MySqlParameter("user_name", newUser.Username));
+                addNewUser.Parameters.Add(new MySqlParameter("password", newUser.Password));
+                addNewUser.Parameters.Add(new MySqlParameter("account_type", newUser.AccountType));
 
-            // Run insert and close connection
-            // ExecuteNonQuery is used as it will be useful in
-            // Testing at later date to see if insertion has occurred.
-            this._rowsEffected = addNewUser.ExecuteNonQuery();
-            conn.Close();
+                // Run insert and close connection
+                // ExecuteNonQuery is used as it will be useful in
+                // Testing at later date to see if insertion has occurred.
+                this._rowsEffected = addNewUser.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
         /// <summary>
@@ -132,20 +135,24 @@ namespace MineralTester.Classes
             // Planned to be used for testing.
             this._rowsEffected = 0;
 
+
             // Open connection.
-            MySqlConnection conn = new MySqlConnection(connectionStringToDB);
-            conn.Open();
+            // (MODIFIED).
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
 
-            // Create command to delete entry and populate.
-            MySqlCommand deleteUser = new MySqlCommand("DELETE FROM users WHERE" +
-                " user_id = @user_id", conn);
-            deleteUser.Parameters.Add(new MySqlParameter("user_id", userToDelete.ID));
+                // Create command to delete entry and populate.
+                MySqlCommand deleteUser = new MySqlCommand("DELETE FROM users WHERE" +
+                    " user_id = @user_id", connection);
+                deleteUser.Parameters.Add(new MySqlParameter("user_id", userToDelete.ID));
 
-            // Run delete and close connection
-            // ExecuteNonQuery is used as it will be useful in
-            // Testing at later date to see if deletion has occurred.
-            this._rowsEffected = deleteUser.ExecuteNonQuery();
-            conn.Close();
+                // Run delete and close connection
+                // ExecuteNonQuery is used as it will be useful in
+                // Testing at later date to see if deletion has occurred.
+                this._rowsEffected = deleteUser.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
         /// <summary>
@@ -156,14 +163,8 @@ namespace MineralTester.Classes
         /// <returns>true if matched else false.</returns>
         public bool ValidateExecution(int expectedEffected)
         {
-            if (this._rowsEffected == expectedEffected)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            // (MODIFIED).
+            return this._rowsEffected == expectedEffected;
         }
 
         /// <summary>
