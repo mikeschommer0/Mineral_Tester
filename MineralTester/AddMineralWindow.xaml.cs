@@ -23,6 +23,9 @@ namespace MineralTester.UI
     public partial class AddMineralWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
+        private string selectedFileName;
+        private bool magnetic;
+        private bool acidReaction;
         public AddMineralWindow()
         {
             InitializeComponent();
@@ -33,7 +36,9 @@ namespace MineralTester.UI
             List<object> fields = new List<object>(); 
             String name = MineralNameTextBox.Text;
             fields.Add(name);
-            float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0; // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
+            // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
+            float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0; 
+            
             fields.Add(hardness);  
             List<bool> validFields = bl.ValidateMineralData(fields);
 
@@ -43,6 +48,12 @@ namespace MineralTester.UI
             }
             else
             {
+                //Uri fileUri = new Uri(selectedFileName);
+                //Image img = Image.FromFile(selectedFileName);
+                //Image picture = Image.FromFile(MineralImage.Source);
+                //bool magnetic = MagneticReaction.IsChecked();
+                //bool acicReaction = AcidReaction.IsChecked();
+                Mineral toAdd = new Mineral(0, name, hardness, magnetic, acidReaction, "");
                 Close();
             }
         }
@@ -77,10 +88,30 @@ namespace MineralTester.UI
 
             if (dlg.ShowDialog() == true)
             {
-                string selectedFileName = dlg.FileName;
+                selectedFileName = dlg.FileName;
                 Uri fileUri = new Uri(selectedFileName);
                 MineralImage.Source = new BitmapImage(fileUri);
             }
+        }
+
+        private void ReactsWithAcid(object sender, RoutedEventArgs e)
+        {
+            this.acidReaction = true;
+        }
+
+        private void DoesntReactWithAcid(object sender, RoutedEventArgs e)
+        {
+            this.acidReaction = false;
+        }
+
+        private void IsMagnetic(object sender, RoutedEventArgs e)
+        {
+            this.magnetic = true;
+        }
+
+        private void IsntMagnetic(object sender, RoutedEventArgs e)
+        {
+            this.magnetic = false;
         }
     }
 }
