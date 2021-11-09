@@ -1,6 +1,5 @@
 ﻿using MineralTester.Classes;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 
 namespace MineralTester.UI
@@ -17,6 +16,9 @@ namespace MineralTester.UI
         List<Question> questions;
         List<Answer> answers;
 
+        /// <summary>
+        /// Constructor that sets up the user interface
+        /// </summary>
         public CreateQuestionWindow()
         {
             InitializeComponent();
@@ -24,6 +26,9 @@ namespace MineralTester.UI
             DisplayAnswers();
         }
 
+        /// <summary>
+        /// Refreshes the user interface to reflect data changes.
+        /// </summary>
         private void RefreshScreen()
         {
             DisplayQuestions();
@@ -34,6 +39,9 @@ namespace MineralTester.UI
             rdoAnswer4.IsChecked = false;
         }
 
+        /// <summary>
+        /// Gets a list of questions from the database and displays them in the question combo box.
+        /// </summary>
         private void DisplayQuestions()
         {
             cboQuestions.ItemsSource = null;
@@ -43,6 +51,9 @@ namespace MineralTester.UI
             cboQuestions.SelectedValuePath = "QuestionID";
         }
 
+        /// <summary>
+        /// Gets a list of answers from the database and displays them in the answer combo boxes.
+        /// </summary>
         private void DisplayAnswers()
         {
             cboAnswer1.ItemsSource = null;
@@ -64,20 +75,35 @@ namespace MineralTester.UI
             cboAnswer4.SelectedValuePath = "AnswerID";
         }
 
+        /// <summary>
+        /// Shows the MaintainQA window to edit question data.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void btnQuestions_Click(object sender, RoutedEventArgs e)
         {
-            MaintainQA maintainQuestions = new MaintainQA(Enums.QAEditMode.EditQuestions);
+            MaintainQA maintainQuestions = new MaintainQA(Enums.QADataType.Questions);
             maintainQuestions.ShowDialog();
             DisplayQuestions();
         }
 
+        /// <summary>
+        /// Shows the MaintainQA window to edit answer data.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void btnAnswers_Click(object sender, RoutedEventArgs e)
         {
-            MaintainQA maintainQuestions = new MaintainQA(Enums.QAEditMode.EditAnswers);
+            MaintainQA maintainQuestions = new MaintainQA(Enums.QADataType.Ansers);
             maintainQuestions.ShowDialog();
             DisplayAnswers();
         }
 
+        /// <summary>
+        /// Inserts a new question and answer set into the database.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (cboQuestions.SelectedIndex > -1)
@@ -100,6 +126,10 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Sets which answer is correct for the indicated question.
+        /// </summary>
+        /// <param name="question"> The question which the answers belong to</param>
         private void setCorrectAnswer(Question question)
         {
             if ((bool)rdoAnswer1.IsChecked)
@@ -120,6 +150,10 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Determines which answers belong to the question.
+        /// </summary>
+        /// <param name="question"></param>
         private void setAnswers(Question question)
         {
             if (cboAnswer1.SelectedIndex > -1)

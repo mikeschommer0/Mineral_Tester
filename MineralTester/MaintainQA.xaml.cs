@@ -15,29 +15,36 @@ namespace MineralTester.UI
         List<Answer> _answers;
         Question _question;
         Answer _answer;
-        Enums.QAEditMode _editMode;
+        Enums.QADataType _dataType;
 
-        public MaintainQA(Enums.QAEditMode editMode)
+        /// <summary>
+        /// Constructor for MaintainQA window, sets up user interface based on which type of data is being worked with.
+        /// </summary>
+        /// <param name="dataType"> Represents which type of data is being worked with.</param>
+        public MaintainQA(Enums.QADataType dataType)
         {
             InitializeComponent();
-            _editMode = editMode;
+            _dataType = dataType;
             RefreshScreen();
-            string title = _editMode.ToString();
+            string title = _dataType.ToString();
             title.Insert(4, " ");
             Title = title;
-            lblAttributes.Content = _editMode.ToString().Substring(4);
+            lblAttributes.Content = _dataType.ToString().Substring(4);
         }
 
+        /// <summary>
+        /// Refreshes the user interface to reflect data changes
+        /// </summary>
         private void RefreshScreen()
         {
             cboAttributes.ItemsSource = null;
-            switch (_editMode)
+            switch (_dataType)
             {
-                case Enums.QAEditMode.EditQuestions:
+                case Enums.QADataType.Questions:
                     _questions = database.GetQuestions();
                     cboAttributes.ItemsSource = _questions;
                     break;
-                case Enums.QAEditMode.EditAnswers:
+                case Enums.QADataType.Ansers:
                     _answers = database.GetAnswers();
                     cboAttributes.ItemsSource = _answers;
                     break;
@@ -48,14 +55,19 @@ namespace MineralTester.UI
             txtAttributes.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Tells the database to insert a new question/answer.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void btnInsert_Click(object sender, RoutedEventArgs e)
         {
-            switch (_editMode)
+            switch (_dataType)
             {
-                case Enums.QAEditMode.EditQuestions:
+                case Enums.QADataType.Questions:
                     database.InsertQuestion(txtAttributes.Text);
                     break;
-                case Enums.QAEditMode.EditAnswers:
+                case Enums.QADataType.Ansers:
                     database.InsertAnswer(txtAttributes.Text);
                     break;
                 default:
@@ -64,16 +76,21 @@ namespace MineralTester.UI
             RefreshScreen();
         }
 
+        /// <summary>
+        /// Tells the database to update the selected question/answer.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             if (cboAttributes.SelectedIndex > -1)
             {
-                switch (_editMode)
+                switch (_dataType)
                 {
-                    case Enums.QAEditMode.EditQuestions:
+                    case Enums.QADataType.Questions:
                         database.UpdateQuestion(_question.QuestionID, txtAttributes.Text);
                         break;
-                    case Enums.QAEditMode.EditAnswers:
+                    case Enums.QADataType.Ansers:
                         database.UpdateAnswer(_answer.AnswerID, txtAttributes.Text);
                         break;
                     default:
@@ -83,16 +100,21 @@ namespace MineralTester.UI
             RefreshScreen();
         }
 
+        /// <summary>
+        /// Tells the database to delete the selected question/answer.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             if (cboAttributes.SelectedIndex > -1)
             {
-                switch (_editMode)
+                switch (_dataType)
                 {
-                    case Enums.QAEditMode.EditQuestions:
+                    case Enums.QADataType.Questions:
                         database.DeleteQuestion(_question.QuestionID);
                         break;
-                    case Enums.QAEditMode.EditAnswers:
+                    case Enums.QADataType.Ansers:
                         database.DeleteAnswer(_answer.AnswerID);
                         break;
                     default:
@@ -102,17 +124,22 @@ namespace MineralTester.UI
             RefreshScreen();
         }
 
+        /// <summary>
+        /// Takes a question description and adds it as editable text in the txtAttributes text box.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void cboAttributes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cboAttributes.SelectedIndex > -1)
             {
-                switch (_editMode)
+                switch (_dataType)
                 {
-                    case Enums.QAEditMode.EditQuestions:
+                    case Enums.QADataType.Questions:
                         _question = (Question)cboAttributes.SelectedItem;
                         txtAttributes.Text = _question.Description;
                         break;
-                    case Enums.QAEditMode.EditAnswers:
+                    case Enums.QADataType.Ansers:
                         _answer = (Answer)cboAttributes.SelectedItem;
                         txtAttributes.Text = _answer.Description;
                         break;

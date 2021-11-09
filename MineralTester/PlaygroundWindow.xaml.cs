@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MineralTester.Classes;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MineralTester.Classes;
 
 namespace MineralTester.UI
 {
@@ -28,12 +16,22 @@ namespace MineralTester.UI
             _user = currentUser;
         }
 
+        /// <summary>
+        /// Opens a window showing practice questions.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void DisplayPracticeQuestions(object sender, RoutedEventArgs e)
         {
             PracticeQuestionsWindow practiceQuestionsWindow = new PracticeQuestionsWindow();
             practiceQuestionsWindow.Show();
         }
 
+        /// <summary>
+        /// Closes the playground window.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void ExitPlayground(object sender, RoutedEventArgs e)
         {
             Close();

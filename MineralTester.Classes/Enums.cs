@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MineralTester.Classes
+﻿namespace MineralTester.Classes
 {
     public static class Enums
     {
@@ -15,10 +9,10 @@ namespace MineralTester.Classes
             Student = 3
         }
 
-        public enum QAEditMode
+        public enum QADataType
         {
-            EditQuestions,
-            EditAnswers
+            Questions,
+            Ansers
         }
     }
 }
