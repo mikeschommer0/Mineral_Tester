@@ -14,7 +14,7 @@ namespace MineralTester.Classes
             if (db.CheckUserExists(username))
             {
                 User user = db.GetUser(username);
-                if (user.Password == password)
+                if (user.Password.Equals(password))
                 {
                     return user;
                 }
