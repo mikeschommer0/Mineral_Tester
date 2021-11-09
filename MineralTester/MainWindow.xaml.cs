@@ -45,21 +45,24 @@ namespace MineralTester.UI
                 MessageBox.Show("Username or password was incorrect.");
                 return;
             }
-            if(user.AccountType == 3 || user.AccountType == 2)
+            if (user.AccountType == 3 || user.AccountType == 2)
             {
                 AdminWindow adminWindow = new AdminWindow(user);
                 adminWindow.Show();
                 Close();
             }
-            if(user.AccountType == 1)
-            {
-                StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
-                studentMineralWindow.Show();
-                Close();
-            }
             else
             {
-                MessageBox.Show("An unexpectated error has occured.");
+                if (user.AccountType == 1)
+                {
+                    StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
+                    studentMineralWindow.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("An unexpectated error has occured.");
+                }
             }
             
         }

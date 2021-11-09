@@ -24,10 +24,15 @@ namespace MineralTester.UI
         {
             InitializeComponent();
             user = currentUser;
-            if (user.AccountType == 3)
+            if (user.AccountType == 2)
             {
                 btnCreateFaculty.IsEnabled = false;
                 btnCreateStudent.IsEnabled = false;
+            }
+            else
+            {
+                btnCreateFaculty.IsEnabled = true;
+                btnCreateStudent.IsEnabled = true;
             }
         }
 
@@ -35,9 +40,9 @@ namespace MineralTester.UI
 
         private void OpenCreateUserWindow(int createType)
         {
-            if (user.AccountType != 3)
+            if (user.AccountType == 3)
             {
-                CreateUserWindow userWindow = new CreateUserWindow(user);
+                CreateUserWindow userWindow = new CreateUserWindow(user, createType);
                 userWindow.Show();
             }
             else
