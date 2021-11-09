@@ -13,16 +13,16 @@
                 <GradientStop Color="White"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="User Information" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <Label Content="First Name" HorizontalAlignment="Left" Margin="200,110,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Last Name" HorizontalAlignment="Left" Margin="200,150,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Username" HorizontalAlignment="Left" Margin="200,190,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="200,230,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox Name="FirstNameTextBox" HorizontalAlignment="Left" Margin="355,120,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="LastNameTextBox" HorizontalAlignment="Left" Margin="355,160,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="UsernameTextBox" HorizontalAlignment="Left" Margin="355,200,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="PasswordTextBox" HorizontalAlignment="Left" Margin="355,240,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Submit" HorizontalAlignment="Center" Margin="0,330,0,0" VerticalAlignment="Top" Width="150" Click="SubmitUserInfo"/>
-        <Button Content="Exit" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Width="150" Click="ExitUserInfo"/>
+        <Label Content="User Information" HorizontalAlignment="Center" Margin="0,41,0,0" VerticalAlignment="Top" FontSize="30"/>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="253,114,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="253,154,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="253,194,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="253,234,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox Name="FirstNameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,120,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <TextBox Name="LastNameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,160,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <TextBox Name="UsernameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,200,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <TextBox Name="PasswordTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,240,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <Button Content="Submit" FontSize="16" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="SubmitUserInfo"/>
+        <Button Content="Exit" FontSize="16" HorizontalAlignment="Center" Margin="0,354,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="ExitUserInfo"/>
     </Grid>
 </Window>
