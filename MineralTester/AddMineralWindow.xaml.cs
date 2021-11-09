@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MineralTester.Classes;
+using System.IO;
 
 
 namespace MineralTester.UI
@@ -23,7 +24,7 @@ namespace MineralTester.UI
     public partial class AddMineralWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
-        private string selectedFileName;
+        private string selectedFileName = "";
         private bool magnetic;
         private bool acidReaction;
         public AddMineralWindow()
@@ -48,12 +49,16 @@ namespace MineralTester.UI
             }
             else
             {
-                //Uri fileUri = new Uri(selectedFileName);
-                //Image img = Image.FromFile(selectedFileName);
-                //Image picture = Image.FromFile(MineralImage.Source);
-                //bool magnetic = MagneticReaction.IsChecked();
-                //bool acicReaction = AcidReaction.IsChecked();
-                Mineral toAdd = new Mineral(0, name, hardness, magnetic, acidReaction, "");
+                byte[] imgBytes = null;
+
+                // Only read file if exists.
+                if (!selectedFileName.Equals(""))
+                {
+                    FileStream stream = new FileStream(selectedFileName, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(stream);
+                    imgBytes = br.ReadBytes((int)stream.Length);
+                }
+                Mineral toAdd = new Mineral(0, name, hardness, magnetic, acidReaction, imgBytes);
                 Close();
             }
         }
