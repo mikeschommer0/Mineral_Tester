@@ -21,14 +21,13 @@ namespace MineralTester.UI
     public partial class CreateUserWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
-        IDatabase db = new Database();
-        private int newAccntType;
-        public CreateUserWindow(int createType)
+        public CreateUserWindow(int accountValue)
         {
             InitializeComponent();
-            newAccntType = createType;
+            newUserAccountType = accountValue;
         }
-        private User user;
+
+        private int newUserAccountType;
         private void SubmitUserInfo(object sender, RoutedEventArgs e)
         {
             List<String> fields = new List<String>();
@@ -48,9 +47,17 @@ namespace MineralTester.UI
             }
             else
             {
-                User toAdd = new User(0, firstName, lastName, username, password, newAccntType);
-                db.AddUser(toAdd);
-                Close();
+                IUserManager userManager = new UserManager();
+                User newUser = new User(0, firstName, lastName, username, password, newUserAccountType);
+                
+                if (newUserAccountType == 1)
+                {
+                    MessageBox.Show("A new student was added.");
+                }
+                else
+                {
+                    MessageBox.Show("A new user was added.");
+                }
             }
         }
 

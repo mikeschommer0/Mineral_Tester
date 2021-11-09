@@ -15,7 +15,7 @@
         </Grid.Background>
         <ListBox Margin="190,65,189,121"/>
         <Label Content="Minerals" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="28"/>
-        <Button Content="Go Study" HorizontalAlignment="Center" Margin="0,331,0,0" VerticalAlignment="Top" Width="150" Click="GoStudyButton"/>
-        <Button Content="Exit" HorizontalAlignment="Center" Margin="0,371,0,0" VerticalAlignment="Top" Width="150" Click="ExitStudentMineral"/>
+        <Button Content="Go Study" FontSize="16" HorizontalAlignment="Center" Margin="0,331,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="GoStudyButton"/>
+        <Button Content="Exit" FontSize="16" HorizontalAlignment="Center" Margin="0,371,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitStudentMineral"/>
     </Grid>
 </Window>
