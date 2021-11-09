@@ -37,7 +37,7 @@ namespace MineralTester.UI
         {
             if (user.AccountType == 3)
             {
-                CreateUserWindow userWindow = new CreateUserWindow(user);
+                CreateUserWindow userWindow = new CreateUserWindow(createType);
                 userWindow.Show();
             }
             else

@@ -22,10 +22,11 @@ namespace MineralTester.UI
     {
         IBusinessLogic bl = new BusinessLogic();
         IDatabase db = new Database();
-        public CreateUserWindow(User currentUser)
+        private int newAccntType;
+        public CreateUserWindow(int createType)
         {
             InitializeComponent();
-            user = currentUser;
+            newAccntType = createType;
         }
         private User user;
         private void SubmitUserInfo(object sender, RoutedEventArgs e)
@@ -47,7 +48,8 @@ namespace MineralTester.UI
             }
             else
             {
-                AdminWindow adminWindow = new AdminWindow(user);
+                User toAdd = new User(0, firstName, lastName, username, password, newAccntType);
+                db.AddUser(toAdd);
                 Close();
             }
         }
