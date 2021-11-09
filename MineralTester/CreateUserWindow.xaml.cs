@@ -21,6 +21,7 @@ namespace MineralTester.UI
     public partial class CreateUserWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
+        IDatabase db = new Database();
         public CreateUserWindow(User currentUser)
         {
             InitializeComponent();
@@ -55,19 +56,23 @@ namespace MineralTester.UI
         {
             if (validFields[0] == false)
             {
-                MessageBox.Show("Error while adding Mineral:\nInvalidFirstNameLength");
+                MessageBox.Show("Error while adding user:\nInvalidFirstNameLength");
             }
             if (validFields[1] == false)
             {
-                MessageBox.Show("Error while adding Mineral:\nInvalidLastNameLength");
+                MessageBox.Show("Error while adding user:\nInvalidLastNameLength");
             }
             if (validFields[2] == false)
             {
-                MessageBox.Show("Error while adding Mineral:\nInvalidUsernameLength");
+                MessageBox.Show("Error while adding user:\nInvalidUsernameLength");
             }
             if (validFields[3] == false)
             {
-                MessageBox.Show("Error while adding Mineral:\nInvalidPasswordLength");
+                MessageBox.Show("Error while adding user:\nInvalidPasswordLength");
+            }
+            if (validFields[4] == false)
+            {
+                MessageBox.Show("Error while adding user:\nUsernameAlreadyTaken");
             }
 
         }
