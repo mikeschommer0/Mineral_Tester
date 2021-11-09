@@ -14,11 +14,11 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Content="Admin Window" HorizontalAlignment="Center" Margin="0,28,0,0" VerticalAlignment="Top" FontSize="35"/>
-        <Button Name="btnCreateStudent" Content="Create Student" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="150" Click="CreateStudentButton"/>
-        <Button Name="btnCreateFaculty" Content="Create Faculty" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Width="150" Click="CreateFacultyButton"/>
-        <Button Content="Create Question" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Top" Width="150" Click="CreateQuestionButton"/>
-        <Button Content="Add Mineral" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" Width="150" Click="AddMineralButton"/>
-        <Button Content="Student Minerals(TEST)" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="150" Click="PlaygroundButton"/>
-        <Button Content="Exit" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Width="150" Click="ExitAdminButton"/>
+        <Button Name="btnCreateStudent" FontSize="18" Content="Create Student" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="CreateStudentButton"/>
+        <Button Name="btnCreateFaculty" FontSize="18" Content="Create Faculty" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="CreateFacultyButton"/>
+        <Button Content="Create Question" FontSize="18" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="CreateQuestionButton"/>
+        <Button Content="Add Mineral" FontSize="18" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="AddMineralButton"/>
+        <Button Content="Student Minerals" FontSize="18" HorizontalAlignment="Center" Margin="0,288,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="PlaygroundButton"/>
+        <Button Content="Exit" FontSize="18" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="ExitAdminButton"/>
     </Grid>
 </Window>

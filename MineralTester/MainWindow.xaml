@@ -14,7 +14,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Content="Mineral Tester" HorizontalAlignment="Center" Margin="0,52,0,0" VerticalAlignment="Top" FontSize="40.0"/>
-        <Button Content="Sign In" FontSize="18" HorizontalAlignment="Center" Margin="0,288,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="SignInButton"/>
+        <Button Content="Sign In" FontSize="18" HorizontalAlignment="Center" Margin="0,274,0,0" VerticalAlignment="Top" Width="180" Height="36" Background="White" Click="SignInButton"/>
         <Button Content="Forgot Password?" FontSize="18" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ForgotPasswordButton"/>
         <Label Content="Username" HorizontalAlignment="Left" Margin="271,148,0,0" VerticalAlignment="Top" FontSize="22"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="271,192,0,0" VerticalAlignment="Top" FontSize="22"/>
