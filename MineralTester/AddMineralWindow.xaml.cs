@@ -41,6 +41,10 @@ namespace MineralTester.UI
             { 
                 EntryErrors(validFields);
             }
+            else
+            {
+                Close();
+            }
         }
 
         private void EntryErrors(List<bool> validFields)
