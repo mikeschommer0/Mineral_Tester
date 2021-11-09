@@ -59,8 +59,8 @@ namespace MineralTester.UI
             }
             else if (user.AccountType == Enums.AccountType.Student)
             {
-                StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
-                studentMineralWindow.Show();
+                PlaygroundWindow playgroundWindow= new PlaygroundWindow(user);
+                playgroundWindow.Show();
                 Close();
             }
             else

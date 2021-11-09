@@ -20,16 +20,22 @@ namespace MineralTester.UI
     /// </summary>
     public partial class PlaygroundWindow : Window
     {
+        User _user;
+
         public PlaygroundWindow(User currentUser)
         {
             InitializeComponent();
-            user = currentUser;
+            _user = currentUser;
         }
-        private User user;
+
+        private void DisplayPracticeQuestions(object sender, RoutedEventArgs e)
+        {
+            PracticeQuestionsWindow practiceQuestionsWindow = new PracticeQuestionsWindow();
+            practiceQuestionsWindow.Show();
+        }
+
         private void ExitPlayground(object sender, RoutedEventArgs e)
         {
-            StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
-            studentMineralWindow.Show();
             Close();
         }
     }

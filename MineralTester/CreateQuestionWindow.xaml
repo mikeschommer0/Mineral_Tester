@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="Question Editor" Height="196.879" Width="395">
+        Title="Question Editor" Height="196.879" Width="500">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,18 +13,18 @@
                 <GradientStop Color="White"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="btnQuestions" Content="Edit Questions" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="285,14,0,0" Background="White" Click="btnQuestions_Click"/>
-        <Button x:Name="btnAnswers" Content="Edit Answers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="285,39,0,0" Background="White" Click="btnAnswers_Click"/>
-        <ComboBox x:Name="cboQuestions" HorizontalAlignment="Left" Margin="80,14,0,0" VerticalAlignment="Top" Width="200"/>
+        <Button x:Name="btnQuestions" Content="Edit Questions" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="366,13,0,0" Background="White" Click="btnQuestions_Click"/>
+        <Button x:Name="btnAnswers" Content="Edit Answers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="366,38,0,0" Background="White" Click="btnAnswers_Click"/>
+        <ComboBox x:Name="cboQuestions" HorizontalAlignment="Left" Margin="80,14,0,0" VerticalAlignment="Top" Width="275"/>
         <Label Content="Questions:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="65"/>
         <RadioButton x:Name="rdoAnswer1" HorizontalAlignment="Left" Margin="60,45,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rdoAnswer2" HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rdoAnswer3" HorizontalAlignment="Left" Margin="60,99,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rdoAnswer4" HorizontalAlignment="Left" Margin="60,126,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cboAnswer1" HorizontalAlignment="Left" Margin="80,41,0,0" VerticalAlignment="Top" Width="200"/>
-        <ComboBox x:Name="cboAnswer2" HorizontalAlignment="Left" Margin="80,68,0,0" VerticalAlignment="Top" Width="200"/>
-        <ComboBox x:Name="cboAnswer3" HorizontalAlignment="Left" Margin="80,95,0,0" VerticalAlignment="Top" Width="200"/>
-        <ComboBox x:Name="cboAnswer4" HorizontalAlignment="Left" Margin="80,122,0,0" VerticalAlignment="Top" Width="200"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="285,64,0,0" VerticalAlignment="Top" Width="92" Background="White" Click="btnSave_Click"/>
+        <ComboBox x:Name="cboAnswer1" HorizontalAlignment="Left" Margin="80,41,0,0" VerticalAlignment="Top" Width="275"/>
+        <ComboBox x:Name="cboAnswer2" HorizontalAlignment="Left" Margin="80,68,0,0" VerticalAlignment="Top" Width="275"/>
+        <ComboBox x:Name="cboAnswer3" HorizontalAlignment="Left" Margin="80,95,0,0" VerticalAlignment="Top" Width="275"/>
+        <ComboBox x:Name="cboAnswer4" HorizontalAlignment="Left" Margin="80,122,0,0" VerticalAlignment="Top" Width="275"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="366,63,0,0" VerticalAlignment="Top" Width="92" Background="White" Click="btnSave_Click"/>
     </Grid>
 </Window>

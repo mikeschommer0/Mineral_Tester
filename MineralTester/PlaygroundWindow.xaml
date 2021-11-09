@@ -13,6 +13,7 @@
                 <GradientStop Color="White"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button Content="Exit" FontSize="16" HorizontalAlignment="Center" Margin="0,371,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitPlayground" />
+        <Button Content="Practice Questions" FontSize="16" HorizontalAlignment="Left" Margin="220,367,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="DisplayPracticeQuestions" />
+        <Button Content="Exit" FontSize="16" HorizontalAlignment="Left" Margin="405,367,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitPlayground" />
     </Grid>
 </Window>

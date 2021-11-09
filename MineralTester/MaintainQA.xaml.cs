@@ -36,12 +36,10 @@ namespace MineralTester.UI
                 case Enums.QAEditMode.EditQuestions:
                     _questions = database.GetQuestions();
                     cboAttributes.ItemsSource = _questions;
-                    cboAttributes.DisplayMemberPath = "QuestionID";
                     break;
                 case Enums.QAEditMode.EditAnswers:
                     _answers = database.GetAnswers();
                     cboAttributes.ItemsSource = _answers;
-                    cboAttributes.DisplayMemberPath = "AnswerID";
                     break;
                 default:
                     break;
