@@ -35,11 +35,11 @@ namespace MineralTester.UI
 
         private void ExitStudentMineral(object sender, RoutedEventArgs e)
         {
-            if(user.AccountType == 1)
+            if(user.AccountType == Enums.AccountType.Student)
             {
                 Close();
             }
-            if (user.AccountType == 2 || user.AccountType == 3)
+            if (user.AccountType == Enums.AccountType.Assistant || user.AccountType == Enums.AccountType.Teacher)
             {
                 AdminWindow adminWindow = new AdminWindow(user);
                 adminWindow.Show();

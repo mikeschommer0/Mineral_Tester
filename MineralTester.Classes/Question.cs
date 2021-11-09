@@ -9,6 +9,16 @@ namespace MineralTester.Classes
 
         public List<Answer> Answers { get; set; }
 
+        public Question()
+        {
+
+        }
+
+        public Question(string description)
+        {
+            Description = description;
+        }
+
         public Question(int questionID, string description)
         {
             QuestionID = questionID;

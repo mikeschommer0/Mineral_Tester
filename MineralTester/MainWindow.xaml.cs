@@ -28,7 +28,7 @@ namespace MineralTester.UI
 
         private void SignInButton(object sender, RoutedEventArgs e)
         {
-            if(txtUsername.Text == string.Empty)
+            if (txtUsername.Text == string.Empty)
             {
                 MessageBox.Show("Please enter a username.");
                 return;
@@ -40,18 +40,24 @@ namespace MineralTester.UI
             }
             ILoginManager loginManager = new LoginManager();
             User user = loginManager.Login(txtUsername.Text, txtPassword.Password);
-            if(user == null)
+            if (user == null)
             {
                 MessageBox.Show("Username or password was incorrect.");
                 return;
             }
-            if (user.AccountType == 3 || user.AccountType == 2)
+            if (user.AccountType == Enums.AccountType.Teacher)
             {
                 AdminWindow adminWindow = new AdminWindow(user);
                 adminWindow.Show();
                 Close();
             }
-            if(user.AccountType == 1)
+            else if (user.AccountType == Enums.AccountType.Assistant)
+            {
+                CreateQuestionWindow createQuestionWindow = new CreateQuestionWindow();
+                createQuestionWindow.Show();
+                Close();
+            }
+            else if (user.AccountType == Enums.AccountType.Student)
             {
                 StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
                 studentMineralWindow.Show();
@@ -61,7 +67,7 @@ namespace MineralTester.UI
             {
                 MessageBox.Show("An unexpectated error has occured.");
             }
-            
+
         }
 
         private void ForgotPasswordButton(object sender, RoutedEventArgs e)

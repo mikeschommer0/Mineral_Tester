@@ -21,13 +21,13 @@ namespace MineralTester.UI
     public partial class CreateUserWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
-        public CreateUserWindow(int accountValue)
+        public CreateUserWindow(Enums.AccountType accountValue)
         {
             InitializeComponent();
             newUserAccountType = accountValue;
         }
 
-        private int newUserAccountType;
+        private Enums.AccountType newUserAccountType;
         private void SubmitUserInfo(object sender, RoutedEventArgs e)
         {
             List<String> fields = new List<String>();
@@ -50,7 +50,7 @@ namespace MineralTester.UI
                 IUserManager userManager = new UserManager();
                 User newUser = new User(0, firstName, lastName, username, password, newUserAccountType);
                 
-                if (newUserAccountType == 1)
+                if (newUserAccountType == Enums.AccountType.Student)
                 {
                     MessageBox.Show("A new student was added.");
                 }
@@ -88,7 +88,7 @@ namespace MineralTester.UI
 
         private void ExitUserInfo(object sender, RoutedEventArgs e)
         {
-            AdminWindow adminWindow = new AdminWindow(user);
+            //AdminWindow adminWindow = new AdminWindow(user);
             Close();
         }
     }

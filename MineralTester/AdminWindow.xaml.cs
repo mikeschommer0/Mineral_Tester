@@ -24,18 +24,13 @@ namespace MineralTester.UI
         {
             InitializeComponent();
             user = currentUser;
-            if (user.AccountType == 2)
-            {
-                btnCreateFaculty.IsEnabled = false;
-                btnCreateStudent.IsEnabled = false;
-            }
         }
 
         private User user;
 
-        private void OpenCreateUserWindow(int createType)
+        private void OpenCreateUserWindow(Enums.AccountType createType)
         {
-            if (user.AccountType == 3)
+            if (user.AccountType == Enums.AccountType.Teacher)
             {
                 CreateUserWindow userWindow = new CreateUserWindow(createType);
                 userWindow.Show();
@@ -48,13 +43,13 @@ namespace MineralTester.UI
 
         private void CreateStudentButton(object sender, RoutedEventArgs e)
         {
-            OpenCreateUserWindow(1);
+            OpenCreateUserWindow(Enums.AccountType.Student);
         }
 
         private void CreateFacultyButton(object sender, RoutedEventArgs e)
         {
 
-            OpenCreateUserWindow(2);
+            OpenCreateUserWindow(Enums.AccountType.Assistant);
         }
 
         private void CreateQuestionButton(object sender, RoutedEventArgs e)

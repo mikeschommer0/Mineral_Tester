@@ -73,7 +73,7 @@ namespace MineralTester.Classes
                 // String lastName, string username,
                 // String password, int accountType).
                 User result = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
-                    reader.GetString(3), reader.GetString(4), reader.GetInt32(5));
+                    reader.GetString(3), reader.GetString(4), (Enums.AccountType)reader.GetInt32(5));
 
                 // Close reader & conn and return user.
                 reader.Close();
@@ -249,7 +249,7 @@ namespace MineralTester.Classes
                 using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
                 {
                     connection.Open();
-                    MySqlCommand command = new MySqlCommand("DELETE FROM questions WHERE question_id == @id_to_delete");
+                    MySqlCommand command = new MySqlCommand("DELETE FROM questions WHERE question_id = @id_to_delete", connection);
                     command.Parameters.Add(new MySqlParameter("id_to_delete", idToDelete));
                     MySqlDataReader reader = command.ExecuteReader();
                     connection.Close();
@@ -339,7 +339,7 @@ namespace MineralTester.Classes
                 using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
                 {
                     connection.Open();
-                    MySqlCommand command = new MySqlCommand("DELETE FROM answers WHERE answer_id == @id_to_delete");
+                    MySqlCommand command = new MySqlCommand("DELETE FROM answers WHERE answer_id = @id_to_delete", connection);
                     command.Parameters.Add(new MySqlParameter("id_to_delete", idToDelete));
                     MySqlDataReader reader = command.ExecuteReader();
                     connection.Close();
@@ -351,20 +351,28 @@ namespace MineralTester.Classes
         /// Inserts a question and its corresponding answers into the question_answer junction table. (MODIFIED)
         /// </summary>
         /// <param name="question"> Is the question whose data will be inserted. (MODIFIED)</param>
-        public void InsertQuestionAnswers(Question question)
+        public (bool isSuccess, string exceptionMessage) InsertQuestionAnswers(Question question)
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            try
             {
-                connection.Open();
-                foreach (Answer answer in question.Answers)
+                using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
                 {
-                    MySqlCommand command = new MySqlCommand("INSERT INTO question_answers (question_id, answer_id, is_correct) VALUES (@question_id, @answer_id, @is_correct)");
-                    command.Parameters.Add(new MySqlParameter("question_id", question.QuestionID));
-                    command.Parameters.Add(new MySqlParameter("answer_id", answer.AnswerID));
-                    command.Parameters.Add(new MySqlParameter("is_correct", Convert.ToSByte(answer.IsCorrect)));
-                    MySqlDataReader reader = command.ExecuteReader();
-                    connection.Close();
+                    foreach (Answer answer in question.Answers)
+                    {
+                        connection.Open();
+                        MySqlCommand command = new MySqlCommand("INSERT INTO question_answers (question_id, answer_id, is_correct) VALUES (@question_id, @answer_id, @is_correct)", connection);
+                        command.Parameters.Add(new MySqlParameter("question_id", question.QuestionID));
+                        command.Parameters.Add(new MySqlParameter("answer_id", answer.AnswerID));
+                        command.Parameters.Add(new MySqlParameter("is_correct", Convert.ToSByte(answer.IsCorrect)));
+                        MySqlDataReader reader = command.ExecuteReader();
+                        connection.Close();
+                    }
                 }
+                return (true, null);
+            }
+            catch (Exception exception)
+            {
+                return (false, exception.Message);
             }
         }
 
@@ -376,7 +384,8 @@ namespace MineralTester.Classes
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
-                MySqlCommand command = new MySqlCommand("DELETE FROM question_answers WHERE question_id = @question_id");
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("DELETE FROM question_answers WHERE question_id = @question_id", connection);
                 command.Parameters.Add(new MySqlParameter("question_id", questionID));
                 MySqlDataReader reader = command.ExecuteReader();
                 connection.Close();

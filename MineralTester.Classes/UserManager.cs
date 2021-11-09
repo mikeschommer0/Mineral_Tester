@@ -18,7 +18,7 @@ namespace MineralTester.Classes
             catch (Exception ex)
             {
 
-                //throw;
+                Console.WriteLine(ex.Message);
             }
         }
     }

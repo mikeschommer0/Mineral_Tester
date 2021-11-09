@@ -36,13 +36,13 @@
             set;
         }
 
-        public int AccountType
+        public Enums.AccountType AccountType
         {
             get;
             set;
         }
 
-        public User(int id, string firstName, string lastName, string username, string password, int accountType)
+        public User(int id, string firstName, string lastName, string username, string password, Enums.AccountType accountType)
         {
             _ID = id;
             FirstName = firstName;
