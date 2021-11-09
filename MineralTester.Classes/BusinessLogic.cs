@@ -62,5 +62,15 @@ namespace MineralTester.Classes
 
             return validFields;
         }
+
+        /// <summary>
+        /// Call to DB to add mineral.
+        /// Doesn't check for existing prior
+        /// </summary>
+        /// <param name="toAdd"> Mineral to add to db </param>
+        public void AddMineral(Mineral toAdd)
+        {
+            db.AddMineral(toAdd);
+        }
     }
 }

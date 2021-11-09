@@ -24,6 +24,7 @@ namespace MineralTester.UI
     public partial class AddMineralWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
+
         private string selectedFileName = "";
         private bool magnetic;
         private bool acidReaction;
@@ -59,6 +60,9 @@ namespace MineralTester.UI
                     imgBytes = br.ReadBytes((int)stream.Length);
                 }
                 Mineral toAdd = new Mineral(0, name, hardness, magnetic, acidReaction, imgBytes);
+
+                bl.AddMineral(toAdd);
+
                 Close();
             }
         }

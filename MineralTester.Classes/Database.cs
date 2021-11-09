@@ -419,5 +419,14 @@ namespace MineralTester.Classes
                 return answers;
             }
         }
+
+        /// <summary>
+        /// Get a mineral to add to the database.
+        /// </summary>
+        /// <param name="toAdd"></param>
+        public void AddMineral(Mineral toAdd)
+        {
+
+        }
     }
 }

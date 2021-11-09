@@ -37,5 +37,7 @@ namespace MineralTester.Classes
         public void DeleteQuestionAnswers(int questionID);
 
         public List<Answer> GetQuestionAnswers(int questionID);
+
+        public void AddMineral(Mineral toAdd);
     }
 }

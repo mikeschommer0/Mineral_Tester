@@ -6,5 +6,6 @@ namespace MineralTester.Classes
     {
         List<bool> ValidateMineralData(List<object> fields);
         List<bool> ValidateUserData(List<string> fields);
+        void AddMineral(Mineral toAdd);
     }
 }
