@@ -15,15 +15,15 @@
         </Grid.Background>
         <Label Content="Mineral Name" HorizontalAlignment="Left" Margin="80,65,0,0" VerticalAlignment="Top" FontSize="25"/>
         <Label Content="Hardness" HorizontalAlignment="Left" Margin="80,113,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <TextBox Name="MineralNameTextBox" HorizontalAlignment="Left" Margin="305,78,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="MineralHardnessTextBox" HorizontalAlignment="Left" Margin="305,126,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="MineralNameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,78,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <TextBox Name="MineralHardnessTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,126,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"  Width="180" Height="25"/>
 
-        <Button Content="Add Another Mineral" HorizontalAlignment="Center" Margin="0,331,0,0" VerticalAlignment="Top" Width="150" Click="AddAnotherMineral"/>
-        <Button Content="Finish" HorizontalAlignment="Center" Margin="0,371,0,0" VerticalAlignment="Top" Width="150" Click="ExitMineralWindow"/>
+        <Button Content="Add Another Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="AddAnotherMineral"/>
+        <Button Content="Finish" FontSize="16" HorizontalAlignment="Center" Margin="0,359,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitMineralWindow"/>
         <CheckBox  Content="Reacts With Acid" HorizontalAlignment="Left" Margin="80,175,0,0" VerticalAlignment="Top" FontSize="25"/>
         <CheckBox Content="Magnetic" HorizontalAlignment="Left" Margin="80,231,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <Button Content="Add An Image" HorizontalAlignment="Left" Margin="564,281,0,0" Width="100" VerticalAlignment="Top" Click="AddAnImageButton_Click"/>
+        <Button Content="Add An Image"  FontSize="16" HorizontalAlignment="Left" Margin="565,275,0,0" Width="180" Height="35" Background="White" VerticalAlignment="Top" Click="AddAnImageButton_Click"/>
 
-        <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="475,87,0,0" VerticalAlignment="Top" Width="278"/>
+        <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
     </Grid>
 </Window>
