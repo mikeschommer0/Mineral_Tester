@@ -21,13 +21,12 @@ namespace MineralTester.UI
     public partial class CreateUserWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
-        public CreateUserWindow(User currentUser, int accountValue)
+        public CreateUserWindow(int accountValue)
         {
             InitializeComponent();
-            user = currentUser;
             newUserAccountType = accountValue;
         }
-        private User user;
+
         private int newUserAccountType;
         private void SubmitUserInfo(object sender, RoutedEventArgs e)
         {
