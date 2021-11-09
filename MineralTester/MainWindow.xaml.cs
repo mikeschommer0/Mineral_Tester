@@ -33,13 +33,13 @@ namespace MineralTester.UI
                 MessageBox.Show("Please enter a username.");
                 return;
             }
-            if (txtPassword.Text == string.Empty)
+            if (txtPassword.Password == string.Empty)
             {
                 MessageBox.Show("Please enter a password.");
                 return;
             }
             ILoginManager loginManager = new LoginManager();
-            User user = loginManager.Login(txtUsername.Text, txtPassword.Text);
+            User user = loginManager.Login(txtUsername.Text, txtPassword.Password);
             if(user == null)
             {
                 MessageBox.Show("Username or password was incorrect.");

@@ -19,6 +19,6 @@
         <Label Content="Username" HorizontalAlignment="Left" Margin="240,140,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="240,193,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox Name="txtUsername" HorizontalAlignment="Left" Margin="393,155,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="txtPassword" HorizontalAlignment="Left" Margin="393,201,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Margin="393,201,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
