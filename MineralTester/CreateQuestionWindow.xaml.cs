@@ -114,14 +114,7 @@ namespace MineralTester.UI
                 setCorrectAnswer(question);
                 database.DeleteQuestionAnswers(question.QuestionID);
                 var executionResult = database.InsertQuestionAnswers(question);
-                if (executionResult.isSuccess)
-                {
-                    MessageBox.Show("Successfully created practice question.");
-                }
-                else
-                {
-                    MessageBox.Show($"Unable to create practice question: {executionResult.exceptionMessage}.");
-                }
+                MessageBox.Show(executionResult.message);
                 RefreshScreen();
             }
         }
