@@ -29,11 +29,6 @@ namespace MineralTester.UI
                 btnCreateFaculty.IsEnabled = false;
                 btnCreateStudent.IsEnabled = false;
             }
-            else
-            {
-                btnCreateFaculty.IsEnabled = true;
-                btnCreateStudent.IsEnabled = true;
-            }
         }
 
         private User user;
@@ -42,7 +37,7 @@ namespace MineralTester.UI
         {
             if (user.AccountType == 3)
             {
-                CreateUserWindow userWindow = new CreateUserWindow(user, createType);
+                CreateUserWindow userWindow = new CreateUserWindow(createType);
                 userWindow.Show();
             }
             else

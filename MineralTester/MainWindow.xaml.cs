@@ -51,18 +51,15 @@ namespace MineralTester.UI
                 adminWindow.Show();
                 Close();
             }
+            if(user.AccountType == 1)
+            {
+                StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
+                studentMineralWindow.Show();
+                Close();
+            }
             else
             {
-                if (user.AccountType == 1)
-                {
-                    StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
-                    studentMineralWindow.Show();
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("An unexpectated error has occured.");
-                }
+                MessageBox.Show("An unexpectated error has occured.");
             }
             
         }
