@@ -16,9 +16,9 @@
         <Label Content="Mineral Tester" HorizontalAlignment="Center" Margin="0,52,0,0" VerticalAlignment="Top" FontSize="40.0"/>
         <Button Content="Sign In" FontSize="18" HorizontalAlignment="Center" Margin="0,288,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="SignInButton"/>
         <Button Content="Forgot Password?" FontSize="18" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ForgotPasswordButton"/>
-        <Label Content="Username" HorizontalAlignment="Left" Margin="240,148,0,0" VerticalAlignment="Top" FontSize="22"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="240,194,0,0" VerticalAlignment="Top" FontSize="22"/>
-        <TextBox Name="txtUsername" HorizontalAlignment="Left" Margin="393,155,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
-        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Margin="393,201,0,0" VerticalAlignment="Top" Width="180" Height="25"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="271,148,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="271,192,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <TextBox Name="txtUsername" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="393,155,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <PasswordBox Name="txtPassword" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="393,201,0,0" VerticalAlignment="Top" Width="180" Height="25"/>
     </Grid>
 </Window>
