@@ -94,7 +94,7 @@ namespace MineralTester.UI
         /// <param name="e"> Contains event data.</param>
         private void btnAnswers_Click(object sender, RoutedEventArgs e)
         {
-            MaintainQA maintainQuestions = new MaintainQA(Enums.QADataType.Ansers);
+            MaintainQA maintainQuestions = new MaintainQA(Enums.QADataType.Answers);
             maintainQuestions.ShowDialog();
             DisplayAnswers();
         }

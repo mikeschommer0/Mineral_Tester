@@ -12,7 +12,7 @@
         public enum QADataType
         {
             Questions,
-            Ansers
+            Answers
         }
     }
 }

@@ -26,10 +26,8 @@ namespace MineralTester.UI
             InitializeComponent();
             _dataType = dataType;
             RefreshScreen();
-            string title = _dataType.ToString();
-            title.Insert(4, " ");
-            Title = title;
-            lblAttributes.Content = _dataType.ToString().Substring(4);
+            Title = string.Format($"{_dataType} Editor");
+            lblAttributes.Content = string.Format($"{_dataType}:");
         }
 
         /// <summary>
@@ -44,7 +42,7 @@ namespace MineralTester.UI
                     _questions = database.GetQuestions();
                     cboAttributes.ItemsSource = _questions;
                     break;
-                case Enums.QADataType.Ansers:
+                case Enums.QADataType.Answers:
                     _answers = database.GetAnswers();
                     cboAttributes.ItemsSource = _answers;
                     break;
@@ -67,7 +65,7 @@ namespace MineralTester.UI
                 case Enums.QADataType.Questions:
                     database.InsertQuestion(txtAttributes.Text);
                     break;
-                case Enums.QADataType.Ansers:
+                case Enums.QADataType.Answers:
                     database.InsertAnswer(txtAttributes.Text);
                     break;
                 default:
@@ -90,7 +88,7 @@ namespace MineralTester.UI
                     case Enums.QADataType.Questions:
                         database.UpdateQuestion(_question.QuestionID, txtAttributes.Text);
                         break;
-                    case Enums.QADataType.Ansers:
+                    case Enums.QADataType.Answers:
                         database.UpdateAnswer(_answer.AnswerID, txtAttributes.Text);
                         break;
                     default:
@@ -114,7 +112,7 @@ namespace MineralTester.UI
                     case Enums.QADataType.Questions:
                         database.DeleteQuestion(_question.QuestionID);
                         break;
-                    case Enums.QADataType.Ansers:
+                    case Enums.QADataType.Answers:
                         database.DeleteAnswer(_answer.AnswerID);
                         break;
                     default:
@@ -139,7 +137,7 @@ namespace MineralTester.UI
                         _question = (Question)cboAttributes.SelectedItem;
                         txtAttributes.Text = _question.Description;
                         break;
-                    case Enums.QADataType.Ansers:
+                    case Enums.QADataType.Answers:
                         _answer = (Answer)cboAttributes.SelectedItem;
                         txtAttributes.Text = _answer.Description;
                         break;
