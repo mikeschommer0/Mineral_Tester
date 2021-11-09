@@ -13,12 +13,12 @@
                 <GradientStop Color="White"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="Mineral Tester" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" FontSize="35.0"/>
-        <Button Content="Sign In" HorizontalAlignment="Center" Margin="0,288,0,0" VerticalAlignment="Top" Width="150" Click="SignInButton"/>
-        <Button Content="Forgot Password" HorizontalAlignment="Center" Margin="0,326,0,0" VerticalAlignment="Top" Width="150" Click="ForgotPasswordButton"/>
-        <Label Content="Username" HorizontalAlignment="Left" Margin="240,140,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="240,193,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox Name="txtUsername" HorizontalAlignment="Left" Margin="393,155,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Margin="393,201,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Mineral Tester" HorizontalAlignment="Center" Margin="0,52,0,0" VerticalAlignment="Top" FontSize="40.0"/>
+        <Button Content="Sign In" FontSize="18" HorizontalAlignment="Center" Margin="0,288,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="SignInButton"/>
+        <Button Content="Forgot Password?" FontSize="18" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ForgotPasswordButton"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="240,148,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="240,194,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <TextBox Name="txtUsername" HorizontalAlignment="Left" Margin="393,155,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Margin="393,201,0,0" VerticalAlignment="Top" Width="180" Height="25"/>
     </Grid>
 </Window>
