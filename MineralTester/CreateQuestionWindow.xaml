@@ -13,8 +13,8 @@
                 <GradientStop Color="White"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="btnQuestions" Content="Edit Questions" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="285,14,0,0" Click="btnQuestions_Click"/>
-        <Button x:Name="btnAnswers" Content="Edit Answers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="285,39,0,0" Click="btnAnswers_Click"/>
+        <Button x:Name="btnQuestions" Content="Edit Questions" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="285,14,0,0" Background="White" Click="btnQuestions_Click"/>
+        <Button x:Name="btnAnswers" Content="Edit Answers" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="285,39,0,0" Background="White" Click="btnAnswers_Click"/>
         <ComboBox x:Name="cboQuestions" HorizontalAlignment="Left" Margin="80,14,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="cboQuestions_SelectionChanged"/>
         <Label Content="Questions:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="65"/>
         <RadioButton x:Name="rdoAnswer1" HorizontalAlignment="Left" Margin="60,45,0,0" VerticalAlignment="Top"/>
@@ -25,6 +25,6 @@
         <ComboBox x:Name="cboAnswer2" HorizontalAlignment="Left" Margin="80,68,0,0" VerticalAlignment="Top" Width="200"/>
         <ComboBox x:Name="cboAnswer3" HorizontalAlignment="Left" Margin="80,95,0,0" VerticalAlignment="Top" Width="200"/>
         <ComboBox x:Name="cboAnswer4" HorizontalAlignment="Left" Margin="80,122,0,0" VerticalAlignment="Top" Width="200"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="285,64,0,0" VerticalAlignment="Top" Width="92" Click="btnSave_Click"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="285,64,0,0" VerticalAlignment="Top" Width="92" Background="White" Click="btnSave_Click"/>
     </Grid>
 </Window>
