@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="CornflowerBlue" Offset="1"/>
+                <GradientStop Color="White"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Label Content="Mineral Tester" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" FontSize="35.0"/>
         <Button Content="Sign In" HorizontalAlignment="Center" Margin="0,288,0,0" VerticalAlignment="Top" Width="150" Click="SignInButton"/>
         <Button Content="Forgot Password" HorizontalAlignment="Center" Margin="0,326,0,0" VerticalAlignment="Top" Width="150" Click="ForgotPasswordButton"/>

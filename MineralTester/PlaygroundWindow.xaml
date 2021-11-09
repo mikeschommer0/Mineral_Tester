@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="PlaygroundWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="CornflowerBlue" Offset="1"/>
+                <GradientStop Color="White"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Button Content="Exit" HorizontalAlignment="Center" Margin="0,371,0,0" VerticalAlignment="Top" Width="150" Click="ExitPlayground" />
     </Grid>
 </Window>
