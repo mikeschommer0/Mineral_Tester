@@ -7,6 +7,7 @@ namespace MineralTester.Classes
 {
     public class BusinessLogic : IBusinessLogic
     {
+        IDatabase db = new Database();
         public List<bool> ValidateMineralData(List<object> fields)
         {
             List<bool> validFields = new List<bool> { true, true};
@@ -27,7 +28,7 @@ namespace MineralTester.Classes
 
         public List<bool> ValidateUserData(List<string> fields)
         {
-            List<bool> validFields = new List<bool> { true, true, true, true};
+            List<bool> validFields = new List<bool> { true, true, true, true, true};
             string firstName = fields[0];
             string lastName = fields[1];
             string username = fields[2];
@@ -51,6 +52,12 @@ namespace MineralTester.Classes
             if (password.Length < 8)
             {
                 validFields[3] = false;
+            }
+
+            //added to check if username is in use
+            if (db.CheckUserExists(username))
+            {
+                validFields[4] = false;
             }
 
             return validFields;
