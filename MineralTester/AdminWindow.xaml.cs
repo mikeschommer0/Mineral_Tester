@@ -24,7 +24,7 @@ namespace MineralTester.UI
         {
             InitializeComponent();
             user = currentUser;
-            if (user.AccountType == 3)
+            if (user.AccountType == 2)
             {
                 btnCreateFaculty.IsEnabled = false;
                 btnCreateStudent.IsEnabled = false;
