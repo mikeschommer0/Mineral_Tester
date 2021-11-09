@@ -351,7 +351,7 @@ namespace MineralTester.Classes
         /// Inserts a question and its corresponding answers into the question_answer junction table. (MODIFIED)
         /// </summary>
         /// <param name="question"> Is the question whose data will be inserted. (MODIFIED)</param>
-        public (bool isSuccess, string exceptionMessage) InsertQuestionAnswers(Question question)
+        public (bool isSuccess, string message) InsertQuestionAnswers(Question question)
         {
             try
             {
@@ -368,11 +368,11 @@ namespace MineralTester.Classes
                         connection.Close();
                     }
                 }
-                return (true, null);
+                return (true, "Successfully added practice question.");
             }
             catch (Exception exception)
             {
-                return (false, exception.Message);
+                return (false, string.Format($"Unable to add practice question: {exception.Message}"));
             }
         }
 

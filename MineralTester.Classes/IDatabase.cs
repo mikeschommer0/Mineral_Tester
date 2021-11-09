@@ -32,7 +32,7 @@ namespace MineralTester.Classes
 
         public void DeleteAnswer(int idToDelete);
 
-        public (bool isSuccess, string exceptionMessage) InsertQuestionAnswers(Question question);
+        public (bool isSuccess, string message) InsertQuestionAnswers(Question question);
 
         public void DeleteQuestionAnswers(int questionID);
 
