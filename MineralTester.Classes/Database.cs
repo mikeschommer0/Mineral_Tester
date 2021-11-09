@@ -426,7 +426,31 @@ namespace MineralTester.Classes
         /// <param name="toAdd"></param>
         public void AddMineral(Mineral toAdd)
         {
+            // Planned to be used for testing.
+            this._rowsEffected = 0;
 
+            // Open connection.
+            // (MODIFIED).
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+
+                // Create command to insert new mineral and populate.
+                MySqlCommand addNewMineral = new MySqlCommand("INSERT INTO minerals " +
+                    "(name, hardness, is_magnetic, acid_reaction, image)" +
+                    " VALUES(@name, @hardness, @is_magnetic, @acid_reaction, @image)", connection);
+                addNewMineral.Parameters.Add(new MySqlParameter("name", toAdd.Name));
+                addNewMineral.Parameters.Add(new MySqlParameter("hardness", toAdd.Hardness));
+                addNewMineral.Parameters.Add(new MySqlParameter("is_magnetic", toAdd.IsMagnetic));
+                addNewMineral.Parameters.Add(new MySqlParameter("acid_reaction", toAdd.AcidReaction));
+                addNewMineral.Parameters.Add(new MySqlParameter("image", toAdd.Image));
+
+                // Run insert and close connection
+                // ExecuteNonQuery is used as it will be useful in
+                // Testing at later date to see if insertion has occurred.
+                this._rowsEffected = addNewMineral.ExecuteNonQuery();
+                connection.Close();
+            }
         }
     }
 }
