@@ -49,6 +49,7 @@ namespace MineralTester.UI
             {
                 IUserManager userManager = new UserManager();
                 User newUser = new User(0, firstName, lastName, username, password, newUserAccountType);
+                userManager.AddUser(newUser);
                 
                 if (newUserAccountType == Enums.AccountType.Student)
                 {
