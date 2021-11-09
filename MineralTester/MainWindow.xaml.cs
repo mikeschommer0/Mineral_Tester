@@ -51,7 +51,7 @@ namespace MineralTester.UI
                 adminWindow.Show();
                 Close();
             }
-            if(user.AccountType == 1)
+            else if(user.AccountType == 1)
             {
                 StudentMineralWindow studentMineralWindow = new StudentMineralWindow(user);
                 studentMineralWindow.Show();
