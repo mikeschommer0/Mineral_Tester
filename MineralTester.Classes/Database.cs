@@ -96,7 +96,7 @@ namespace MineralTester.Classes
         public int AddUser(User newUser)
         {
             // Planned to be used for testing.
-            this._rowsEffected = 0;
+            _rowsEffected = 0;
 
             // Open connection.
             // (MODIFIED).
@@ -117,10 +117,10 @@ namespace MineralTester.Classes
                 // Run insert and close connection
                 // ExecuteNonQuery is used as it will be useful in
                 // Testing at later date to see if insertion has occurred.
-                this._rowsEffected = addNewUser.ExecuteNonQuery();
+                _rowsEffected = addNewUser.ExecuteNonQuery();
                 connection.Close();
             }
-            return this._rowsEffected;
+            return _rowsEffected;
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace MineralTester.Classes
         /// <returns>An int that is equal to the rows affected.</returns>
         public int UpdateUser(User userToUpdate)
         {
-            this._rowsEffected = 0;
+            _rowsEffected = 0;
 
             using(MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
@@ -150,10 +150,10 @@ namespace MineralTester.Classes
                 updateUser.Parameters.Add(new MySqlParameter("account_type", userToUpdate.AccountType));
                 updateUser.Parameters.Add(new MySqlParameter("user_id", userToUpdate.ID));
 
-                this._rowsEffected = updateUser.ExecuteNonQuery();
+                _rowsEffected = updateUser.ExecuteNonQuery();
                 connection.Close();
             }
-            return this._rowsEffected;
+            return _rowsEffected;
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace MineralTester.Classes
         public int DeleteUser(User userToDelete)
         {
             // Planned to be used for testing.
-            this._rowsEffected = 0;
+            _rowsEffected = 0;
 
 
             // Open connection.
@@ -186,10 +186,10 @@ namespace MineralTester.Classes
                 // Run delete and close connection
                 // ExecuteNonQuery is used as it will be useful in
                 // Testing at later date to see if deletion has occurred.
-                this._rowsEffected = deleteUser.ExecuteNonQuery();
+                _rowsEffected = deleteUser.ExecuteNonQuery();
                 connection.Close();
             }
-            return this._rowsEffected;
+            return _rowsEffected;
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace MineralTester.Classes
         public bool ValidateExecution(int expectedEffected)
         {
             // (MODIFIED).
-            return this._rowsEffected == expectedEffected;
+            return _rowsEffected == expectedEffected;
         }
 
         /// <summary>
@@ -464,7 +464,7 @@ namespace MineralTester.Classes
         public void AddMineral(Mineral toAdd)
         {
             // Planned to be used for testing.
-            this._rowsEffected = 0;
+            _rowsEffected = 0;
 
             // Open connection.
             // (MODIFIED).
@@ -485,7 +485,7 @@ namespace MineralTester.Classes
                 // Run insert and close connection
                 // ExecuteNonQuery is used as it will be useful in
                 // Testing at later date to see if insertion has occurred.
-                this._rowsEffected = addNewMineral.ExecuteNonQuery();
+                _rowsEffected = addNewMineral.ExecuteNonQuery();
                 connection.Close();
             }
         }
