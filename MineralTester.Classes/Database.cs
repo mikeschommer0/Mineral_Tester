@@ -92,7 +92,8 @@ namespace MineralTester.Classes
         /// Takes in a user to insert into DB.
         /// </summary>
         /// <param name="newUser"> New User to add to DB.</param>
-        public void AddUser(User newUser)
+        /// <returns>An int that is equal to the rows affected.</returns>
+        public int AddUser(User newUser)
         {
             // Planned to be used for testing.
             this._rowsEffected = 0;
@@ -119,6 +120,7 @@ namespace MineralTester.Classes
                 this._rowsEffected = addNewUser.ExecuteNonQuery();
                 connection.Close();
             }
+            return this._rowsEffected;
         }
 
         /// <summary>
@@ -130,7 +132,8 @@ namespace MineralTester.Classes
         /// Takes in a user to delete from DB.
         /// </summary>
         /// <param name="userToDelete"> User to delete from DB.</param>
-        public void DeleteUser(User userToDelete)
+        /// <returns>An int that is equal to the rows affected.</returns>
+        public int DeleteUser(User userToDelete)
         {
             // Planned to be used for testing.
             this._rowsEffected = 0;
@@ -153,6 +156,7 @@ namespace MineralTester.Classes
                 this._rowsEffected = deleteUser.ExecuteNonQuery();
                 connection.Close();
             }
+            return this._rowsEffected;
         }
 
         /// <summary>
