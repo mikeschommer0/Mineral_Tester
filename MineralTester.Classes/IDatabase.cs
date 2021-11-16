@@ -12,9 +12,11 @@ namespace MineralTester.Classes
 
         public User GetUser(string userName);
 
-        public void AddUser(User newUser);
+        public int AddUser(User newUser);
 
-        public void DeleteUser(User userToDelete);
+        public int UpdateUser(User userToUpdate);
+        
+        public int DeleteUser(User userToDelete);
 
         public List<Question> GetQuestions();
 
