@@ -133,7 +133,7 @@ namespace MineralTester.Classes
         /// </summary>
         /// <param name="userToUpdate"> User to update in DB.</param>
         /// <returns>An int that is equal to the rows affected.</returns>
-        public int Update(User userToUpdate)
+        public int UpdateUser(User userToUpdate)
         {
             this._rowsEffected = 0;
 
@@ -153,6 +153,7 @@ namespace MineralTester.Classes
                 this._rowsEffected = updateUser.ExecuteNonQuery();
                 connection.Close();
             }
+            return this._rowsEffected;
         }
 
         /// <summary>

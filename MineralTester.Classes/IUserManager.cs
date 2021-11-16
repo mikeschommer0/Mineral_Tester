@@ -2,6 +2,10 @@
 {
     public interface IUserManager
     {
-        void AddUser(User newUser);
+        int AddUser(User newUser);
+
+        int UpdateUser(User userToUpdate);
+
+        int DeleteUser(User userToDelete);
     }
 }
