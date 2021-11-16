@@ -129,6 +129,38 @@ namespace MineralTester.Classes
         /// 
         /// UPDATES: _RowsEffected for testing.
         /// 
+        /// Takes in a user to update in DB.
+        /// </summary>
+        /// <param name="userToUpdate"> User to update in DB.</param>
+        /// <returns>An int that is equal to the rows affected.</returns>
+        public int Update(User userToUpdate)
+        {
+            this._rowsEffected = 0;
+
+            using(MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+
+                MySqlCommand updateUser = new MySqlCommand("UPDATE users SET first_name = @first_name, last_name = @last_name, user_name = @user_name, " + 
+                   "password = @password, account_type = @account_type WHERE user_id = @user_id", connection);
+                updateUser.Parameters.Add(new MySqlParameter("first_name", userToUpdate.FirstName));
+                updateUser.Parameters.Add(new MySqlParameter("last_name", userToUpdate.LastName));
+                updateUser.Parameters.Add(new MySqlParameter("user_name", userToUpdate.Username));
+                updateUser.Parameters.Add(new MySqlParameter("password", userToUpdate.Password));
+                updateUser.Parameters.Add(new MySqlParameter("account_type", userToUpdate.AccountType));
+                updateUser.Parameters.Add(new MySqlParameter("user_id", userToUpdate.ID));
+
+                this._rowsEffected = updateUser.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// ASSUMES: That CheckUserExists has been ran and return
+        /// true prior to call.
+        /// 
+        /// UPDATES: _RowsEffected for testing.
+        /// 
         /// Takes in a user to delete from DB.
         /// </summary>
         /// <param name="userToDelete"> User to delete from DB.</param>
