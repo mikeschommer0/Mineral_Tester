@@ -489,5 +489,38 @@ namespace MineralTester.Classes
                 connection.Close();
             }
         }
+
+        /// <summary>
+        /// Gets all minerals from database.
+        /// </summary>
+        public List<Mineral> GetMinerals()
+        {
+            List<Mineral> minerals = new List<Mineral>();
+
+            // Open connection.
+            // (MODIFIED).
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                // Create command to insert new mineral and populate.
+                MySqlCommand getMinerals = new MySqlCommand("SELECT * FROM minerals", connection);
+                MySqlDataReader reader = getMinerals.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    Mineral mineral = new Mineral();
+                    mineral.Name = reader["name"].ToString();
+                    mineral.Hardness = (float)Convert.ToDouble(reader["hardness"]);
+                    mineral.IsMagnetic = Convert.ToBoolean(reader["is_magnetic"]);
+                    mineral.AcidReaction = Convert.ToBoolean(reader["acid_reaction"]);
+                    mineral.Image = (byte[])reader["image"];
+                    minerals.Add(mineral);
+                }
+
+                connection.Close();
+            }
+
+            return minerals;
+        }
     }
 }

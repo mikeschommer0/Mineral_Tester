@@ -42,6 +42,15 @@
             set;
         }
 
+        public Mineral()
+        {
+
+        }
+
+        public Mineral(string name, float hardness, bool isMagnetic, bool acidReaction, byte[] image)
+        {
+
+        }
         public Mineral(int id, string name, float hardness, bool isMagnetic, bool acidReaction, byte[] image) // Image object cannot be used as a parameter as per our class diagram.
         {
             _ID = id;

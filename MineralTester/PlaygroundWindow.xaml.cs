@@ -1,5 +1,6 @@
 ﻿using MineralTester.Classes;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,6 +22,13 @@ namespace MineralTester.UI
             _user = currentUser;
 
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            List<Mineral> minerals = new List<Mineral>();
+            Database db = new Database();
+            minerals = db.GetMinerals();
+
+            MineralList.ItemsSource = minerals;
+            MineralList.DisplayMemberPath = "Name";
 
             Ellipse mineral = new Ellipse();
             mineral.Fill = Brushes.Black;
@@ -95,5 +103,6 @@ namespace MineralTester.UI
         {
             Close();
         }
+
     }
 }

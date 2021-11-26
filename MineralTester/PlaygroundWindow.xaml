@@ -15,5 +15,7 @@
         </Canvas.Background>
         <Button Content="Practice Questions" FontSize="16" HorizontalAlignment="Left" Margin="100,480,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="DisplayPracticeQuestions" />
         <Button Content="Exit" FontSize="16" HorizontalAlignment="Left" Margin="100,530,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitPlayground" />
+        <ListBox Name="MineralList" Height="110" Width="267" Canvas.Left="353" Canvas.Top="464"/>
+        
     </Canvas>
 </Window>
