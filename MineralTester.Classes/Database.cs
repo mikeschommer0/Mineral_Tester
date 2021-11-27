@@ -521,9 +521,10 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
-        /// 
+        /// Gets Mineral from db.
+        /// *** Should check exists prior to adding. ***
         /// </summary>
-        /// <param name="userName"></param>
+        /// <param name="mineralName"></param>
         /// <returns></returns>
         public Mineral GetMineral(string mineralName)
         {
