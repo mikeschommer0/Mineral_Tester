@@ -458,6 +458,35 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
+        /// Check mineral does not exist under same name in DB.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public bool CheckMineralExists(string mineralName)
+        {
+            // Build connection and open.
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+
+                // Command to check mineral exists.
+                MySqlCommand checkUser = new MySqlCommand("SELECT COUNT(*) FROM minerals WHERE name = @mineralName", connection);
+                checkUser.Parameters.Add(new MySqlParameter("mineralName", mineralName));
+
+                // Run command.
+                MySqlDataReader reader = checkUser.ExecuteReader();
+                reader.Read();
+
+                // Pull result and close reader & connection.
+                int result = reader.GetInt32(0);
+                reader.Close();
+                connection.Close();
+
+                return result == 1;
+            }
+        }
+
+        /// <summary>
         /// Get a mineral to add to the database.
         /// </summary>
         /// <param name="toAdd"></param>
