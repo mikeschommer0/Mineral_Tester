@@ -18,5 +18,6 @@
         <Button Content="Practice Questions" FontSize="16" HorizontalAlignment="Left" Margin="100,499,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="DisplayPracticeQuestions" />
         <Button Content="Exit" FontSize="16" HorizontalAlignment="Left" Margin="100,544,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitPlayground" />
         <ListBox Name="MineralList" Height="110" Width="267" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="340,474,392,0"/>
+        <Button Content="Scratch" FontSize="16" HorizontalAlignment="Left" Margin="666,499,0,0" VerticalAlignment="Top"  Width="75" Height="35" Background="White"/>
     </Grid>
 </Window>
