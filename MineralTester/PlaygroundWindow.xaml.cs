@@ -29,15 +29,6 @@ namespace MineralTester.UI
 
             MineralList.ItemsSource = minerals;
             MineralList.DisplayMemberPath = "Name";
-
-            Ellipse mineral = new Ellipse();
-            mineral.Fill = Brushes.Black;
-            mineral.Width = 100;
-            mineral.Height = 100;
-            Canvas.SetTop(mineral, 20);
-            Canvas.SetLeft(mineral, 20);
-            mineral.PreviewMouseDown += Mineral_PreviewMouseDown;
-            Playground.Children.Add(mineral);
         }
 
         UIElement dragObj = null;
@@ -78,8 +69,8 @@ namespace MineralTester.UI
                 return;
             }
 
-            if (e.GetPosition(sender as IInputElement).X < Playground.ActualWidth - 50 && 
-                e.GetPosition(sender as IInputElement).Y < Playground.ActualHeight - 50 && 
+            if (e.GetPosition(sender as IInputElement).X < Playground.ActualWidth - 50 &&
+                e.GetPosition(sender as IInputElement).Y < Playground.ActualHeight - 50 &&
                 e.GetPosition(sender as IInputElement).X > 50 && e.GetPosition(sender as IInputElement).Y > 50)
             {
                 var position = e.GetPosition(sender as IInputElement);
@@ -104,5 +95,23 @@ namespace MineralTester.UI
             Close();
         }
 
+        private void MineralList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Playground.Children.Clear();
+            DisplayMineral();
+
+        }
+
+        private void DisplayMineral()
+        {
+            Ellipse mineral = new Ellipse();
+            mineral.Fill = Brushes.Black;
+            mineral.Width = 100;
+            mineral.Height = 100;
+            Canvas.SetTop(mineral, 20);
+            Canvas.SetLeft(mineral, 20);
+            mineral.PreviewMouseDown += Mineral_PreviewMouseDown;
+            Playground.Children.Add(mineral);
+        }
     }
 }
