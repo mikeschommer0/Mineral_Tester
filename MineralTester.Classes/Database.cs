@@ -460,7 +460,7 @@ namespace MineralTester.Classes
         /// <summary>
         /// Check mineral does not exist under same name in DB.
         /// </summary>
-        /// <param name="userName"></param>
+        /// <param name="mineralName"></param>
         /// <returns></returns>
         public bool CheckMineralExists(string mineralName)
         {
@@ -487,6 +487,7 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
+        /// *** Should check exists prior to adding. ***
         /// Get a mineral to add to the database.
         /// </summary>
         /// <param name="toAdd"></param>
@@ -520,6 +521,40 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public Mineral GetMineral(string mineralName)
+        {
+            // Build connection and open.
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+
+                // Command to get user info from DB.
+                MySqlCommand getUser = new MySqlCommand("SELECT * FROM minerals WHERE" + " name = @mineralName", connection);
+                getUser.Parameters.Add(new MySqlParameter("mineralName", mineralName));
+
+                // Run command.
+                MySqlDataReader reader = getUser.ExecuteReader();
+                reader.Read();
+
+                // Create mineral (int id, string name,
+                // int hardness, bool IsMagnetic,
+                // bool AcidReaction, byte[] Image).
+                Mineral result = new Mineral(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2),
+                    reader.GetBoolean(3), reader.GetBoolean(4), (byte[])reader["image"]);
+
+                // Close reader & conn and return user.
+                reader.Close();
+                connection.Close();
+
+                return result;
+            }
+        }
+
+        /// <summary>
         /// Gets all minerals from database.
         /// </summary>
         public List<Mineral> GetMinerals()
@@ -527,7 +562,6 @@ namespace MineralTester.Classes
             List<Mineral> minerals = new List<Mineral>();
 
             // Open connection.
-            // (MODIFIED).
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
                 connection.Open();
