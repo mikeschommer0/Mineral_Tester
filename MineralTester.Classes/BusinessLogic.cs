@@ -10,7 +10,7 @@ namespace MineralTester.Classes
         IDatabase db = new Database();
         public List<bool> ValidateMineralData(List<object> fields)
         {
-            List<bool> validFields = new List<bool> { true, true};
+            List<bool> validFields = new List<bool> { true, true, true};
             string name = (String)fields[0];
             float hardness = (float)fields[1];
 
@@ -23,6 +23,13 @@ namespace MineralTester.Classes
             {
                 validFields[1] = false;
             }
+
+            if (db.CheckMineralExists(name))
+            {
+                validFields[2] = false;
+            }
+
+
             return validFields;
         }
 

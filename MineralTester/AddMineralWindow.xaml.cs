@@ -81,6 +81,10 @@ namespace MineralTester.UI
             {
                 MessageBox.Show("Error while adding Mineral:\nNoPhotoChosen");
             }
+            if (validFields[2] == false)
+            {
+                MessageBox.Show("Error while adding Mineral:\nMineralNameAlreadyExists");
+            }
         }
 
         private void ExitMineralWindow(object sender, RoutedEventArgs e)

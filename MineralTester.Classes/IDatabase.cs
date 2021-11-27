@@ -40,6 +40,12 @@ namespace MineralTester.Classes
 
         public List<Answer> GetQuestionAnswers(int questionID);
 
+        public bool CheckMineralExists(string mineralName);
+
         public void AddMineral(Mineral toAdd);
+
+        public Mineral GetMineral(String mineralName);
+
+        public List<Mineral> GetMinerals();
     }
 }
