@@ -470,11 +470,11 @@ namespace MineralTester.Classes
                 connection.Open();
 
                 // Command to check mineral exists.
-                MySqlCommand checkUser = new MySqlCommand("SELECT COUNT(*) FROM minerals WHERE name = @mineralName", connection);
-                checkUser.Parameters.Add(new MySqlParameter("mineralName", mineralName));
+                MySqlCommand checkMineralExists = new MySqlCommand("SELECT COUNT(*) FROM minerals WHERE name = @mineralName", connection);
+                checkMineralExists.Parameters.Add(new MySqlParameter("mineralName", mineralName));
 
                 // Run command.
-                MySqlDataReader reader = checkUser.ExecuteReader();
+                MySqlDataReader reader = checkMineralExists.ExecuteReader();
                 reader.Read();
 
                 // Pull result and close reader & connection.
@@ -534,11 +534,11 @@ namespace MineralTester.Classes
                 connection.Open();
 
                 // Command to get user info from DB.
-                MySqlCommand getUser = new MySqlCommand("SELECT * FROM minerals WHERE" + " name = @mineralName", connection);
-                getUser.Parameters.Add(new MySqlParameter("mineralName", mineralName));
+                MySqlCommand getMineral = new MySqlCommand("SELECT * FROM minerals WHERE" + " name = @mineralName", connection);
+                getMineral.Parameters.Add(new MySqlParameter("mineralName", mineralName));
 
                 // Run command.
-                MySqlDataReader reader = getUser.ExecuteReader();
+                MySqlDataReader reader = getMineral.ExecuteReader();
                 reader.Read();
 
                 // Create mineral (int id, string name,
@@ -553,6 +553,37 @@ namespace MineralTester.Classes
 
                 return result;
             }
+        }
+
+        /// <summary>
+        /// Delete mineral in DB.
+        /// *** NEEDS MINERAL OBJ PROVIDED. ***
+        /// </summary>
+        /// <param name="mineralToDelete"></param>
+        /// <returns></returns>
+        public int DeleteMineral(Mineral mineralToDelete)
+        {
+            // For testing.
+            _rowsEffected = 0;
+
+
+            // Open connection.
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+
+                // Create command to delete entry and populate.
+                MySqlCommand deleteMineral = new MySqlCommand("DELETE FROM minerals WHERE" +
+                    " mineral_id = @mineral_id", connection);
+                deleteMineral.Parameters.Add(new MySqlParameter("mineral_id", mineralToDelete.ID));
+
+                // Run delete and close connection
+                // ExecuteNonQuery is used as it will be useful in
+                // Testing at later date to see if deletion has occurred.
+                _rowsEffected = deleteMineral.ExecuteNonQuery();
+                connection.Close();
+            }
+            return _rowsEffected;
         }
 
         /// <summary>
