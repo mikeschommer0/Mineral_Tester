@@ -18,10 +18,19 @@
         <Button Content="Practice Questions" FontSize="16" HorizontalAlignment="Left" Margin="100,499,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="DisplayPracticeQuestions" />
         <Button Content="Exit" FontSize="16" HorizontalAlignment="Left" Margin="100,544,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitPlayground" />
         <ListBox Name="MineralList" Height="110" Width="267" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="340,474,392,0"/>
-        <Button Margin="624,487,249,34" Background="White">
-            <StackPanel Orientation="Horizontal" Height="53" Width="123">
-                <Image Source="images/penny.jpg" RenderTransformOrigin="0.479,0.75" Width="82" Height="51"/>
-                <TextBlock VerticalAlignment="Center"><Run Text="Scratch"/></TextBlock>
+        <Button Margin="624,498,279,23" Background="White">
+            <StackPanel Orientation="Horizontal" Height="53" Width="114">
+                <Image Source="images/penny.png" RenderTransformOrigin="0.479,0.75" Width="94" Height="55"/>
+            </StackPanel>
+        </Button>
+        <Button Margin="739,498,165,23" Background="White">
+            <StackPanel Orientation="Horizontal" Height="53" Width="92">
+                <Image Source="images/magnet.png" RenderTransformOrigin="0.479,0.75" Width="91" Height="46"/>
+            </StackPanel>
+        </Button>
+        <Button Margin="854,498,50,23" Background="White">
+            <StackPanel Orientation="Horizontal" Height="53" Width="92">
+                <Image Source="images/dropper.png" RenderTransformOrigin="0.479,0.75" Width="91" Height="46"/>
             </StackPanel>
         </Button>
     </Grid>

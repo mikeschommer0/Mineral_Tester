@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="images\penny.jpg" />
+    <None Remove="images\dropper.png" />
+    <None Remove="images\magnet.png" />
+    <None Remove="images\penny.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,7 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="images\penny.jpg">
+    <Resource Include="images\dropper.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\magnet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\penny.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
