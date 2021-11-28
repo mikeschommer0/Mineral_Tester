@@ -108,8 +108,8 @@ namespace MineralTester.UI
             mineral.Fill = Brushes.Black;
             mineral.Width = 100;
             mineral.Height = 100;
-            Canvas.SetTop(mineral, 20);
-            Canvas.SetLeft(mineral, 20);
+            Canvas.SetTop(mineral, 200);
+            Canvas.SetLeft(mineral, 400);
             mineral.PreviewMouseDown += Mineral_PreviewMouseDown;
             Playground.Children.Add(mineral);
         }
