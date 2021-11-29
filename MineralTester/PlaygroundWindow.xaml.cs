@@ -21,6 +21,9 @@ namespace MineralTester.UI
         UIElement dragObj = null;
         System.Windows.Point offset;
         private Random _random = new Random();
+        Ellipse mineral = new Ellipse();
+        //Ellipse hideMineral = new Ellipse();
+        Ellipse tempMineral = new Ellipse();
 
 
         public PlaygroundWindow(User currentUser)
@@ -102,6 +105,8 @@ namespace MineralTester.UI
         private void MineralList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Playground.Children.Clear();
+            HideMineral.IsEnabled = true;
+
             Mineral selectedMineral = new Mineral();
             selectedMineral = (Mineral)MineralList.SelectedItem;
 
@@ -128,15 +133,16 @@ namespace MineralTester.UI
 
         private void DisplayMineral(BitmapImage bitmap, Mineral displayMineral)
         {
-            Ellipse mineral = new Ellipse();
             ImageBrush brush = new ImageBrush();
             brush.ImageSource = bitmap;
             mineral.Fill = brush;
+
             mineral.Width = 100;
             mineral.Height = 100;
             Canvas.SetTop(mineral, 200);
             Canvas.SetLeft(mineral, 400);
             mineral.PreviewMouseDown += Mineral_PreviewMouseDown;
+
             Playground.Children.Add(mineral);
         }
 
@@ -151,6 +157,17 @@ namespace MineralTester.UI
             int randomIndex = _random.Next(MineralList.Items.Count);
             var randomItem = MineralList.Items[randomIndex];
            // MessageBox.Show($"Random item at index {randomIndex} is {randomItem}");
+        }
+
+        private void HideMineral_Checked(object sender, RoutedEventArgs e)
+        {
+            tempMineral = mineral;
+            mineral.Fill = Brushes.Black;
+        }
+
+        private void HideMineral_Unchecked(object sender, RoutedEventArgs e)
+        {
+            mineral = tempMineral;
         }
     }
 }

@@ -34,7 +34,7 @@
             </StackPanel>
         </Button>
         <Label Content="Mineral Tests" FontSize="16" HorizontalAlignment="Left" Margin="747,475,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="Show Mineral" HorizontalAlignment="Left" Margin="521,499,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name="HideMineral" Content="Hide Mineral" HorizontalAlignment="Left" Margin="521,499,0,0" VerticalAlignment="Top" Unchecked="HideMineral_Unchecked" Checked="HideMineral_Checked"/>
         <Button Content="Random Mineral" HorizontalAlignment="Left" Margin="521,524,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="RandomMineralButton"/>
         <Button Content="Reset" HorizontalAlignment="Left" Margin="521,552,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="ResetPlaygroundButton"/>
 
