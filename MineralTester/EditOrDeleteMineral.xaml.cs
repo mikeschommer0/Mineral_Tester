@@ -43,8 +43,67 @@ namespace MineralTester.UI
 
         private void UpdateMineral(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("WORK IN PROGRESS");
+            if (mineralToModify != null)
+            {
+                mineralToModify = bl.GetMineral(mineralToModify.Name);
+                mineralToModify.Name = MineralNameTextBox.Text;
+
+                List<object> fields = new List<object>();
+                String name = MineralNameTextBox.Text;
+                fields.Add(name);
+                // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
+                float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0;
+
+                fields.Add(hardness);
+                List<bool> validFields = bl.ValidateMineralData(fields);
+
+                if (validFields.Contains(false)) // If any invaild fields, show message box for appropriate invalid field.
+                {
+                    EntryErrors(validFields);
+                }
+                else
+                {
+                    byte[] imgBytes = null;
+
+                    // Only read file if exists.
+                    if (!selectedFileName.Equals(""))
+                    {
+                        FileStream stream = new FileStream(selectedFileName, FileMode.Open, FileAccess.Read);
+                        BinaryReader br = new BinaryReader(stream);
+                        imgBytes = br.ReadBytes((int)stream.Length);
+                        mineralToModify = new Mineral(mineralToModify.ID, name, hardness, magnetic, acidReaction, imgBytes);
+
+                        bl.UpdateMineral(mineralToModify);
+                        MessageBox.Show("MINERAL MODIFIED: " + mineralToModify.Name);
+                    }
+                    else
+                    {
+                        MessageBox.Show("A valid photo must be provided to update.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("A Mineral must be select to update.");
+            }
+
             ExitMineralWindow(sender, e);
+        }
+
+        private void EntryErrors(List<bool> validFields)
+        {
+            if (validFields[0] == false)
+            {
+                MessageBox.Show("Error while updating Mineral:\nInvalidNameLength");
+            }
+            if (validFields[1] == false)
+            {
+                MessageBox.Show("Error while updating Mineral:\nInvalidHardnessLevel");
+            }
+            if (MineralImage.Source == null)
+            {
+                MessageBox.Show("Error while updating Mineral:\nNoPhotoChosen");
+            }
         }
 
         private void DeleteMineral (object sender, RoutedEventArgs e)
@@ -59,7 +118,7 @@ namespace MineralTester.UI
             }
             else
             {
-                MessageBox.Show("Miss");
+                MessageBox.Show("A Mineral must be select to delete.");
             }
 
             ExitMineralWindow(sender, e);
