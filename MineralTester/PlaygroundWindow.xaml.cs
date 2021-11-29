@@ -1,11 +1,14 @@
 ﻿using MineralTester.Classes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace MineralTester.UI
 {
@@ -15,6 +18,10 @@ namespace MineralTester.UI
     public partial class PlaygroundWindow : Window
     {
         User _user;
+        UIElement dragObj = null;
+        System.Windows.Point offset;
+        private Random _random = new Random();
+
 
         public PlaygroundWindow(User currentUser)
         {
@@ -30,9 +37,6 @@ namespace MineralTester.UI
             MineralList.ItemsSource = minerals;
             MineralList.DisplayMemberPath = "Name";
         }
-
-        UIElement dragObj = null;
-        Point offset;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -98,20 +102,55 @@ namespace MineralTester.UI
         private void MineralList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Playground.Children.Clear();
-            DisplayMineral();
+            Mineral selectedMineral = new Mineral();
+            selectedMineral = (Mineral)MineralList.SelectedItem;
+
+            //MessageBox.Show(selectedMineral.Image.Length.ToString());
+
+            BitmapImage bitmap = ByteArrayToBitmap(selectedMineral.Image);
+            DisplayMineral(bitmap, selectedMineral);
 
         }
 
-        private void DisplayMineral()
+        private BitmapImage ByteArrayToBitmap(byte[] imageBytes)
+        {
+            using (Stream stream = new MemoryStream(imageBytes))
+            {
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.CreateOptions = BitmapCreateOptions.None;
+                bi.CacheOption = BitmapCacheOption.OnLoad;
+                bi.StreamSource = stream;
+                bi.EndInit();
+                return bi;
+            }
+        }
+
+        private void DisplayMineral(BitmapImage bitmap, Mineral displayMineral)
         {
             Ellipse mineral = new Ellipse();
-            mineral.Fill = Brushes.Black;
+            ImageBrush brush = new ImageBrush();
+            brush.ImageSource = bitmap;
+            mineral.Fill = brush;
             mineral.Width = 100;
             mineral.Height = 100;
             Canvas.SetTop(mineral, 200);
             Canvas.SetLeft(mineral, 400);
             mineral.PreviewMouseDown += Mineral_PreviewMouseDown;
             Playground.Children.Add(mineral);
+        }
+
+        private void ResetPlaygroundButton(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RandomMineralButton(object sender, RoutedEventArgs e)
+        {
+
+            int randomIndex = _random.Next(MineralList.Items.Count);
+            var randomItem = MineralList.Items[randomIndex];
+           // MessageBox.Show($"Random item at index {randomIndex} is {randomItem}");
         }
     }
 }
