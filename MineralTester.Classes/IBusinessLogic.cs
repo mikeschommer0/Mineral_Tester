@@ -15,5 +15,7 @@ namespace MineralTester.Classes
         void UpdateMineral(Mineral toUpdate);
 
         Mineral GetMineral(string mineralName);
+
+        List<Mineral> GetMinerals();
     }
 }

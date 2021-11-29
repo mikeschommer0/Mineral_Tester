@@ -32,9 +32,7 @@ namespace MineralTester.UI
         public EditOrDeleteMineral()
         {
             InitializeComponent();
-            List<Mineral> minerals = new List<Mineral>();
-            Database db = new Database();
-            minerals = db.GetMinerals();
+            List<Mineral> minerals = bl.GetMinerals();
 
             MineralList.ItemsSource = minerals;
             MineralList.DisplayMemberPath = "Name";
@@ -51,6 +49,7 @@ namespace MineralTester.UI
                 List<object> fields = new List<object>();
                 String name = MineralNameTextBox.Text;
                 fields.Add(name);
+
                 // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
                 float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0;
 
@@ -74,17 +73,17 @@ namespace MineralTester.UI
                         mineralToModify = new Mineral(mineralToModify.ID, name, hardness, magnetic, acidReaction, imgBytes);
 
                         bl.UpdateMineral(mineralToModify);
-                        MessageBox.Show("MINERAL MODIFIED: " + mineralToModify.Name);
+                        MessageBox.Show("MINERAL MODIFIED: " + mineralToModify.Name + ".");
                     }
                     else
                     {
-                        MessageBox.Show("A valid photo must be provided to update.");
+                        MessageBox.Show("UPDATE FAILED: A valid photo must be provided to update.");
                     }
                 }
             }
             else
             {
-                MessageBox.Show("A Mineral must be select to update.");
+                MessageBox.Show("MODIFICATION FAILED: A Mineral must be select to modify.");
             }
 
             ExitMineralWindow(sender, e);

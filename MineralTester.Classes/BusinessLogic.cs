@@ -106,5 +106,14 @@ namespace MineralTester.Classes
         {
             db.UpdateMineral(toUpdate);
         }
+
+        /// <summary>
+        /// Get list of minerals from DB.
+        /// </summary>
+        /// <returns></returns>
+        public List<Mineral> GetMinerals() 
+        {
+            return db.GetMinerals();
+        }
     }
 }
