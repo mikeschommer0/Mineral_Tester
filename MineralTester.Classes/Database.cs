@@ -204,6 +204,29 @@ namespace MineralTester.Classes
             return _rowsEffected == expectedEffected;
         }
 
+        private int GetHighestQuestionID()
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT MAX(question_id) FROM questions;", connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                dynamic queryResult = null;
+                while (reader.Read())
+                {
+                    queryResult = reader.GetValue(0).ToString();
+                }
+                if (queryResult == "")
+                {
+                    return -1;
+                }
+                else
+                {
+                    return int.Parse(queryResult);
+                }
+            }
+        }
+
         /// <summary>
         /// Gets a list of all questions from the database. (MODIFIED)
         /// </summary>
@@ -214,7 +237,7 @@ namespace MineralTester.Classes
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
                 connection.Open();
-                MySqlCommand command = new MySqlCommand("SELECT * FROM questions", connection);
+                MySqlCommand command = new MySqlCommand("SELECT * FROM questions;", connection);
                 MySqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -224,7 +247,33 @@ namespace MineralTester.Classes
                     }
                 }
                 connection.Close();
-                return questions;
+            }
+            if (questions.Count > 0)
+            {
+                foreach (Question question in questions)
+                {
+                    GetQuestionAnswers(question);
+                }
+            }
+            return questions;
+        }
+
+        private void GetQuestionAnswers(Question question)
+        {
+            question.Answers = new List<Answer>();
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT * FROM question_answers WHERE question_id = @question_id", connection);
+                command.Parameters.Add(new MySqlParameter("question_id", question.QuestionID));
+                MySqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        question.Answers.Add(new Answer((string)reader["answer_description"], Convert.ToBoolean((sbyte)reader["is_correct"])));
+                    }
+                }
             }
         }
 
@@ -232,41 +281,35 @@ namespace MineralTester.Classes
         /// Inserts a new question into the database. (MODIFIED)
         /// </summary>
         /// <param name="description"> Description is the string representation of the question. (MODIFIED)</param>
-        public void InsertQuestion(string description)
+        public void InsertQuestion(Question question)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
                 connection.Open();
-                MySqlCommand command = new MySqlCommand("INSERT INTO questions (description) VALUES (@description)", connection);
-                command.Parameters.Add(new MySqlParameter("description", description));
+                MySqlCommand command = new MySqlCommand("INSERT INTO questions (description) VALUES (@description);", connection);
+                command.Parameters.Add(new MySqlParameter("description", question.Description));
                 MySqlDataReader reader = command.ExecuteReader();
                 connection.Close();
             }
+            InsertAnswers(question);
         }
 
-        /// <summary>
-        /// Updates an existing question in the database. (MODIFIED)
-        /// </summary>
-        /// <param name="idToUpdate">/> Is the question id being updated. (MODIFIED)</param>
-        /// <param name="description"> Is the string representation of the question. (MODIFIED)</param>
-        public void UpdateQuestion(int idToUpdate, string description)
+        private void InsertAnswers(Question question)
         {
-            List<Question> questions = GetQuestions();
-            if (!questions.Any(q => q.QuestionID == idToUpdate))
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
-                throw new ArgumentException("Error updating question, ID not found");
-            }
-            else
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("", connection);
+                int questionID = GetHighestQuestionID();
+                for (int i = 0; i < question.Answers.Count; i++)
                 {
-                    connection.Open();
-                    MySqlCommand command = new MySqlCommand("UPDATE questions SET description = @description WHERE question_id = @id_to_update", connection);
-                    command.Parameters.Add(new MySqlParameter("description", description));
-                    command.Parameters.Add(new MySqlParameter("id_to_update", idToUpdate));
-                    MySqlDataReader reader = command.ExecuteReader();
-                    connection.Close();
+                    command.CommandText += $"INSERT INTO question_answers (question_id, answer_description, is_correct) VALUES (@question_id{i}, @answer_description{i}, @is_correct{i});";
+                    command.Parameters.Add(new MySqlParameter($"question_id{i}", questionID));
+                    command.Parameters.Add(new MySqlParameter($"answer_description{i}", question.Answers[i].Description));
+                    command.Parameters.Add(new MySqlParameter($"is_correct{i}", question.Answers[i].IsCorrect));
                 }
+                MySqlDataReader reader = command.ExecuteReader();
+                connection.Close();
             }
         }
 
@@ -286,174 +329,11 @@ namespace MineralTester.Classes
                 using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
                 {
                     connection.Open();
-                    MySqlCommand command = new MySqlCommand("DELETE FROM questions WHERE question_id = @id_to_delete", connection);
+                    MySqlCommand command = new MySqlCommand("DELETE FROM questions WHERE question_id = @id_to_delete; DELETE FROM question_answers WHERE question_id = @id_to_delete;", connection);
                     command.Parameters.Add(new MySqlParameter("id_to_delete", idToDelete));
                     MySqlDataReader reader = command.ExecuteReader();
                     connection.Close();
                 }
-            }
-        }
-
-        /// <summary>
-        /// Gets a list of all answers in the database. (MODIFIED)
-        /// </summary>
-        /// <returns> A list of all answers in the database if there are any, otherwise returns an empty list. (MODIFIED)</returns>
-        public List<Answer> GetAnswers()
-        {
-            List<Answer> answers = new List<Answer>();
-            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
-            {
-                connection.Open();
-                MySqlCommand command = new MySqlCommand("SELECT * FROM answers", connection);
-                MySqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        answers.Add(new Answer((int)reader["answer_id"], (string)reader["description"]));
-                    }
-                }
-                connection.Close();
-                return answers;
-            }
-        }
-
-        /// <summary>
-        /// Inserts a new answer into the database. (MODIFIED)
-        /// </summary>
-        /// <param name="description"> Is the string representation of the answer. (MODIFIED)</param>
-        public void InsertAnswer(string description)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
-            {
-                connection.Open();
-                MySqlCommand command = new MySqlCommand("INSERT INTO answers (description) VALUES (@description)", connection);
-                command.Parameters.Add(new MySqlParameter("description", description));
-                MySqlDataReader reader = command.ExecuteReader();
-                connection.Close();
-            }
-        }
-
-        /// <summary>
-        /// Updates an existing answer in the database. (MODIFIED)
-        /// </summary>
-        /// <param name="idToUpdate"> Is the answer id being updated. (MODIFIED)</param>
-        /// <param name="description"> It the string representation of the answer. (MODIFIED)</param>
-        public void UpdateAnswer(int idToUpdate, string description)
-        {
-            List<Answer> answers = GetAnswers();
-            if (!answers.Any(q => q.AnswerID == idToUpdate))
-            {
-                throw new ArgumentException("Error updating answer, ID not found");
-            }
-            else
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
-                {
-                    connection.Open();
-                    MySqlCommand command = new MySqlCommand("UPDATE answers SET description = @description WHERE answer_id = @id_to_update", connection);
-                    command.Parameters.Add(new MySqlParameter("description", description));
-                    command.Parameters.Add(new MySqlParameter("id_to_update", idToUpdate));
-                    MySqlDataReader reader = command.ExecuteReader();
-                    connection.Close();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deletes an existing answer in the database. (MODIFIED)
-        /// </summary>
-        /// <param name="idToDelete"> Is the answer id to delete. (MODIFIED)</param>
-        public void DeleteAnswer(int idToDelete)
-        {
-            List<Answer> answers = GetAnswers();
-            if (!answers.Any(q => q.AnswerID == idToDelete))
-            {
-                throw new ArgumentException("Error deleting answer, ID not found");
-            }
-            else
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
-                {
-                    connection.Open();
-                    MySqlCommand command = new MySqlCommand("DELETE FROM answers WHERE answer_id = @id_to_delete", connection);
-                    command.Parameters.Add(new MySqlParameter("id_to_delete", idToDelete));
-                    MySqlDataReader reader = command.ExecuteReader();
-                    connection.Close();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Inserts a question and its corresponding answers into the question_answer junction table. (MODIFIED)
-        /// </summary>
-        /// <param name="question"> Is the question whose data will be inserted. (MODIFIED)</param>
-        public (bool isSuccess, string message) InsertQuestionAnswers(Question question)
-        {
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
-                {
-                    foreach (Answer answer in question.Answers)
-                    {
-                        connection.Open();
-                        MySqlCommand command = new MySqlCommand("INSERT INTO question_answers (question_id, answer_id, is_correct) VALUES (@question_id, @answer_id, @is_correct)", connection);
-                        command.Parameters.Add(new MySqlParameter("question_id", question.QuestionID));
-                        command.Parameters.Add(new MySqlParameter("answer_id", answer.AnswerID));
-                        command.Parameters.Add(new MySqlParameter("is_correct", Convert.ToSByte(answer.IsCorrect)));
-                        MySqlDataReader reader = command.ExecuteReader();
-                        connection.Close();
-                    }
-                }
-                return (true, "Successfully added practice question.");
-            }
-            catch (Exception exception)
-            {
-                return (false, string.Format($"Unable to add practice question: {exception.Message}"));
-            }
-        }
-
-        /// <summary>
-        /// Deletes all of the answers to the selected question form the question_answer junction table. (MODIFIED)
-        /// </summary>
-        /// <param name="questionID"> Is the question that will have all of its answers deleted from the junction table. (MODIFIED)</param>
-        public void DeleteQuestionAnswers(int questionID)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
-            {
-                connection.Open();
-                MySqlCommand command = new MySqlCommand("DELETE FROM question_answers WHERE question_id = @question_id", connection);
-                command.Parameters.Add(new MySqlParameter("question_id", questionID));
-                MySqlDataReader reader = command.ExecuteReader();
-                connection.Close();
-            }
-        }
-
-        /// <summary>
-        /// Gets a list of answers for the input question id. (MODIFIED)
-        /// </summary>
-        /// <param name="questionID"> Is the question to get answers for from 
-        /// the question_answer junction table. (MODIFIED)</param>
-        /// <returns> A list of answers for the given question if
-        /// there are any, or an empty list if there are none. (MODIFIED)</returns>
-        public List<Answer> GetQuestionAnswers(int questionID)
-        {
-            List<Answer> answers = new List<Answer>();
-            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
-            {
-                connection.Open();
-                MySqlCommand command = new MySqlCommand("CALL get_answers(@question_id)", connection);
-                command.Parameters.Add(new MySqlParameter("question_id", questionID));
-                MySqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        answers.Add(new Answer((int)reader["question_id"], (string)reader["description"], Convert.ToBoolean((sbyte)reader["is_correct"])));
-                    }
-                }
-                connection.Close();
-                return answers;
             }
         }
 

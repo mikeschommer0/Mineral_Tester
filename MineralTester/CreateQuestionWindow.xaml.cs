@@ -60,7 +60,7 @@ namespace MineralTester.UI
             cboAnswer2.ItemsSource = null;
             cboAnswer3.ItemsSource = null;
             cboAnswer4.ItemsSource = null;
-            answers = database.GetAnswers();
+            //answers = database.GetAnswers();
             cboAnswer1.ItemsSource = answers;
             cboAnswer1.DisplayMemberPath = "Description";
             cboAnswer1.SelectedValuePath = "AnswerID";
@@ -112,9 +112,9 @@ namespace MineralTester.UI
                 question.Answers = new List<Answer>();
                 setAnswers(question);
                 setCorrectAnswer(question);
-                database.DeleteQuestionAnswers(question.QuestionID);
-                var executionResult = database.InsertQuestionAnswers(question);
-                MessageBox.Show(executionResult.message);
+                //database.DeleteQuestionAnswers(question.QuestionID);
+                //var executionResult = database.InsertQuestionAnswers(question);
+                //MessageBox.Show(executionResult.message);
                 RefreshScreen();
             }
         }

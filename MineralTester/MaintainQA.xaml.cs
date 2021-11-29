@@ -43,7 +43,7 @@ namespace MineralTester.UI
                     cboAttributes.ItemsSource = _questions;
                     break;
                 case Enums.QADataType.Answers:
-                    _answers = database.GetAnswers();
+                    //_answers = database.GetAnswers();
                     cboAttributes.ItemsSource = _answers;
                     break;
                 default:
@@ -63,10 +63,10 @@ namespace MineralTester.UI
             switch (_dataType)
             {
                 case Enums.QADataType.Questions:
-                    database.InsertQuestion(txtAttributes.Text);
+                    //database.InsertQuestion(txtAttributes.Text);
                     break;
                 case Enums.QADataType.Answers:
-                    database.InsertAnswer(txtAttributes.Text);
+                    //database.InsertAnswer(txtAttributes.Text);
                     break;
                 default:
                     break;
@@ -89,7 +89,7 @@ namespace MineralTester.UI
                         database.UpdateQuestion(_question.QuestionID, txtAttributes.Text);
                         break;
                     case Enums.QADataType.Answers:
-                        database.UpdateAnswer(_answer.AnswerID, txtAttributes.Text);
+                        //database.UpdateAnswer(_answer.AnswerID, txtAttributes.Text);
                         break;
                     default:
                         break;
@@ -113,7 +113,7 @@ namespace MineralTester.UI
                         database.DeleteQuestion(_question.QuestionID);
                         break;
                     case Enums.QADataType.Answers:
-                        database.DeleteAnswer(_answer.AnswerID);
+                        //database.DeleteAnswer(_answer.AnswerID);
                         break;
                     default:
                         break;

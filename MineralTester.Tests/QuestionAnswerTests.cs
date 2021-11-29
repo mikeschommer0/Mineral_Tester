@@ -1,6 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MineralTester.Classes;
-using System.Collections.Generic;
 
 namespace MineralTester.Tests
 {
@@ -8,11 +6,9 @@ namespace MineralTester.Tests
     public class QuestionAnswerTests
     {
         [TestMethod]
-        public void LoadAnswerTests()
+        public void MethodToTest()
         {
-            Database database = new Database();
-            List<Answer> answers = database.GetQuestionAnswers(1);
-            Assert.AreEqual(4, answers.Count);
+
         }
     }
 }

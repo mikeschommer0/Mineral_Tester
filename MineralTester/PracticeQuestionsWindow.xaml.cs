@@ -22,7 +22,7 @@ namespace MineralTester.UI
             questions = database.GetQuestions();
             foreach (Question question in questions)
             {
-                question.Answers = database.GetQuestionAnswers(question.QuestionID);
+                //question.Answers = database.GetQuestionAnswers(question.QuestionID);
                 cboQuestions.Items.Add(question);
             }
             cboQuestions.DisplayMemberPath = "Description";
