@@ -54,8 +54,8 @@ namespace MineralTester.UI
 
         private void CreateQuestionButton(object sender, RoutedEventArgs e)
         {
-            CreateQuestionWindow createQuestion = new CreateQuestionWindow();
-            createQuestion.Show();
+            InsertQuestionWindow insertQuestionWindow = new InsertQuestionWindow();
+            insertQuestionWindow.Show();
         }
 
         private void AddMineralButton(object sender, RoutedEventArgs e)

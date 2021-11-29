@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MineralTester.Classes;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MineralTester.Classes;
 
 namespace MineralTester.UI
 {
@@ -53,19 +40,19 @@ namespace MineralTester.UI
             }
             else if (user.AccountType == Enums.AccountType.Assistant)
             {
-                CreateQuestionWindow createQuestionWindow = new CreateQuestionWindow();
-                createQuestionWindow.Show();
+                QuestionsWindow questionsWindow = new QuestionsWindow();
+                questionsWindow.Show();
                 Close();
             }
             else if (user.AccountType == Enums.AccountType.Student)
             {
-                PlaygroundWindow playgroundWindow= new PlaygroundWindow(user);
+                PlaygroundWindow playgroundWindow = new PlaygroundWindow(user);
                 playgroundWindow.Show();
                 Close();
             }
             else
             {
-                MessageBox.Show("An unexpectated error has occured.");
+                MessageBox.Show("An unexpected error has occurred.");
             }
 
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="PracticeQuestionsWindow" Height="175" Width="510">
+        Title="Practice Questions" Height="175" Width="510">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
