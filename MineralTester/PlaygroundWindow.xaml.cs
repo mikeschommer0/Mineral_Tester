@@ -22,8 +22,6 @@ namespace MineralTester.UI
         System.Windows.Point offset;
         private Random _random = new Random();
         Ellipse mineral = new Ellipse();
-        //Ellipse hideMineral = new Ellipse();
-        Ellipse tempMineral = new Ellipse();
 
 
         public PlaygroundWindow(User currentUser)
@@ -143,6 +141,7 @@ namespace MineralTester.UI
             Canvas.SetLeft(mineral, 400);
             mineral.PreviewMouseDown += Mineral_PreviewMouseDown;
 
+
             Playground.Children.Add(mineral);
         }
 
@@ -161,13 +160,12 @@ namespace MineralTester.UI
 
         private void HideMineral_Checked(object sender, RoutedEventArgs e)
         {
-            tempMineral = mineral;
-            mineral.Fill = Brushes.Black;
+
         }
 
         private void HideMineral_Unchecked(object sender, RoutedEventArgs e)
         {
-            mineral = tempMineral;
+            
         }
     }
 }
