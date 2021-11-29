@@ -18,6 +18,7 @@
         <Button Name="btnCreateFaculty" FontSize="16" Content="Create Faculty" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="CreateFacultyButton"/>
         <Button Content="Create Question" FontSize="16" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="CreateQuestionButton"/>
         <Button Content="Add Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="AddMineralButton"/>
+        <Button Content="Edit or Delete Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="EditOrDeleteMineral"/>
         <Button Content="Exit" FontSize="16" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="ExitAdminButton"/>
     </Grid>
 </Window>

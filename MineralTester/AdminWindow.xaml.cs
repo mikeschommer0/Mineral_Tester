@@ -64,6 +64,12 @@ namespace MineralTester.UI
             addMineral.Show();
         }
 
+        private void EditOrDeleteMineral(object sender, RoutedEventArgs e)
+        {
+            EditOrDeleteMineral editOrDeleteMinera = new EditOrDeleteMineral();
+            editOrDeleteMinera.Show();
+        }
+
         private void ExitAdminButton(object sender, RoutedEventArgs e)
         {
             Close();
