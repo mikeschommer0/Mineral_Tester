@@ -47,13 +47,28 @@ namespace MineralTester.UI
             DisplayQuestions();
         }
 
-        private void lvQuestions_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void lvQuestions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lvQuestions.SelectedIndex > -1)
             {
                 Question selectedQuestion = new Question();
                 selectedQuestion = lvQuestions.SelectedItem as Question;
                 dgAnswers.ItemsSource = selectedQuestion.Answers;
+            }
+        }
+
+        private void dgAnswers_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            e.Column.Width = new DataGridLength(2, DataGridLengthUnitType.Star);
+            if (e.Column.Header.ToString() == "Description")
+            {
+                e.Column.Header = "Answer description";
+                e.Column.Width = new DataGridLength(2, DataGridLengthUnitType.Star);
+            }
+            if (e.Column.Header.ToString() == "IsCorrect")
+            {
+                e.Column.Header = "Correct Answer";
+                e.Column.Width = new DataGridLength(2, DataGridLengthUnitType.Star);
             }
         }
     }

@@ -17,7 +17,7 @@
         <ListView x:Name="lvQuestions" HorizontalAlignment="Left" SelectionChanged="lvQuestions_SelectionChanged" Height="329" Margin="10,41,0,0" VerticalAlignment="Top" Width="303" SelectionMode="Single"/>
         <Button Content="Add new question" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Click="InsertQuestion" Width="110"/>
         <Button Content="Delete question" HorizontalAlignment="Left" Margin="203,375,0,0" VerticalAlignment="Top" Click="DeleteQuestion" Width="110"/>
-        <DataGrid x:Name="dgAnswers" HorizontalAlignment="Left" Height="329" Margin="318,41,0,0" VerticalAlignment="Top" Width="303" SelectionMode="Single"/>
+        <DataGrid x:Name="dgAnswers" AutoGenerateColumns="True" AutoGeneratingColumn="dgAnswers_AutoGeneratingColumn" HorizontalAlignment="Left" Height="329" Margin="318,41,0,0" VerticalAlignment="Top" Width="303" SelectionMode="Single"/>
         <Label Content="Answers:" HorizontalAlignment="Left" Margin="318,10,0,0" VerticalAlignment="Top" Width="65" Height="26"/>
     </Grid>
 </Window>
