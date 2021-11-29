@@ -46,6 +46,8 @@ namespace MineralTester.Classes
 
         public Mineral GetMineral(String mineralName);
 
+        public int UpdateMineral(Mineral newMineralInfo);
+
         public int DeleteMineral(Mineral mineralToDelete);
 
         public List<Mineral> GetMinerals();

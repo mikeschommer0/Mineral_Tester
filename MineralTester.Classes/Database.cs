@@ -587,6 +587,35 @@ namespace MineralTester.Classes
         }
 
         /// <summary>
+        /// Takes in new mineral info to update.
+        /// </summary>
+        /// <param name="newMineral"></param>
+        /// <returns></returns>
+        public int UpdateMineral(Mineral newMineral)
+        {
+            _rowsEffected = 0;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+
+                MySqlCommand updateMineral = new MySqlCommand("UPDATE minerals SET name = @newName, hardness = @newHardness," +
+                    " is_magnetic = @newMagnetic, acid_reaction = @newAcidReact, image = @newImg" +
+                   " WHERE mineral_id = @mineral_id", connection);
+                updateMineral.Parameters.Add(new MySqlParameter("newName", newMineral.Name));
+                updateMineral.Parameters.Add(new MySqlParameter("newHardness", newMineral.Hardness));
+                updateMineral.Parameters.Add(new MySqlParameter("newMagnetic", newMineral.IsMagnetic));
+                updateMineral.Parameters.Add(new MySqlParameter("newAcidReact", newMineral.AcidReaction));
+                updateMineral.Parameters.Add(new MySqlParameter("newImg", newMineral.Image));
+                updateMineral.Parameters.Add(new MySqlParameter("mineral_id", newMineral.ID));
+
+                _rowsEffected = updateMineral.ExecuteNonQuery();
+                connection.Close();
+            }
+            return _rowsEffected;
+        }
+
+        /// <summary>
         /// Gets all minerals from database.
         /// </summary>
         public List<Mineral> GetMinerals()
@@ -608,8 +637,6 @@ namespace MineralTester.Classes
                     mineral.Hardness = (float)Convert.ToDouble(reader["hardness"]);
                     mineral.IsMagnetic = Convert.ToBoolean(reader["is_magnetic"]);
                     mineral.AcidReaction = Convert.ToBoolean(reader["acid_reaction"]);
-
-                    //byte[] img = (byte[])reader["image"];
 
                     if(reader["image"] == DBNull.Value)
                     {
