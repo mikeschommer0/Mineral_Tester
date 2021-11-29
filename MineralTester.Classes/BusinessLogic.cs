@@ -72,12 +72,25 @@ namespace MineralTester.Classes
 
         /// <summary>
         /// Call to DB to add mineral.
-        /// Doesn't check for existing prior.
         /// </summary>
         /// <param name="toAdd"> Mineral to add to db. </param>
         public void AddMineral(Mineral toAdd)
         {
             db.AddMineral(toAdd);
+        }
+
+        /// <summary>
+        /// Call to DB to delete mineral.
+        /// </summary>
+        /// <param name="toDelete"> Mineral to delete from db. </param>
+        public void DeleteMineral(Mineral toDelete)
+        {
+            db.DeleteMineral(toDelete);
+        }
+
+        public Mineral GetMineral(string mineralName)
+        {
+            return db.GetMineral(mineralName);
         }
     }
 }
