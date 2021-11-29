@@ -608,7 +608,18 @@ namespace MineralTester.Classes
                     mineral.Hardness = (float)Convert.ToDouble(reader["hardness"]);
                     mineral.IsMagnetic = Convert.ToBoolean(reader["is_magnetic"]);
                     mineral.AcidReaction = Convert.ToBoolean(reader["acid_reaction"]);
-                    mineral.Image = (byte[])reader["image"];
+
+                    //byte[] img = (byte[])reader["image"];
+
+                    if(reader["image"] == DBNull.Value)
+                    {
+                        mineral.Image = null;
+                    }
+                    else
+                    {
+                        mineral.Image = (byte[])reader["image"];
+                    }
+                    
                     minerals.Add(mineral);
                 }
 

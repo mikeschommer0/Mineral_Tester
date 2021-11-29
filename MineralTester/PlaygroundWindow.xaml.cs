@@ -109,9 +109,11 @@ namespace MineralTester.UI
             selectedMineral = (Mineral)MineralList.SelectedItem;
 
             //MessageBox.Show(selectedMineral.Image.Length.ToString());
-
-            BitmapImage bitmap = ByteArrayToBitmap(selectedMineral.Image);
-            DisplayMineral(bitmap, selectedMineral);
+            if(!(selectedMineral.Image is null))
+            {
+                BitmapImage bitmap = ByteArrayToBitmap(selectedMineral.Image);
+                DisplayMineral(bitmap, selectedMineral);
+            }
 
         }
 
