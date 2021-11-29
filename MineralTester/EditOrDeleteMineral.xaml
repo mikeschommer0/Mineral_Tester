@@ -1,0 +1,31 @@
+﻿<Window x:Class="MineralTester.UI.EditOrDeleteMineral"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MineralTester.UI"
+        mc:Ignorable="d"
+        Title="EditOrDeleteMineral" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="CornflowerBlue" Offset="1"/>
+                <GradientStop Color="White"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Content="Mineral Name" HorizontalAlignment="Left" Margin="80,65,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <Label Content="Hardness" HorizontalAlignment="Left" Margin="80,113,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <TextBox Name="MineralNameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,78,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <TextBox Name="MineralHardnessTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,126,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"  Width="180" Height="25"/>
+
+        <Button Content="Update Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="UpdateMineral"/>
+        <Button Content="Delete Mineral" FontSize="16" HorizontalAlignment="Left" Margin="565,359,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="DeleteMineral"/>
+        <Button Content="Cancel" FontSize="16" HorizontalAlignment="Center" Margin="0,359,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitMineralWindow"/>
+        <CheckBox x:Name="AcidReaction" Content="Reacts With Acid" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,175,0,0" VerticalAlignment="Top" FontSize="25" Checked="ReactsWithAcid" Unchecked="DoesntReactWithAcid"/>
+        <CheckBox x:Name="MagneticReaction" Content="Magnetic" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,231,0,0" VerticalAlignment="Top" FontSize="25" Checked="IsMagnetic" Unchecked="IsntMagnetic"/>
+        <Button Content="New Image"  FontSize="16" HorizontalAlignment="Left" Margin="565,275,0,0" Width="180" Height="35" Background="White" VerticalAlignment="Top" Click="AddAnImageButton_Click"/>
+        <ListBox Name="MineralList" Width="267" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="30,282,503,40"/>
+
+        <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
+    </Grid>
+</Window>
