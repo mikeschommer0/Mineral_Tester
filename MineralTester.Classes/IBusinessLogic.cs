@@ -12,6 +12,8 @@ namespace MineralTester.Classes
 
         void DeleteMineral(Mineral toDelete);
 
+        void UpdateMineral(Mineral toUpdate);
+
         Mineral GetMineral(string mineralName);
     }
 }

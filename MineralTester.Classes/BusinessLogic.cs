@@ -88,9 +88,23 @@ namespace MineralTester.Classes
             db.DeleteMineral(toDelete);
         }
 
+        /// <summary>
+        /// Get Mineral from DB.
+        /// </summary>
+        /// <param name="mineralName"></param>
+        /// <returns></returns>
         public Mineral GetMineral(string mineralName)
         {
             return db.GetMineral(mineralName);
+        }
+
+        /// <summary>
+        /// Update mineral in DB (Based on ID).
+        /// </summary>
+        /// <param name="toUpdate"></param>
+        public void UpdateMineral(Mineral toUpdate)
+        {
+            db.UpdateMineral(toUpdate);
         }
     }
 }
