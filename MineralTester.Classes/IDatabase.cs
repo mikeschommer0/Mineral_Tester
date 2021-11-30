@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MineralTester.Classes
 {
@@ -15,12 +12,14 @@ namespace MineralTester.Classes
         public int AddUser(User newUser);
 
         public int UpdateUser(User userToUpdate);
-        
+
         public int DeleteUser(User userToDelete);
 
         public List<Question> GetQuestions();
 
         public void InsertQuestion(Question question);
+
+        public void UpdateQuestion(Question question);
 
         public void DeleteQuestion(int idToDelete);
 

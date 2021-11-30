@@ -1,17 +1,7 @@
 ﻿using MineralTester.Classes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MineralTester.UI
 {
@@ -50,7 +40,7 @@ namespace MineralTester.UI
                 IUserManager userManager = new UserManager();
                 User newUser = new User(0, firstName, lastName, username, password, newUserAccountType);
                 userManager.AddUser(newUser);
-                
+
                 if (newUserAccountType == Enums.AccountType.Student)
                 {
                     MessageBox.Show("A new student was added.");

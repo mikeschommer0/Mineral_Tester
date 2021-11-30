@@ -8,11 +8,5 @@
             Assistant = 2,
             Student = 3
         }
-
-        public enum QADataType
-        {
-            Questions,
-            Answers
-        }
     }
 }

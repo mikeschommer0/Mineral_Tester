@@ -137,11 +137,11 @@ namespace MineralTester.Classes
         {
             _rowsEffected = 0;
 
-            using(MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
             {
                 connection.Open();
 
-                MySqlCommand updateUser = new MySqlCommand("UPDATE users SET first_name = @first_name, last_name = @last_name, user_name = @user_name, " + 
+                MySqlCommand updateUser = new MySqlCommand("UPDATE users SET first_name = @first_name, last_name = @last_name, user_name = @user_name, " +
                    "password = @password, account_type = @account_type WHERE user_id = @user_id", connection);
                 updateUser.Parameters.Add(new MySqlParameter("first_name", userToUpdate.FirstName));
                 updateUser.Parameters.Add(new MySqlParameter("last_name", userToUpdate.LastName));
@@ -204,6 +204,10 @@ namespace MineralTester.Classes
             return _rowsEffected == expectedEffected;
         }
 
+        /// <summary>
+        /// Gets the highest ID from the question table.
+        /// </summary>
+        /// <returns> Returns the highest integer ID from the question table. </returns>
         private int GetHighestQuestionID()
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -258,6 +262,10 @@ namespace MineralTester.Classes
             return questions;
         }
 
+        /// <summary>
+        /// Gets the answers associated with the indicated question.
+        /// </summary>
+        /// <param name="question"> The indicated question to get answers for. </param>
         private void GetQuestionAnswers(Question question)
         {
             question.Answers = new List<Answer>();
@@ -294,6 +302,10 @@ namespace MineralTester.Classes
             InsertAnswers(question);
         }
 
+        /// <summary>
+        /// Inserts the indicated question's associated answers into the database.
+        /// </summary>
+        /// <param name="question"> The indicated question. </param>
         private void InsertAnswers(Question question)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
@@ -311,6 +323,23 @@ namespace MineralTester.Classes
                 MySqlDataReader reader = command.ExecuteReader();
                 connection.Close();
             }
+        }
+
+        /// <summary>
+        /// Updates an existing question in the database.
+        /// </summary>
+        /// <param name="question"> The question to update. </param>
+        public void UpdateQuestion(Question question)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("UPDATE questions SET description = @description WHERE question_id = @question_id;DELETE FROM question_answers WHERE question_id = @question_id;", connection);
+                command.Parameters.Add(new MySqlParameter("description", question.Description));
+                command.Parameters.Add(new MySqlParameter("question_id", question.QuestionID));
+                MySqlDataReader reader = command.ExecuteReader();
+            }
+            InsertAnswers(question);
         }
 
         /// <summary>
@@ -510,7 +539,7 @@ namespace MineralTester.Classes
                 MySqlCommand getMinerals = new MySqlCommand("SELECT * FROM minerals", connection);
                 MySqlDataReader reader = getMinerals.ExecuteReader();
 
-                while(reader.Read())
+                while (reader.Read())
                 {
                     Mineral mineral = new Mineral();
                     mineral.Name = reader["name"].ToString();
@@ -518,7 +547,7 @@ namespace MineralTester.Classes
                     mineral.IsMagnetic = Convert.ToBoolean(reader["is_magnetic"]);
                     mineral.AcidReaction = Convert.ToBoolean(reader["acid_reaction"]);
 
-                    if(reader["image"] == DBNull.Value)
+                    if (reader["image"] == DBNull.Value)
                     {
                         mineral.Image = null;
                     }
@@ -526,7 +555,7 @@ namespace MineralTester.Classes
                     {
                         mineral.Image = (byte[])reader["image"];
                     }
-                    
+
                     minerals.Add(mineral);
                 }
 

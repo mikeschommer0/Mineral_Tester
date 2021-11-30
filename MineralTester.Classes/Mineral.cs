@@ -6,16 +6,16 @@
 
         public int ID
         {
-            get 
-            { 
-                return _ID; 
+            get
+            {
+                return _ID;
             }
         }
 
-        public string Name 
-        { 
+        public string Name
+        {
             get;
-            set; 
+            set;
         }
 
         public float Hardness

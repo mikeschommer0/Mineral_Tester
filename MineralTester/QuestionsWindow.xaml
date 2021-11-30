@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="Questions" Height="466" Width="656">
+        Title="Questions" Height="455" Width="698">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -14,10 +14,11 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Content="Questions:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="65" Height="26"/>
-        <ListView x:Name="lvQuestions" HorizontalAlignment="Left" SelectionChanged="lvQuestions_SelectionChanged" Height="329" Margin="10,41,0,0" VerticalAlignment="Top" Width="303" SelectionMode="Single"/>
-        <Button Content="Add new question" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Click="InsertQuestion" Width="110"/>
-        <Button Content="Delete question" HorizontalAlignment="Left" Margin="203,375,0,0" VerticalAlignment="Top" Click="DeleteQuestion" Width="110"/>
-        <DataGrid x:Name="dgAnswers" AutoGenerateColumns="True" AutoGeneratingColumn="dgAnswers_AutoGeneratingColumn" HorizontalAlignment="Left" Height="329" Margin="318,41,0,0" VerticalAlignment="Top" Width="303" SelectionMode="Single"/>
-        <Label Content="Answers:" HorizontalAlignment="Left" Margin="318,10,0,0" VerticalAlignment="Top" Width="65" Height="26"/>
+        <ListView x:Name="lvQuestions" HorizontalAlignment="Left" SelectionChanged="lvQuestions_SelectionChanged" Height="329" Margin="10,41,0,0" VerticalAlignment="Top" Width="340" SelectionMode="Single"/>
+        <Button Content="Add new question" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Click="InsertQuestionClick" Width="110"/>
+        <Button Content="Delete question" HorizontalAlignment="Left" Margin="240,375,0,0" VerticalAlignment="Top" Click="DeleteQuestionClick" Width="110"/>
+        <DataGrid x:Name="dgAnswers" AutoGenerateColumns="True" AutoGeneratingColumn="dgAnswers_AutoGeneratingColumn" HorizontalAlignment="Left" Height="329" Margin="355,41,0,0" VerticalAlignment="Top" Width="303" SelectionMode="Single"/>
+        <Label Content="Answers:" HorizontalAlignment="Left" Margin="355,10,0,0" VerticalAlignment="Top" Width="65" Height="26"/>
+        <Button Content="Update question" HorizontalAlignment="Left" Margin="125,375,0,0" VerticalAlignment="Top" Click="UpdateQuestionClick" Width="110"/>
     </Grid>
 </Window>

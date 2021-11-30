@@ -1,19 +1,11 @@
 ﻿using Microsoft.Win32;
+using MineralTester.Classes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MineralTester.Classes;
-using System.IO;
 
 namespace MineralTester.UI
 {
@@ -113,12 +105,12 @@ namespace MineralTester.UI
             return errors;
         }
 
-        private void DeleteMineral (object sender, RoutedEventArgs e)
+        private void DeleteMineral(object sender, RoutedEventArgs e)
         {
-            
+
             if (mineralToModify != null)
             {
-                mineralToModify = bl.GetMineral(mineralToModify.Name); 
+                mineralToModify = bl.GetMineral(mineralToModify.Name);
 
                 MessageBox.Show("MINERAL DELETED: \n" + mineralToModify.Name);
                 bl.DeleteMineral(mineralToModify);
@@ -141,10 +133,10 @@ namespace MineralTester.UI
             // Update values in window and tracker vars
             MineralNameTextBox.Text = selectedMineral.Name;
             MineralHardnessTextBox.Text = "" + selectedMineral.Hardness;
-            
+
             this.acidReaction = selectedMineral.AcidReaction;
             AcidReaction.IsChecked = selectedMineral.AcidReaction;
-            
+
             this.magnetic = selectedMineral.IsMagnetic;
             MagneticReaction.IsChecked = selectedMineral.IsMagnetic;
 
@@ -166,7 +158,7 @@ namespace MineralTester.UI
                 MineralImage.Source = new BitmapImage(fileUri);
             }
         }
-        
+
         private void ReactsWithAcid(object sender, RoutedEventArgs e)
         {
             this.acidReaction = true;
@@ -186,7 +178,7 @@ namespace MineralTester.UI
         {
             this.magnetic = false;
         }
-        
+
         private void ExitMineralWindow(object sender, RoutedEventArgs e)
         {
             Close();

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 
 namespace MineralTester.Classes
@@ -10,7 +9,7 @@ namespace MineralTester.Classes
         IDatabase db = new Database();
         public List<bool> ValidateMineralData(List<object> fields)
         {
-            List<bool> validFields = new List<bool> { true, true, true};
+            List<bool> validFields = new List<bool> { true, true, true };
             string name = (String)fields[0];
             float hardness = (float)fields[1];
 
@@ -35,7 +34,7 @@ namespace MineralTester.Classes
 
         public List<bool> ValidateUserData(List<string> fields)
         {
-            List<bool> validFields = new List<bool> { true, true, true, true, true};
+            List<bool> validFields = new List<bool> { true, true, true, true, true };
             string firstName = fields[0];
             string lastName = fields[1];
             string username = fields[2];
@@ -111,7 +110,7 @@ namespace MineralTester.Classes
         /// Get list of minerals from DB.
         /// </summary>
         /// <returns></returns>
-        public List<Mineral> GetMinerals() 
+        public List<Mineral> GetMinerals()
         {
             return db.GetMinerals();
         }
