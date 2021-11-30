@@ -56,7 +56,7 @@ namespace MineralTester.UI
 
                 List<bool> validFields = bl.ValidateMineralData(fields);
 
-                if (validFields[0] == false || validFields[1] == false) // If any invaild fields, show message box for appropriate invalid field.
+                if (validFields[0] == false || validFields[1] == false)
                 {
                     MessageBox.Show(EntryErrors(validFields));
                 }
@@ -77,6 +77,7 @@ namespace MineralTester.UI
                         MessageBox.Show("MINERAL MODIFIED: \n" + mineralToModify.Name + ".");
                         ExitMineralWindow(sender, e);
                     }
+
                     // Should use the same img.
                     else
                     {
