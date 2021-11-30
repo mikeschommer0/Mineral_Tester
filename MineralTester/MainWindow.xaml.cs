@@ -56,10 +56,5 @@ namespace MineralTester.UI
             }
 
         }
-
-        private void ForgotPasswordButton(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("A message will be sent to the teacher.");
-        }
     }
 }
