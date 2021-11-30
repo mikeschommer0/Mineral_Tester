@@ -49,7 +49,9 @@ namespace MineralTester.UI
 
         private void AddUserClick(object sender, RoutedEventArgs e)
         {
-
+            CreateUserWindow createUserWindow = new CreateUserWindow();
+            createUserWindow.ShowDialog();
+            DisplayUsers();
         }
 
         private void UpdateUserClick(object sender, RoutedEventArgs e)
@@ -60,7 +62,7 @@ namespace MineralTester.UI
                 MessageBox.Show("Select a user to update.");
                 return;
             }
-            CreateUserWindow createUserWindow = new CreateUserWindow(Enums.AccountType.Teacher, false, userToUpdate);
+            CreateUserWindow createUserWindow = new CreateUserWindow(userToUpdate);
             createUserWindow.ShowDialog();
             DisplayUsers();
         }

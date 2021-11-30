@@ -50,7 +50,7 @@ namespace MineralTester.Classes
                 validFields[1] = false;
             }
 
-            if (username.Length == 0 || username.Length > 8)
+            if (username.Length == 0 || username.Length > 50)
             {
                 validFields[2] = false;
             }
