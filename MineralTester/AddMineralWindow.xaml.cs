@@ -1,19 +1,10 @@
 ﻿using Microsoft.Win32;
+using MineralTester.Classes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MineralTester.Classes;
 using System.IO;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 
 namespace MineralTester.UI
@@ -35,18 +26,18 @@ namespace MineralTester.UI
 
         private void AddAnotherMineral(object sender, RoutedEventArgs e)
         {
-            List<object> fields = new List<object>(); 
+            List<object> fields = new List<object>();
             String name = MineralNameTextBox.Text;
             fields.Add(name);
 
             // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
-            float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0; 
+            float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0;
             //possible combine these 2
-            fields.Add(hardness);  
+            fields.Add(hardness);
             List<bool> validFields = bl.ValidateMineralData(fields);
 
             if (validFields.Contains(false)) // If any invaild fields, show message box for appropriate invalid field.
-            { 
+            {
                 MessageBox.Show(EntryErrors(validFields));
             }
             else

@@ -6,9 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
-using System.Drawing;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace MineralTester.UI
 {
@@ -109,7 +108,7 @@ namespace MineralTester.UI
             selectedMineral = (Mineral)MineralList.SelectedItem;
 
             //MessageBox.Show(selectedMineral.Image.Length.ToString());
-            if(!(selectedMineral.Image is null))
+            if (!(selectedMineral.Image is null))
             {
                 BitmapImage bitmap = ByteArrayToBitmap(selectedMineral.Image);
                 DisplayMineral(bitmap, selectedMineral);
@@ -157,7 +156,7 @@ namespace MineralTester.UI
 
             int randomIndex = _random.Next(MineralList.Items.Count);
             var randomItem = MineralList.Items[randomIndex];
-           // MessageBox.Show($"Random item at index {randomIndex} is {randomItem}");
+            // MessageBox.Show($"Random item at index {randomIndex} is {randomItem}");
         }
 
         private void HideMineral_Checked(object sender, RoutedEventArgs e)
@@ -167,7 +166,7 @@ namespace MineralTester.UI
 
         private void HideMineral_Unchecked(object sender, RoutedEventArgs e)
         {
-            
+
         }
     }
 }
