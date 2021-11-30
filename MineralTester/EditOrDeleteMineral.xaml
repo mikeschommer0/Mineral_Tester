@@ -27,5 +27,6 @@
         <ListBox Name="MineralList" Width="267" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="30,282,503,40"/>
 
         <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
+        <Label Content="If no image is provided,&#xD;&#xA;the image will stay the same." HorizontalAlignment="Left" Height="44" Margin="570,310,0,0" VerticalAlignment="Top" Width="170"/>
     </Grid>
 </Window>

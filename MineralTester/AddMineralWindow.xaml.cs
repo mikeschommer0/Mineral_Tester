@@ -38,15 +38,16 @@ namespace MineralTester.UI
             List<object> fields = new List<object>(); 
             String name = MineralNameTextBox.Text;
             fields.Add(name);
+
             // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
             float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0; 
-            
+            //possible combine these 2
             fields.Add(hardness);  
             List<bool> validFields = bl.ValidateMineralData(fields);
 
             if (validFields.Contains(false)) // If any invaild fields, show message box for appropriate invalid field.
             { 
-                EntryErrors(validFields);
+                MessageBox.Show(EntryErrors(validFields));
             }
             else
             {
@@ -58,33 +59,39 @@ namespace MineralTester.UI
                     FileStream stream = new FileStream(selectedFileName, FileMode.Open, FileAccess.Read);
                     BinaryReader br = new BinaryReader(stream);
                     imgBytes = br.ReadBytes((int)stream.Length);
+                    Mineral toAdd = new Mineral(0, name, hardness, magnetic, acidReaction, imgBytes);
+                    bl.AddMineral(toAdd);
+                    Close();
                 }
-                Mineral toAdd = new Mineral(0, name, hardness, magnetic, acidReaction, imgBytes);
-
-                bl.AddMineral(toAdd);
-
-                Close();
+                else
+                {
+                    MessageBox.Show("Please select a photo and try again.");
+                }
             }
         }
 
-        private void EntryErrors(List<bool> validFields)
+        private string EntryErrors(List<bool> validFields)
         {
+            string errors = "Error(s) while adding Mineral:\n";
+
             if (validFields[0] == false)
             {
-                MessageBox.Show("Error while adding Mineral:\nInvalidNameLength");
+                errors += "\nInvalidNameLength";
             }
             if (validFields[1] == false)
             {
-                MessageBox.Show("Error while adding Mineral:\nInvalidHardnessLevel");
+                errors += "\nInvalidHardnessLevel";
             }
             if (MineralImage.Source == null)
             {
-                MessageBox.Show("Error while adding Mineral:\nNoPhotoChosen");
+                errors += "\nNoPhotoChosen";
             }
             if (validFields[2] == false)
             {
-                MessageBox.Show("Error while adding Mineral:\nMineralNameAlreadyExists");
+                errors += "\nMineralNameAlreadyExists";
             }
+
+            return errors;
         }
 
         private void ExitMineralWindow(object sender, RoutedEventArgs e)

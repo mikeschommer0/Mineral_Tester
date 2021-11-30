@@ -36,7 +36,6 @@ namespace MineralTester.UI
 
             MineralList.ItemsSource = minerals;
             MineralList.DisplayMemberPath = "Name";
-
         }
 
         private void UpdateMineral(object sender, RoutedEventArgs e)
@@ -73,11 +72,19 @@ namespace MineralTester.UI
                         mineralToModify = new Mineral(mineralToModify.ID, name, hardness, magnetic, acidReaction, imgBytes);
 
                         bl.UpdateMineral(mineralToModify);
+
                         MessageBox.Show("MINERAL MODIFIED: " + mineralToModify.Name + ".");
+                        ExitMineralWindow(sender, e);
                     }
                     else
                     {
-                        MessageBox.Show("UPDATE FAILED: A valid photo must be provided to update.");
+                        mineralToModify = new Mineral(mineralToModify.ID, name, hardness,
+                            magnetic, acidReaction, mineralToModify.Image);
+
+                        bl.UpdateMineral(mineralToModify);
+
+                        MessageBox.Show("MINERAL MODIFIED: " + mineralToModify.Name + " (Image was not updated).");
+                        ExitMineralWindow(sender, e);
                     }
                 }
             }
@@ -85,8 +92,6 @@ namespace MineralTester.UI
             {
                 MessageBox.Show("MODIFICATION FAILED: A Mineral must be select to modify.");
             }
-
-            ExitMineralWindow(sender, e);
         }
 
         private void EntryErrors(List<bool> validFields)
