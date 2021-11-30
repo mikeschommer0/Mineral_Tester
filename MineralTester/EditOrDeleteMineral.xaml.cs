@@ -46,18 +46,19 @@ namespace MineralTester.UI
                 mineralToModify.Name = MineralNameTextBox.Text;
 
                 List<object> fields = new List<object>();
+
                 String name = MineralNameTextBox.Text;
                 fields.Add(name);
 
                 // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
                 float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0;
-
                 fields.Add(hardness);
+
                 List<bool> validFields = bl.ValidateMineralData(fields);
 
                 if (validFields.Contains(false)) // If any invaild fields, show message box for appropriate invalid field.
                 {
-                    EntryErrors(validFields);
+                    MessageBox.Show(EntryErrors(validFields));
                 }
                 else
                 {
@@ -73,9 +74,10 @@ namespace MineralTester.UI
 
                         bl.UpdateMineral(mineralToModify);
 
-                        MessageBox.Show("MINERAL MODIFIED: " + mineralToModify.Name + ".");
+                        MessageBox.Show("MINERAL MODIFIED: \n" + mineralToModify.Name + ".");
                         ExitMineralWindow(sender, e);
                     }
+                    // Should use the same img.
                     else
                     {
                         mineralToModify = new Mineral(mineralToModify.ID, name, hardness,
@@ -83,7 +85,7 @@ namespace MineralTester.UI
 
                         bl.UpdateMineral(mineralToModify);
 
-                        MessageBox.Show("MINERAL MODIFIED: " + mineralToModify.Name + " (Image was not updated).");
+                        MessageBox.Show("MINERAL MODIFIED: \n" + mineralToModify.Name + " (\nImage was not updated).");
                         ExitMineralWindow(sender, e);
                     }
                 }
@@ -94,20 +96,20 @@ namespace MineralTester.UI
             }
         }
 
-        private void EntryErrors(List<bool> validFields)
+        private string EntryErrors(List<bool> validFields)
         {
+            string errors = "Error(s) while updating Mineral:\n";
+
             if (validFields[0] == false)
             {
-                MessageBox.Show("Error while updating Mineral:\nInvalidNameLength");
+                errors += "\nInvalidNameLength";
             }
             if (validFields[1] == false)
             {
-                MessageBox.Show("Error while updating Mineral:\nInvalidHardnessLevel");
+                errors += "\nInvalidHardnessLevel";
             }
-            if (MineralImage.Source == null)
-            {
-                MessageBox.Show("Error while updating Mineral:\nNoPhotoChosen");
-            }
+
+            return errors;
         }
 
         private void DeleteMineral (object sender, RoutedEventArgs e)
@@ -117,15 +119,14 @@ namespace MineralTester.UI
             {
                 mineralToModify = bl.GetMineral(mineralToModify.Name); 
 
-                MessageBox.Show("MINERAL DELETED: " + mineralToModify.Name);
+                MessageBox.Show("MINERAL DELETED: \n" + mineralToModify.Name);
                 bl.DeleteMineral(mineralToModify);
+                ExitMineralWindow(sender, e);
             }
             else
             {
                 MessageBox.Show("A Mineral must be select to delete.");
             }
-
-            ExitMineralWindow(sender, e);
         }
 
         private void MineralList_SelectionChanged(object sender, RoutedEventArgs e)
@@ -138,26 +139,12 @@ namespace MineralTester.UI
             MineralNameTextBox.Text = selectedMineral.Name;
             MineralHardnessTextBox.Text = "" + selectedMineral.Hardness;
 
-            if (selectedMineral.AcidReaction)
-            {
-                this.acidReaction = true;
-                AcidReaction.IsChecked = true;
-            }
-            else
-            {
-                this.acidReaction = false;
-                AcidReaction.IsChecked = false;
-            }
-            if (selectedMineral.IsMagnetic)
-            {
-                this.magnetic = true;
-                MagneticReaction.IsChecked = true;
-            }
-            else
-            {
-                this.magnetic = false;
-                MagneticReaction.IsChecked = false;
-            }
+            // Update values in window and tracker vars
+            this.acidReaction = selectedMineral.AcidReaction;
+            AcidReaction.IsChecked = selectedMineral.AcidReaction;
+            
+            this.magnetic = selectedMineral.IsMagnetic;
+            MagneticReaction.IsChecked = selectedMineral.IsMagnetic;
         }
 
         private void AddAnImageButton_Click(object sender, RoutedEventArgs e)
