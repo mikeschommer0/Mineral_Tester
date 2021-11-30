@@ -22,7 +22,7 @@
         <TextBox Name="LastNameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,160,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
         <TextBox Name="UsernameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,200,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
         <TextBox Name="PasswordTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,240,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
-        <Button Content="Submit" FontSize="16" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="SubmitUserInfo"/>
+        <Button Name="btnSubmit" Content="Submit" FontSize="16" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="SubmitUserInfo"/>
         <Button Content="Exit" FontSize="16" HorizontalAlignment="Center" Margin="0,354,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="ExitUserInfo"/>
     </Grid>
 </Window>

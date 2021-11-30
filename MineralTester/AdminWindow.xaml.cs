@@ -81,5 +81,11 @@ namespace MineralTester.UI
             studentMineral.Show();
             Close();
         }
+
+        private void ViewAllUsers(object sender, RoutedEventArgs e)
+        {
+            ViewUsersWindow viewUsersWindow = new ViewUsersWindow();
+            viewUsersWindow.Show();
+        }
     }
 }

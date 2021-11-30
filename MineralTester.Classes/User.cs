@@ -24,6 +24,11 @@
             set;
         }
 
+        public string FullName
+        {
+            get => FirstName + " " + LastName;
+        }
+
         public string Username
         {
             get;

@@ -12,6 +12,8 @@ namespace MineralTester.Classes
 
         public User GetUser(string userName);
 
+        public List<User> GetAllUsers();
+
         public int AddUser(User newUser);
 
         public int UpdateUser(User userToUpdate);

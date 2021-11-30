@@ -52,7 +52,7 @@ namespace MineralTester.Classes
         /// user to return.
         /// </summary>
         /// <param name="userName">userName to get</param>
-        /// <returns></returns>
+        /// <returns>User</returns>
         public User GetUser(string userName)
         {
             // Build connection and open.
@@ -81,6 +81,36 @@ namespace MineralTester.Classes
 
                 return result;
             }
+        }
+
+        /// <summary>
+        /// Method to pull user info from DB and create
+        /// users to return.
+        /// </summary>
+        /// <returns>List of users</returns>
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+
+            // Open connection.
+            using (MySqlConnection connection = new MySqlConnection(connectionStringToDB))
+            {
+                connection.Open();
+                MySqlCommand getUsers = new MySqlCommand("SELECT * FROM users", connection);
+                MySqlDataReader reader = getUsers.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    User user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
+                    reader.GetString(3), reader.GetString(4), (Enums.AccountType)reader.GetInt32(5));
+
+                    users.Add(user);
+                }
+
+                connection.Close();
+            }
+
+            return users;
         }
 
         /// <summary>

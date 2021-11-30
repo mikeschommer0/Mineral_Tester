@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
+        Title="AdminWindow" Height="500" Width="800">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -16,9 +16,10 @@
         <Label Content="Faculty Window" HorizontalAlignment="Center" Margin="0,28,0,0" VerticalAlignment="Top" FontSize="35"/>
         <Button Name="btnCreateStudent" FontSize="16" Content="Create Student" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="CreateStudentButton"/>
         <Button Name="btnCreateFaculty" FontSize="16" Content="Create Faculty" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="CreateFacultyButton"/>
-        <Button Content="Create Question" FontSize="16" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="CreateQuestionButton"/>
-        <Button Content="Add Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="AddMineralButton"/>
-        <Button Content="Edit or Delete Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="EditOrDeleteMineral"/>
-        <Button Content="Exit" FontSize="16" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="ExitAdminButton"/>
+        <Button Name="btnViewUsers" FontSize="16" Content="View All Users" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="ViewAllUsers"/>
+        <Button Content="Create Question" FontSize="16" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="CreateQuestionButton"/>
+        <Button Content="Add Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="AddMineralButton"/>
+        <Button Content="Edit or Delete Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="EditOrDeleteMineral"/>
+        <Button Content="Exit" FontSize="16" HorizontalAlignment="Center" Margin="0,400,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="ExitAdminButton"/>
     </Grid>
 </Window>
