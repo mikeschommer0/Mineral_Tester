@@ -483,7 +483,7 @@ namespace MineralTester.Classes
                 // Create mineral (int id, string name,
                 // int hardness, bool IsMagnetic,
                 // bool AcidReaction, byte[] Image).
-                Mineral result = new Mineral(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2),
+                Mineral result = new Mineral(reader.GetInt32(0), reader.GetString(1), reader.GetFloat(2),
                     reader.GetBoolean(3), reader.GetBoolean(4), (byte[])reader["image"]);
 
                 // Close reader & conn and return user.
