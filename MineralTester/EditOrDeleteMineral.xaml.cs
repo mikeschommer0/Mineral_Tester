@@ -85,7 +85,7 @@ namespace MineralTester.UI
 
                         bl.UpdateMineral(mineralToModify);
 
-                        MessageBox.Show("MINERAL MODIFIED: \n" + mineralToModify.Name + " (\nImage was not updated).");
+                        MessageBox.Show("MINERAL MODIFIED: \n" + mineralToModify.Name + "\n(Image was not updated).");
                         ExitMineralWindow(sender, e);
                     }
                 }
@@ -136,15 +136,19 @@ namespace MineralTester.UI
 
             mineralToModify = selectedMineral;
 
-            MineralNameTextBox.Text = selectedMineral.Name;
-            MineralHardnessTextBox.Text = "" + selectedMineral.Hardness;
 
             // Update values in window and tracker vars
+            MineralNameTextBox.Text = selectedMineral.Name;
+            MineralHardnessTextBox.Text = "" + selectedMineral.Hardness;
+            
             this.acidReaction = selectedMineral.AcidReaction;
             AcidReaction.IsChecked = selectedMineral.AcidReaction;
             
             this.magnetic = selectedMineral.IsMagnetic;
             MagneticReaction.IsChecked = selectedMineral.IsMagnetic;
+
+            // Render img stored.
+            MineralImage.Source = (BitmapSource)new ImageSourceConverter().ConvertFrom(selectedMineral.Image);
         }
 
         private void AddAnImageButton_Click(object sender, RoutedEventArgs e)
