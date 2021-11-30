@@ -572,6 +572,7 @@ namespace MineralTester.Classes
                 while (reader.Read())
                 {
                     Mineral mineral = new Mineral();
+                    mineral.ID = (int)reader["mineral_id"];
                     mineral.Name = reader["name"].ToString();
                     mineral.Hardness = (float)Convert.ToDouble(reader["hardness"]);
                     mineral.IsMagnetic = Convert.ToBoolean(reader["is_magnetic"]);

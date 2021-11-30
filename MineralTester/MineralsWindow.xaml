@@ -1,0 +1,21 @@
+﻿<Window x:Class="MineralTester.UI.MineralsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MineralTester.UI"
+        mc:Ignorable="d"
+        Title="MineralsWindow" Height="450" Width="596">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="CornflowerBlue" Offset="1"/>
+                <GradientStop Color="White"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <DataGrid Name="dgMinerals" HorizontalAlignment="Left" AutoGenerateColumns="True" AutoGeneratingColumn="dgMinerals_AutoGeneratingColumn" Margin="10,10,0,24" Width="438"/>
+        <Button Content="Add mineral" HorizontalAlignment="Left" Margin="453,10,0,0" VerticalAlignment="Top" Width="101" Click="AddMineralClick"/>
+        <Button Content="Update mineral" HorizontalAlignment="Left" Margin="453,35,0,0" VerticalAlignment="Top" Width="101" Click="UpdateMineralClick"/>
+        <Button Content="Delete mineral" HorizontalAlignment="Left" Margin="453,60,0,0" VerticalAlignment="Top" Width="101" Click="DeleteMineralClick"/>
+    </Grid>
+</Window>

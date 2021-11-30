@@ -21,13 +21,23 @@ namespace MineralTester.UI
         private string selectedFileName = "";
         private bool magnetic;
         private bool acidReaction;
-        public EditOrDeleteMineral()
+        public EditOrDeleteMineral(Mineral mineralToUpdate = null)
         {
             InitializeComponent();
-            List<Mineral> minerals = bl.GetMinerals();
+            if (mineralToUpdate != null)
+            {
+                mineralToModify = mineralToUpdate;
+                PopulateInterface(mineralToModify);
+            }
+        }
 
-            MineralList.ItemsSource = minerals;
-            MineralList.DisplayMemberPath = "Name";
+        private void PopulateInterface(Mineral mineral)
+        {
+            MineralNameTextBox.Text = mineral.Name;
+            MineralHardnessTextBox.Text = mineral.Hardness.ToString();
+            AcidReaction.IsChecked = mineral.AcidReaction;
+            MagneticReaction.IsChecked = mineral.IsMagnetic;
+            MineralImage.Source = (BitmapSource)new ImageSourceConverter().ConvertFrom(mineral.Image);
         }
 
         private void UpdateMineral(object sender, RoutedEventArgs e)
@@ -103,45 +113,6 @@ namespace MineralTester.UI
             }
 
             return errors;
-        }
-
-        private void DeleteMineral(object sender, RoutedEventArgs e)
-        {
-
-            if (mineralToModify != null)
-            {
-                mineralToModify = bl.GetMineral(mineralToModify.Name);
-
-                MessageBox.Show("MINERAL DELETED: \n" + mineralToModify.Name);
-                bl.DeleteMineral(mineralToModify);
-                ExitMineralWindow(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("A Mineral must be select to delete.");
-            }
-        }
-
-        private void MineralList_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            Mineral selectedMineral = new Mineral();
-            selectedMineral = (Mineral)MineralList.SelectedItem;
-
-            mineralToModify = selectedMineral;
-
-
-            // Update values in window and tracker vars
-            MineralNameTextBox.Text = selectedMineral.Name;
-            MineralHardnessTextBox.Text = "" + selectedMineral.Hardness;
-
-            this.acidReaction = selectedMineral.AcidReaction;
-            AcidReaction.IsChecked = selectedMineral.AcidReaction;
-
-            this.magnetic = selectedMineral.IsMagnetic;
-            MagneticReaction.IsChecked = selectedMineral.IsMagnetic;
-
-            // Render img stored.
-            MineralImage.Source = (BitmapSource)new ImageSourceConverter().ConvertFrom(selectedMineral.Image);
         }
 
         private void AddAnImageButton_Click(object sender, RoutedEventArgs e)

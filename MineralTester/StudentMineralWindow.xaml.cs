@@ -25,13 +25,7 @@ namespace MineralTester.UI
         {
             if (user.AccountType == Enums.AccountType.Student)
             {
-                Close();
-            }
-            if (user.AccountType == Enums.AccountType.Assistant || user.AccountType == Enums.AccountType.Teacher)
-            {
-                AdminWindow adminWindow = new AdminWindow(user);
-                adminWindow.Show();
-                Close();
+                Application.Current.Shutdown();
             }
         }
     }

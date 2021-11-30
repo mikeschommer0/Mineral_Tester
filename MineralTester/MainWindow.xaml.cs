@@ -34,9 +34,9 @@ namespace MineralTester.UI
             }
             if (user.AccountType == Enums.AccountType.Teacher)
             {
-                AdminWindow adminWindow = new AdminWindow(user);
-                adminWindow.Show();
+                FacultyWindow facultyWindow = new FacultyWindow();
                 Close();
+                facultyWindow.ShowDialog();
             }
             else if (user.AccountType == Enums.AccountType.Assistant)
             {

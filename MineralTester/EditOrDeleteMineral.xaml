@@ -19,12 +19,10 @@
         <TextBox Name="MineralHardnessTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,126,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"  Width="180" Height="25"/>
 
         <Button Content="Update Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="UpdateMineral"/>
-        <Button Content="Delete Mineral" FontSize="16" HorizontalAlignment="Left" Margin="565,359,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="DeleteMineral"/>
         <Button Content="Cancel" FontSize="16" HorizontalAlignment="Center" Margin="0,359,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitMineralWindow"/>
         <CheckBox x:Name="AcidReaction" Content="Reacts With Acid" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,175,0,0" VerticalAlignment="Top" FontSize="25" Checked="ReactsWithAcid" Unchecked="DoesntReactWithAcid"/>
         <CheckBox x:Name="MagneticReaction" Content="Magnetic" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,231,0,0" VerticalAlignment="Top" FontSize="25" Checked="IsMagnetic" Unchecked="IsntMagnetic"/>
         <Button Content="New Image"  FontSize="16" HorizontalAlignment="Left" Margin="565,275,0,0" Width="180" Height="35" Background="White" VerticalAlignment="Top" Click="AddAnImageButton_Click"/>
-        <ListBox Name="MineralList" Width="267" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="30,282,503,40"/>
 
         <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
         <Label Content="If no image is provided,&#xD;&#xA;the image will stay the same." HorizontalAlignment="Left" Height="44" Margin="570,310,0,0" VerticalAlignment="Top" Width="170"/>
