@@ -56,7 +56,7 @@ namespace MineralTester.UI
 
                 List<bool> validFields = bl.ValidateMineralData(fields);
 
-                if (validFields.Contains(false)) // If any invaild fields, show message box for appropriate invalid field.
+                if (validFields[0] == false || validFields[1] == false) // If any invaild fields, show message box for appropriate invalid field.
                 {
                     MessageBox.Show(EntryErrors(validFields));
                 }
