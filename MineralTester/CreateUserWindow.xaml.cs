@@ -59,7 +59,10 @@ namespace MineralTester.UI
                     _userToUpdate.FirstName = firstName;
                     _userToUpdate.LastName = lastName;
                     _userToUpdate.Username = username;
-                    _userToUpdate.Password = password;
+                    if (!string.IsNullOrWhiteSpace(password))
+                    {
+                        _userToUpdate.Password = password;
+                    }
                     _userToUpdate.AccountType = (Enums.AccountType)cbAccountType.SelectedItem;
                     int result = userManager.UpdateUser(_userToUpdate);
                     if(result == 1)
