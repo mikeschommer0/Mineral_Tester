@@ -17,29 +17,41 @@ namespace MineralTester.UI
     public partial class PlaygroundWindow : Window
     {
         User _user;
-        UIElement dragObj = null;
-        System.Windows.Point offset;
-        private Random _random = new Random();
+
+        UIElement dragObj = null; // Global varibles used for mineral movement.
+        Point offset;
+
         Ellipse mineral = new Ellipse();
-        ImageBrush brush = new ImageBrush();
+        ImageBrush brush = new ImageBrush(); // Global varibles for setting image to ellipse.
         BitmapImage bitmap = new BitmapImage();
 
+        /// <summary>
+        /// Initial the screen. Get all minerals from database.
+        /// </summary>
+        /// <param name="currentUser">
+        /// The current user who accessed the screen.
+        /// </param>
         public PlaygroundWindow(User currentUser)
         {
             InitializeComponent();
             _user = currentUser;
 
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen; 
 
             List<Mineral> minerals = new List<Mineral>();
             Database db = new Database();
-            minerals = db.GetMinerals();
+            minerals = db.GetMinerals(); // Get all minerals from database.
 
             MineralList.ItemsSource = minerals;
             MineralList.DisplayMemberPath = "Name";
-            ShowName.IsEnabled = false;
+            ShowName.IsEnabled = false; // Initially set this to disabled as names are already shown.
         }
 
+        /// <summary>
+        /// Centers the screen and disables resizing, just prevents UI weirdness when the window size is adjusted.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.WindowStyle = WindowStyle.None;
@@ -58,16 +70,25 @@ namespace MineralTester.UI
             practiceQuestionsWindow.Show();
         }
 
-
+        /// <summary>
+        /// Turns ellipse into drag object and gets ellipse positioning.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void Mineral_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.dragObj = sender as UIElement;
-            this.offset = e.GetPosition(this.Playground);
+            this.dragObj = sender as UIElement; // Makes ellipse into a drag object.
+            this.offset = e.GetPosition(this.Playground); // Set offset to where the ellipse is.
             this.offset.Y -= Canvas.GetTop(this.dragObj);
             this.offset.X -= Canvas.GetLeft(this.dragObj);
             this.Playground.CaptureMouse();
         }
 
+        /// <summary>
+        /// Moves ellipse to where cursor is.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void Playgroud_PreviewMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (this.dragObj == null)
@@ -77,18 +98,23 @@ namespace MineralTester.UI
 
             if (e.GetPosition(sender as IInputElement).X < Playground.ActualWidth - 50 &&
                 e.GetPosition(sender as IInputElement).Y < Playground.ActualHeight - 50 &&
-                e.GetPosition(sender as IInputElement).X > 50 && e.GetPosition(sender as IInputElement).Y > 50)
+                e.GetPosition(sender as IInputElement).X > 50 && e.GetPosition(sender as IInputElement).Y > 50) // Used for setting collison of playground canvas.
             {
-                var position = e.GetPosition(sender as IInputElement);
+                var position = e.GetPosition(sender as IInputElement); // Get position of the cursor.
                 Canvas.SetTop(this.dragObj, position.Y - this.offset.Y);
-                Canvas.SetLeft(this.dragObj, position.X - this.offset.X);
+                Canvas.SetLeft(this.dragObj, position.X - this.offset.X);  // Move ellipse to where cursor is.
             }
         }
 
+        /// <summary>
+        /// Releases mouse capture when user is done dragging mineral.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void Playgroud_PreviewMouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             this.dragObj = null;
-            this.Playground.ReleaseMouseCapture();
+            this.Playground.ReleaseMouseCapture(); 
         }
 
         /// <summary>
@@ -101,22 +127,31 @@ namespace MineralTester.UI
             Close();
         }
 
+        /// <summary>
+        /// Shows different mineral when different mineral is selected.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void MineralList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Playground.Children.Clear();
+            Playground.Children.Clear(); // Clear screen of any mineral/test off screen.
 
             Mineral selectedMineral = new Mineral();
-            selectedMineral = (Mineral)MineralList.SelectedItem;
+            selectedMineral = (Mineral)MineralList.SelectedItem; 
 
-            //MessageBox.Show(selectedMineral.Image.Length.ToString());
-            if (!(selectedMineral.Image is null))
+            if (!(selectedMineral.Image is null)) // If mineral has an image
             {
-                bitmap = ByteArrayToBitmap(selectedMineral.Image);
+                bitmap = ByteArrayToBitmap(selectedMineral.Image); // Get bitmap from array and save it to global bitmap.
                 DisplayMineral(bitmap, selectedMineral);
             }
 
         }
 
+        /// <summary>
+        /// Converts ByteArray to Bitmap
+        /// </summary>
+        /// <param name="imageBytes"> Thebyte array from mineral.</param>
+        /// <returns> A bitmapImage.</returns>
         private BitmapImage ByteArrayToBitmap(byte[] imageBytes)
         {
             using (Stream stream = new MemoryStream(imageBytes))
@@ -131,61 +166,97 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Displays mineral based on window settings.
+        /// </summary>
+        /// <param name="bitmap"> The image to be used as a backgound.</param>
+        /// <param name="displayMineral"> The mineral currently displayed.</param>
         private void DisplayMineral(BitmapImage bitmap, Mineral displayMineral)
         {
-            brush.ImageSource = bitmap;
+            brush.ImageSource = bitmap; // Set image source to global bitmap.
             if ((bool)HideMineral.IsChecked == true)
             {
-                mineral.Fill = Brushes.Black;
+                mineral.Fill = Brushes.Black; // If mineral is hidden, fill it with black.
             }
             else
             {
-                mineral.Fill = brush;
+                mineral.Fill = brush; // Else, fill it with background image.
             }
             mineral.Width = 100;
             mineral.Height = 100;
             Canvas.SetTop(mineral, 200);
             Canvas.SetLeft(mineral, 400);
-            mineral.PreviewMouseDown += Mineral_PreviewMouseDown;
+            mineral.PreviewMouseDown += Mineral_PreviewMouseDown; // Setting ellipse size and starting point. Add mouse down event.
 
 
             Playground.Children.Add(mineral);
         }
 
+        /// <summary>
+        /// Resets the playground screen.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void ResetPlaygroundButton(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
+        /// <summary>
+        /// Randomizes mineral selection.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void RandomMineralButton(object sender, RoutedEventArgs e)
         {
-            ShowName.IsEnabled = true;
-            int randomIndex = _random.Next(MineralList.Items.Count);
+            ShowName.IsEnabled = true; // Allow name display to be chosen. 
+            Random random = new Random();
+            int randomIndex = random.Next(MineralList.Items.Count);
             var randomItem = MineralList.Items[randomIndex];
             MineralList.SelectedItem = randomItem;
             if ((bool)ShowName.IsChecked == false)
             {
                 MineralList.DisplayMemberPath = "Mineral";
-            }
-
-            // MessageBox.Show($"Random item at index {randomIndex} is {randomItem}");
+            } 
+            // I use this if statement because choosing random list item still leaves it highlighted.
+            // I made it up to the user if they want to see the names if the random mineral.
         }
 
+        /// <summary>
+        /// Paints mineral black, "hiding it".
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void HideMineral_Checked(object sender, RoutedEventArgs e)
         {
             mineral.Fill = Brushes.Black;
         }
 
+        /// <summary>
+        /// Shows mineral image, "unhiding it".
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void HideMineral_Unchecked(object sender, RoutedEventArgs e)
         {
             brush.ImageSource = bitmap;
             mineral.Fill = brush;
         }
 
+        /// <summary>
+        /// Sets listbox display to be blank.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void ShowName_Unchecked(object sender, RoutedEventArgs e)
         {
             MineralList.DisplayMemberPath = "Mineral";
         }
+        /// <summary>
+        /// Set listbox display to mineral name.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
         private void ShowName_Checked(object sender, RoutedEventArgs e)
         {
             MineralList.DisplayMemberPath = "Name";
