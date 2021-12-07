@@ -37,6 +37,7 @@ namespace MineralTester.UI
 
             MineralList.ItemsSource = minerals;
             MineralList.DisplayMemberPath = "Name";
+            ShowName.IsEnabled = false;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -103,7 +104,6 @@ namespace MineralTester.UI
         private void MineralList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Playground.Children.Clear();
-            HideMineral.IsEnabled = true;
 
             Mineral selectedMineral = new Mineral();
             selectedMineral = (Mineral)MineralList.SelectedItem;
@@ -134,10 +134,11 @@ namespace MineralTester.UI
         private void DisplayMineral(BitmapImage bitmap, Mineral displayMineral)
         {
             brush.ImageSource = bitmap;
-            if((bool)HideMineral.IsChecked == true)
+            if ((bool)HideMineral.IsChecked == true)
             {
                 mineral.Fill = Brushes.Black;
-            } else
+            }
+            else
             {
                 mineral.Fill = brush;
             }
@@ -158,9 +159,15 @@ namespace MineralTester.UI
 
         private void RandomMineralButton(object sender, RoutedEventArgs e)
         {
-
+            ShowName.IsEnabled = true;
             int randomIndex = _random.Next(MineralList.Items.Count);
             var randomItem = MineralList.Items[randomIndex];
+            MineralList.SelectedItem = randomItem;
+            if ((bool)ShowName.IsChecked == false)
+            {
+                MineralList.DisplayMemberPath = "Mineral";
+            }
+
             // MessageBox.Show($"Random item at index {randomIndex} is {randomItem}");
         }
 
@@ -173,6 +180,15 @@ namespace MineralTester.UI
         {
             brush.ImageSource = bitmap;
             mineral.Fill = brush;
+        }
+
+        private void ShowName_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MineralList.DisplayMemberPath = "Mineral";
+        }
+        private void ShowName_Checked(object sender, RoutedEventArgs e)
+        {
+            MineralList.DisplayMemberPath = "Name";
         }
     }
 }
