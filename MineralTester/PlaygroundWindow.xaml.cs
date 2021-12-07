@@ -21,7 +21,8 @@ namespace MineralTester.UI
         System.Windows.Point offset;
         private Random _random = new Random();
         Ellipse mineral = new Ellipse();
-
+        ImageBrush brush = new ImageBrush();
+        BitmapImage bitmap = new BitmapImage();
 
         public PlaygroundWindow(User currentUser)
         {
@@ -110,7 +111,7 @@ namespace MineralTester.UI
             //MessageBox.Show(selectedMineral.Image.Length.ToString());
             if (!(selectedMineral.Image is null))
             {
-                BitmapImage bitmap = ByteArrayToBitmap(selectedMineral.Image);
+                bitmap = ByteArrayToBitmap(selectedMineral.Image);
                 DisplayMineral(bitmap, selectedMineral);
             }
 
@@ -132,10 +133,14 @@ namespace MineralTester.UI
 
         private void DisplayMineral(BitmapImage bitmap, Mineral displayMineral)
         {
-            ImageBrush brush = new ImageBrush();
             brush.ImageSource = bitmap;
-            mineral.Fill = brush;
-
+            if((bool)HideMineral.IsChecked == true)
+            {
+                mineral.Fill = Brushes.Black;
+            } else
+            {
+                mineral.Fill = brush;
+            }
             mineral.Width = 100;
             mineral.Height = 100;
             Canvas.SetTop(mineral, 200);
@@ -161,12 +166,13 @@ namespace MineralTester.UI
 
         private void HideMineral_Checked(object sender, RoutedEventArgs e)
         {
-
+            mineral.Fill = Brushes.Black;
         }
 
         private void HideMineral_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            brush.ImageSource = bitmap;
+            mineral.Fill = brush;
         }
     }
 }
