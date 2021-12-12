@@ -24,9 +24,10 @@ namespace MineralTester.UI
         Ellipse mineral = new Ellipse();
         ImageBrush brush = new ImageBrush(); // Global varibles for setting image to ellipse.
         BitmapImage bitmap = new BitmapImage();
-
-        Tester tester = new Tester();
         Mineral selectedMineral = new Mineral();
+
+        Ellipse tester = new Ellipse();
+        Tester selectedTester = new Tester(); 
 
         /// <summary>
         /// Initial the screen. Get all minerals from database.
@@ -153,7 +154,7 @@ namespace MineralTester.UI
         /// <summary>
         /// Converts ByteArray to Bitmap
         /// </summary>
-        /// <param name="imageBytes"> Thebyte array from mineral.</param>
+        /// <param name="imageBytes"> The byte array from mineral.</param>
         /// <returns> A bitmapImage.</returns>
         private BitmapImage ByteArrayToBitmap(byte[] imageBytes)
         {
@@ -188,7 +189,7 @@ namespace MineralTester.UI
             mineral.Width = 150;
             mineral.Height = 150;
             Canvas.SetTop(mineral, 150);
-            Canvas.SetLeft(mineral, 200);
+            Canvas.SetLeft(mineral, 75);
             mineral.PreviewMouseDown += Mineral_PreviewMouseDown; // Setting ellipse size and starting point. Add mouse down event.
 
 
@@ -222,7 +223,7 @@ namespace MineralTester.UI
                 MineralList.DisplayMemberPath = "Mineral";
             } 
             // I use this if statement because choosing random list item still leaves it highlighted.
-            // I made it up to the user if they want to see the names if the random mineral.
+            // I made it up to the user if they want to see the names of the random mineral.
         }
 
         /// <summary>
@@ -267,7 +268,17 @@ namespace MineralTester.UI
 
         private void ScratchTesters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            selectedTester = (Tester)ScratchTesters.SelectedItem;
+            tester.Width = 150;
+            tester.Height = 150;
+            tester.Fill = Brushes.Blue;
+            Canvas.SetLeft(tester, 500);
+            Canvas.SetTop(tester, 150);
 
+            if (!Playground.Children.Contains(tester))
+            {
+                Playground.Children.Add(tester);
+            }
         }
 
         private void ScratchTestButton_Click(object sender, RoutedEventArgs e)
