@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="PlaygroundWindow" Height="600" Width="1000" Loaded="Window_Loaded">
     <Grid>
-        <Canvas x:Name="Playground" Margin="50,20,50,120" PreviewMouseMove="Playgroud_PreviewMouseMove" PreviewMouseUp="Playgroud_PreviewMouseUp">
+        <Canvas x:Name="Playground" Margin="50,20,202,120" PreviewMouseMove="Playgroud_PreviewMouseMove" PreviewMouseUp="Playgroud_PreviewMouseUp">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="CornflowerBlue" Offset="1"/>
@@ -18,17 +18,17 @@
         <Button Content="Practice Questions" FontSize="16" HorizontalAlignment="Left" Margin="50,504,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="DisplayPracticeQuestions" />
         <Button Content="Exit" FontSize="16" HorizontalAlignment="Left" Margin="50,544,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitPlayground" />
         <ListBox Name="MineralList" Height="110" Width="267" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="244,475,490,-1"/>
-        <Button Margin="636,511,265,10" Background="White">
+        <Button Margin="636,511,265,10" Background="White" Click="ScratchTestButton_Click">
             <StackPanel Orientation="Horizontal" Height="53" Width="114">
                 <Image Source="images/penny.png" RenderTransformOrigin="0.479,0.75" Width="94" Height="55"/>
             </StackPanel>
         </Button>
-        <Button Margin="750,511,155,10" Background="White">
+        <Button Margin="750,511,155,10" Background="White" Click="MagnetismTestButton_Click">
             <StackPanel Orientation="Horizontal" Height="53" Width="92">
                 <Image Source="images/magnet.png" RenderTransformOrigin="0.479,0.75" Width="91" Height="46"/>
             </StackPanel>
         </Button>
-        <Button Margin="859,511,50,10" Background="White">
+        <Button Margin="859,511,50,10" Background="White" Click="AcidTestButton_Click">
             <StackPanel Orientation="Horizontal" Height="53" Width="92">
                 <Image Source="images/dropper.png" RenderTransformOrigin="0.479,0.75" Width="88" Height="46"/>
             </StackPanel>
@@ -38,6 +38,7 @@
         <CheckBox Name="ShowName" Content="Show Name" HorizontalAlignment="Left" Margin="521,504,0,0" VerticalAlignment="Top" Unchecked="ShowName_Unchecked" Checked="ShowName_Checked"/>
         <Button Content="Random Mineral" HorizontalAlignment="Left" Margin="521,524,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="RandomMineralButton"/>
         <Button Content="Reset" HorizontalAlignment="Left" Margin="521,552,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="ResetPlaygroundButton"/>
+        <ListBox Name="ScratchTesters" SelectionChanged="ScratchTesters_SelectionChanged" Margin="815,70,10,215" IsEnabled="False"/>
 
     </Grid>
 </Window>

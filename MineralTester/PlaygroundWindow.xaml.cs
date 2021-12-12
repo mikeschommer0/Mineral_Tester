@@ -25,6 +25,9 @@ namespace MineralTester.UI
         ImageBrush brush = new ImageBrush(); // Global varibles for setting image to ellipse.
         BitmapImage bitmap = new BitmapImage();
 
+        Tester tester = new Tester();
+        Mineral selectedMineral = new Mineral();
+
         /// <summary>
         /// Initial the screen. Get all minerals from database.
         /// </summary>
@@ -136,7 +139,7 @@ namespace MineralTester.UI
         {
             Playground.Children.Clear(); // Clear screen of any mineral/test off screen.
 
-            Mineral selectedMineral = new Mineral();
+            
             selectedMineral = (Mineral)MineralList.SelectedItem; 
 
             if (!(selectedMineral.Image is null)) // If mineral has an image
@@ -182,10 +185,10 @@ namespace MineralTester.UI
             {
                 mineral.Fill = brush; // Else, fill it with background image.
             }
-            mineral.Width = 100;
-            mineral.Height = 100;
-            Canvas.SetTop(mineral, 200);
-            Canvas.SetLeft(mineral, 400);
+            mineral.Width = 150;
+            mineral.Height = 150;
+            Canvas.SetTop(mineral, 150);
+            Canvas.SetLeft(mineral, 200);
             mineral.PreviewMouseDown += Mineral_PreviewMouseDown; // Setting ellipse size and starting point. Add mouse down event.
 
 
@@ -260,6 +263,52 @@ namespace MineralTester.UI
         private void ShowName_Checked(object sender, RoutedEventArgs e)
         {
             MineralList.DisplayMemberPath = "Name";
+        }
+
+        private void ScratchTesters_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ScratchTestButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Tester> testers = new List<Tester>();
+            fillTesters(ref testers);
+            ScratchTesters.IsEnabled = true;
+            ScratchTesters.ItemsSource = testers;
+            ScratchTesters.DisplayMemberPath = "Name";
+        }
+
+        private void fillTesters(ref List<Tester> refList)
+        {
+            List<Tester> list = new List<Tester>();
+
+            Tester fingerNail = new Tester("Finger Nail", (float)2.5);
+            list.Add(fingerNail);
+
+            Tester copperPenny = new Tester("Copper Penny", (float)3.5);
+            list.Add(copperPenny);
+
+            Tester knife = new Tester("Knife", (float)5.5);
+            list.Add(knife);
+
+            Tester steelNail = new Tester("Steel Nail", (float)6.5);
+            list.Add(steelNail);
+
+            Tester drillBit = new Tester("Masonry Drill Bit", (float)8.5);
+            list.Add(drillBit);
+
+            refList = list;
+        }
+
+        private void AcidTestButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MagnetismTestButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
