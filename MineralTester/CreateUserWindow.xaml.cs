@@ -57,21 +57,24 @@ namespace MineralTester.UI
                     User newUser = new User(0, firstName, lastName, username, password, accountType);
                     userManager.AddUser(newUser);
                     MessageBox.Show("A new user was added.");
+                    ExitUserInfo(sender, e);
                 }
                 else
                 {
+                    string passwordUpdatedText = "\n (password was not changed)";
                     _userToUpdate.FirstName = firstName;
                     _userToUpdate.LastName = lastName;
                     _userToUpdate.Username = username;
                     if (!string.IsNullOrWhiteSpace(password))
                     {
                         _userToUpdate.Password = password;
+                        passwordUpdatedText = "\n (password was updated)";
                     }
                     _userToUpdate.AccountType = (Enums.AccountType)cbAccountType.SelectedItem;
                     int result = userManager.UpdateUser(_userToUpdate);
                     if(result == 1)
                     {
-                        MessageBox.Show("The update was successful");
+                        MessageBox.Show("The update was successful" + passwordUpdatedText);
                         ExitUserInfo(sender, e);
                     }
                     else
