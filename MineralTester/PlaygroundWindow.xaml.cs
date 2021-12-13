@@ -178,8 +178,9 @@ namespace MineralTester.UI
                         Canvas.SetLeft(mineral, 75);
                         MessageBox.Show($"Nothing happened. The {selectedTester.Name} left no scratch");
                     }
+                    this.dragObj = null;
+                    this.Playground.ReleaseMouseCapture();
                 }
-
             }
         }
 
