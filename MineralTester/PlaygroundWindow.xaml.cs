@@ -148,7 +148,7 @@ namespace MineralTester.UI
         }
 
         /// <summary>
-        /// Moves ellipse to where cursor is.
+        /// Moves ellipse to where cursor is. Checks if there is a collision.
         /// </summary>
         /// <param name="sender"> Reference to the control/object that raised the event.</param>
         /// <param name="e"> Contains event data.</param>
@@ -166,23 +166,23 @@ namespace MineralTester.UI
                 Canvas.SetTop(this.dragObj, position.Y - this.offset.Y);
                 Canvas.SetLeft(this.dragObj, position.X - this.offset.X);  // Move ellipse to where cursor is.
 
-                if (collisonCheck(mineral, tester))
+                if (collisonCheck(mineral, tester)) // Check if there is a collison.
                 {
                     Canvas.SetTop(mineral, 150);
-                    Canvas.SetLeft(mineral, 75);
+                    Canvas.SetLeft(mineral, 75); // Reset minerals if there is *FIX ME*.
                     if (selectedTester.TestType == Enums.TestType.Scratch)
                     {
-                        showScratchResults(selectedMineral.Hardness < selectedTester.Hardness);
+                        showScratchResults(selectedMineral.Hardness < selectedTester.Hardness); // Hardness check.
 
                     }
                     else if (selectedTester.TestType == Enums.TestType.Magnestism)
                     {
-                        showMagnetResult(selectedMineral.IsMagnetic == selectedTester.Magnet);
+                        showMagnetResult(selectedMineral.IsMagnetic == selectedTester.Magnet); // Magnet check.
 
                     }
                     else
                     {
-                        showAcidResult(selectedMineral.AcidReaction == selectedTester.Acid);
+                        showAcidResult(selectedMineral.AcidReaction == selectedTester.Acid); // Acid check.
 
                     }
                     this.dragObj = null;
@@ -191,6 +191,10 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Shows message box result. 
+        /// </summary>
+        /// <param name="reacted">Result of test.</param>
         private void showAcidResult(bool reacted)
         {
             if (reacted)
@@ -203,6 +207,10 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Shows message box result.
+        /// </summary>
+        /// <param name="areAttracted">Result of test.</param>
         private void showMagnetResult(bool areAttracted)
         {
             if (areAttracted)
@@ -216,6 +224,10 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Shows message box result.
+        /// </summary>
+        /// <param name="scratched">Result of test.</param>
         private void showScratchResults(bool scratched)
         {
             if (scratched)
@@ -230,18 +242,24 @@ namespace MineralTester.UI
 
         }
 
+        /// <summary>
+        /// Calculates position and does a collision check based on the their radii length and distance between them.
+        /// </summary>
+        /// <param name="mineral">Mineral ellipse.</param>
+        /// <param name="tester">Tester ellipse.</param>
+        /// <returns></returns>
         private bool collisonCheck(Ellipse mineral, Ellipse tester)
         {
-            var r1 = mineral.ActualWidth / 2;
-            var x1 = Canvas.GetLeft(mineral) + r1;
-            var y1 = Canvas.GetTop(mineral) + r1;
+            var r1 = mineral.ActualWidth / 2; // Find radius of mineral ellipse.
+            var x1 = Canvas.GetLeft(mineral) + r1; // Find x-coordinate.
+            var y1 = Canvas.GetTop(mineral) + r1; // Find y-coordinate.
 
-            var r2 = tester.ActualWidth / 2;
+            var r2 = tester.ActualWidth / 2; // Find radius of tester ellipse.
             var x2 = Canvas.GetLeft(tester) + r2;
             var y2 = Canvas.GetTop(tester) + r2;
 
-            var d = new Vector(x2 - x1, y2 - y1);
-            return d.Length <= r1 + r2;
+            var d = new Vector(x2 - x1, y2 - y1); // Caluculate distance between the two.
+            return d.Length <= r1 + r2; // If the length between their two radii is greater than the distance between them, then they must be touching.
         }
 
         /// <summary>
@@ -255,16 +273,12 @@ namespace MineralTester.UI
             this.Playground.ReleaseMouseCapture();
         }
 
-        /// <summary>
-        /// Resets the playground screen.
-        /// </summary>
-        /// <param name="sender"> Reference to the control/object that raised the event.</param>
-        /// <param name="e"> Contains event data.</param>
-        /// 
-
         /////////////////////////////////////////////////////////// TESTERS ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        ///
-
+        
+        /// <summary>
+        /// Displays tester ellipse with appropriate image as background.
+        /// </summary>
+        /// <param name="source">The file path name.</param>
         public void displayTester(string source)
         {
             tester.Width = 175;
@@ -277,6 +291,11 @@ namespace MineralTester.UI
             Playground.Children.Add(tester);
         }
 
+        /// <summary>
+        /// Removes previous scratch test and replaces with a new one.
+        /// </summary>
+        /// <param name="sender">Reference to the control/object that raised the event.</param>
+        /// <param name="e">Contains event data.</param>
         private void ScratchTesters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Playground.Children.Remove(tester);
@@ -284,6 +303,11 @@ namespace MineralTester.UI
             displayTester(selectedTester.ImgSource);
         }
 
+        /// <summary>
+        /// Enables tester list. 
+        /// </summary>
+        /// <param name="sender">Reference to the control/object that raised the event.</param>
+        /// <param name="e">Contains event data.</param>
         private void ScratchTestButton_Click(object sender, RoutedEventArgs e)
         {
             if(Playground.Children.Contains(tester))
@@ -306,6 +330,10 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Initializes all the tester information.
+        /// </summary>
+        /// <param name="refList">The mineral list to be filled.</param>
         private void fillTesters(ref List<Tester> refList)
         {
             List<Tester> list = new List<Tester>();
@@ -328,6 +356,11 @@ namespace MineralTester.UI
             refList = list;
         }
 
+        /// <summary>
+        /// Initializes the Magnet Test.
+        /// </summary>
+        /// <param name="sender">Reference to the control/object that raised the event.</param>
+        /// <param name="e">Contains event data.</param>
         private void MagnetismTestButton_Click(object sender, RoutedEventArgs e)
         {
             ScratchTesters.IsEnabled = false;
@@ -338,6 +371,11 @@ namespace MineralTester.UI
             displayTester(magnet.ImgSource);
         }
 
+        /// <summary>
+        /// Initializes the Acid Test.
+        /// </summary>
+        /// <param name="sender">Reference to the control/object that raised the event.</param>
+        /// <param name="e">Contains event data.</param>
         private void AcidTestButton_Click(object sender, RoutedEventArgs e)
         {
             ScratchTesters.IsEnabled = false;
@@ -346,12 +384,6 @@ namespace MineralTester.UI
             Tester acid = new Tester((Enums.TestType)3, "/images/dropper.png");
             selectedTester = acid;
             displayTester(acid.ImgSource);
-        }
-
-
-        private void ResetPlaygroundButton(object sender, RoutedEventArgs e)
-        {
-
         }
 
         /////////////////////////////////////////////////////////// OPTIONS ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -414,6 +446,17 @@ namespace MineralTester.UI
         private void ShowName_Checked(object sender, RoutedEventArgs e)
         {
             MineralList.DisplayMemberPath = "Name";
+        }
+
+        /// <summary>
+        /// Resets the playground screen.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
+        /// 
+        private void ResetPlaygroundButton(object sender, RoutedEventArgs e)
+        {
+
         }
 
         /////////////////////////////////////////////////////////// QUESTIONS ///////////////////////////////////////////////////////////////////////////////////////////////////////
