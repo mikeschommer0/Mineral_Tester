@@ -26,13 +26,13 @@ namespace MineralTester.Classes
             set;
         }
 
-        public bool IsMagnetic
+        public bool Magnet
         {
             get;
             set;
         }
 
-        public bool AcidReaction
+        public bool Acid
         {
             get;
             set;
@@ -44,6 +44,14 @@ namespace MineralTester.Classes
             Hardness = hardness;
             TestType = testType;
         }
+
+        public Tester(Enums.TestType testType)
+        {
+            Magnet = true;
+            Acid = true;
+            TestType = testType;
+        }
+
 
         public Tester()
         {

@@ -75,7 +75,7 @@ namespace MineralTester.UI
         /// <param name="e"> Contains event data.</param>
         private void MineralList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Playground.Children.Clear(); // Clear screen of any mineral/test off screen.
+            Playground.Children.Remove(mineral); // Clear screen of any mineral/test off screen.
 
 
             selectedMineral = (Mineral)MineralList.SelectedItem;
@@ -168,19 +168,36 @@ namespace MineralTester.UI
 
                 if(collisonCheck(mineral, tester))
                 {
+                    Canvas.SetTop(mineral, 150);
+                    Canvas.SetLeft(mineral, 75);
                     if (selectedTester.TestType == Enums.TestType.Scratch)
                     {
                         if (selectedMineral.Hardness < selectedTester.Hardness)
                         {
-                            Canvas.SetTop(mineral, 150);
-                            Canvas.SetLeft(mineral, 75);
                             MessageBox.Show($"{selectedMineral.Name} was scratched!");
                         }
                         else
                         {
-                            Canvas.SetTop(mineral, 150);
-                            Canvas.SetLeft(mineral, 75);
                             MessageBox.Show($"Nothing happened. The {selectedTester.Name} left no scratch");
+                        }
+                    } else if(selectedTester.TestType == Enums.TestType.Magnestism)
+                    {
+                        if(selectedMineral.IsMagnetic == selectedTester.Magnet)
+                        {
+                            MessageBox.Show($"{selectedMineral.Name} was stuck to the magnet!");
+                        } else
+                        {
+                            MessageBox.Show($"{selectedMineral.Name} did not stick to the magnet");
+                        }
+                    } else
+                    {
+                        if (selectedMineral.AcidReaction == selectedTester.Acid)
+                        {
+                            MessageBox.Show($"{selectedMineral.Name} started fizzing");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"{selectedMineral.Name} got wet, no reaction happened");
                         }
                     }
                     this.dragObj = null;
@@ -222,20 +239,23 @@ namespace MineralTester.UI
         /// 
 
         /////////////////////////////////////////////////////////// TESTERS ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///
 
-        private void ScratchTesters_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void displayTester()
         {
-            selectedTester = (Tester)ScratchTesters.SelectedItem;
             tester.Width = 150;
             tester.Height = 150;
             tester.Fill = Brushes.Blue;
             Canvas.SetLeft(tester, 550);
             Canvas.SetTop(tester, 150);
+            Playground.Children.Add(tester);
+        }
 
-            if (!Playground.Children.Contains(tester))
-            {
-                Playground.Children.Add(tester);
-            }
+        private void ScratchTesters_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Playground.Children.Remove(tester);
+            selectedTester = (Tester)ScratchTesters.SelectedItem;
+            displayTester();
         }
 
         private void ScratchTestButton_Click(object sender, RoutedEventArgs e)
@@ -269,15 +289,24 @@ namespace MineralTester.UI
             refList = list;
         }
 
+        private void MagnetismTestButton_Click(object sender, RoutedEventArgs e)
+        {
+            ScratchTesters.IsEnabled = false;
+            Playground.Children.Remove(tester);
+
+            Tester magnet = new Tester((Enums.TestType)2);
+            selectedTester = magnet;
+            displayTester();
+        }
+
         private void AcidTestButton_Click(object sender, RoutedEventArgs e)
         {
             ScratchTesters.IsEnabled = false;
-            //Tester acid
-        }
+            Playground.Children.Remove(tester);
 
-        private void MagnetismTestButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            Tester acid = new Tester((Enums.TestType)3);
+            selectedTester = acid;
+            displayTester();
         }
 
 
