@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\drillbit.jpg" />
+    <None Remove="images\drillbit.png" />
     <None Remove="images\dropper.png" />
+    <None Remove="images\fingernail.jpg" />
+    <None Remove="images\fingernail.png" />
+    <None Remove="images\knife.jpg" />
+    <None Remove="images\knife.png" />
     <None Remove="images\magnet.png" />
+    <None Remove="images\nail.png" />
     <None Remove="images\penny.png" />
   </ItemGroup>
 
@@ -17,10 +24,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\drillbit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\dropper.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="images\fingernail.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\knife.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\magnet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\nail.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\penny.png">

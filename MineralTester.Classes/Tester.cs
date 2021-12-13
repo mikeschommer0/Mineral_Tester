@@ -38,18 +38,26 @@ namespace MineralTester.Classes
             set;
         }
 
-        public Tester(string name, float hardness, Enums.TestType testType)
+        public string ImgSource
+        {
+            get;
+            set;
+        }
+
+        public Tester(string name, float hardness, Enums.TestType testType, string imgsrc)
         {
             Name = name;
             Hardness = hardness;
             TestType = testType;
+            ImgSource = imgsrc;
         }
 
-        public Tester(Enums.TestType testType)
+        public Tester(Enums.TestType testType, string imgsrc)
         {
             Magnet = true;
             Acid = true;
             TestType = testType;
+            ImgSource = imgsrc;
         }
 
 

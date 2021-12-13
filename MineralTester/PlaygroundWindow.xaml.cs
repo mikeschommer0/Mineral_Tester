@@ -265,11 +265,13 @@ namespace MineralTester.UI
         /////////////////////////////////////////////////////////// TESTERS ///////////////////////////////////////////////////////////////////////////////////////////////////////
         ///
 
-        public void displayTester()
+        public void displayTester(string source)
         {
-            tester.Width = 150;
-            tester.Height = 150;
-            tester.Fill = Brushes.Blue;
+            tester.Width = 175;
+            tester.Height = 175;
+            ImageBrush img = new ImageBrush();
+            img.ImageSource = new BitmapImage(new Uri($"pack://application:,,,/MineralTester.UI;component{source}", UriKind.Absolute));
+            tester.Fill = img;
             Canvas.SetLeft(tester, 550);
             Canvas.SetTop(tester, 150);
             Playground.Children.Add(tester);
@@ -279,35 +281,48 @@ namespace MineralTester.UI
         {
             Playground.Children.Remove(tester);
             selectedTester = (Tester)ScratchTesters.SelectedItem;
-            displayTester();
+            displayTester(selectedTester.ImgSource);
         }
 
         private void ScratchTestButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Tester> testers = new List<Tester>();
-            fillTesters(ref testers);
-            ScratchTesters.IsEnabled = true;
-            ScratchTesters.ItemsSource = testers;
-            ScratchTesters.DisplayMemberPath = "Name";
+            if(Playground.Children.Contains(tester))
+            {
+                Playground.Children.Remove(tester);
+            }
+
+            if (ScratchTesters.Items.Count == 0)
+            {
+                List<Tester> testers = new List<Tester>();
+                fillTesters(ref testers);
+                ScratchTesters.IsEnabled = true;
+                ScratchTesters.ItemsSource = testers;
+                ScratchTesters.DisplayMemberPath = "Name";
+            }
+
+            if(ScratchTesters.IsEnabled == false)
+            {
+                ScratchTesters.IsEnabled = true;
+            }
         }
 
         private void fillTesters(ref List<Tester> refList)
         {
             List<Tester> list = new List<Tester>();
 
-            Tester fingerNail = new Tester("Finger Nail", (float)2.5, (Enums.TestType)1);
+            Tester fingerNail = new Tester("Finger Nail", (float)2.5, (Enums.TestType)1, "/images/fingernail.png");
             list.Add(fingerNail);
 
-            Tester copperPenny = new Tester("Copper Penny", (float)3.5, (Enums.TestType)1);
+            Tester copperPenny = new Tester("Copper Penny", (float)3.5, (Enums.TestType)1, "/images/penny.png");
             list.Add(copperPenny);
 
-            Tester knife = new Tester("Knife", (float)5.5, (Enums.TestType)1);
+            Tester knife = new Tester("Knife", (float)5.5, (Enums.TestType)1, "/images/knife.png");
             list.Add(knife);
 
-            Tester steelNail = new Tester("Steel Nail", (float)6.5, (Enums.TestType)1);
+            Tester steelNail = new Tester("Steel Nail", (float)6.5, (Enums.TestType)1, "/images/nail.png");
             list.Add(steelNail);
 
-            Tester drillBit = new Tester("Masonry Drill Bit", (float)8.5, (Enums.TestType)1);
+            Tester drillBit = new Tester("Masonry Drill Bit", (float)8.5, (Enums.TestType)1, "/images/drillbit.png");
             list.Add(drillBit);
 
             refList = list;
@@ -318,9 +333,9 @@ namespace MineralTester.UI
             ScratchTesters.IsEnabled = false;
             Playground.Children.Remove(tester);
 
-            Tester magnet = new Tester((Enums.TestType)2);
+            Tester magnet = new Tester((Enums.TestType)2, "/images/magnet.png");
             selectedTester = magnet;
-            displayTester();
+            displayTester(magnet.ImgSource);
         }
 
         private void AcidTestButton_Click(object sender, RoutedEventArgs e)
@@ -328,9 +343,9 @@ namespace MineralTester.UI
             ScratchTesters.IsEnabled = false;
             Playground.Children.Remove(tester);
 
-            Tester acid = new Tester((Enums.TestType)3);
+            Tester acid = new Tester((Enums.TestType)3, "/images/dropper.png");
             selectedTester = acid;
-            displayTester();
+            displayTester(acid.ImgSource);
         }
 
 
