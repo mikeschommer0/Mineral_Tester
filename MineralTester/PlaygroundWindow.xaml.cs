@@ -167,9 +167,19 @@ namespace MineralTester.UI
 
                 if(collisonCheck(mineral, tester))
                 {
-                    MessageBox.Show("hit");
-                    this.Playground.ReleaseMouseCapture();
+                    if(selectedMineral.Hardness < selectedTester.Hardness)
+                    {
+                        Canvas.SetTop(mineral, 150);
+                        Canvas.SetLeft(mineral, 75);
+                        MessageBox.Show($"{selectedMineral.Name} was scratched!");
+                    } else
+                    {
+                        Canvas.SetTop(mineral, 150);
+                        Canvas.SetLeft(mineral, 75);
+                        MessageBox.Show($"Nothing happened. The {selectedTester.Name} left no scratch");
+                    }
                 }
+
             }
         }
 
@@ -213,7 +223,7 @@ namespace MineralTester.UI
             tester.Width = 150;
             tester.Height = 150;
             tester.Fill = Brushes.Blue;
-            Canvas.SetLeft(tester, 500);
+            Canvas.SetLeft(tester, 550);
             Canvas.SetTop(tester, 150);
 
             if (!Playground.Children.Contains(tester))
