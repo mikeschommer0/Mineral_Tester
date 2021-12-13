@@ -55,7 +55,7 @@ namespace MineralTester.UI
             InitializeComponent();
             _user = currentUser;
 
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen; 
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             List<Mineral> minerals = new List<Mineral>();
             Database db = new Database();
@@ -166,44 +166,68 @@ namespace MineralTester.UI
                 Canvas.SetTop(this.dragObj, position.Y - this.offset.Y);
                 Canvas.SetLeft(this.dragObj, position.X - this.offset.X);  // Move ellipse to where cursor is.
 
-                if(collisonCheck(mineral, tester))
+                if (collisonCheck(mineral, tester))
                 {
                     Canvas.SetTop(mineral, 150);
                     Canvas.SetLeft(mineral, 75);
                     if (selectedTester.TestType == Enums.TestType.Scratch)
                     {
-                        if (selectedMineral.Hardness < selectedTester.Hardness)
-                        {
-                            MessageBox.Show($"{selectedMineral.Name} was scratched!");
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Nothing happened. The {selectedTester.Name} left no scratch");
-                        }
-                    } else if(selectedTester.TestType == Enums.TestType.Magnestism)
+                        showScratchResults(selectedMineral.Hardness < selectedTester.Hardness);
+
+                    }
+                    else if (selectedTester.TestType == Enums.TestType.Magnestism)
                     {
-                        if(selectedMineral.IsMagnetic == selectedTester.Magnet)
-                        {
-                            MessageBox.Show($"{selectedMineral.Name} was stuck to the magnet!");
-                        } else
-                        {
-                            MessageBox.Show($"{selectedMineral.Name} did not stick to the magnet");
-                        }
-                    } else
+                        showMagnetResult(selectedMineral.IsMagnetic == selectedTester.Magnet);
+
+                    }
+                    else
                     {
-                        if (selectedMineral.AcidReaction == selectedTester.Acid)
-                        {
-                            MessageBox.Show($"{selectedMineral.Name} started fizzing");
-                        }
-                        else
-                        {
-                            MessageBox.Show($"{selectedMineral.Name} got wet, no reaction happened");
-                        }
+                        showAcidResult(selectedMineral.AcidReaction == selectedTester.Acid);
+
                     }
                     this.dragObj = null;
                     this.Playground.ReleaseMouseCapture();
                 }
             }
+        }
+
+        private void showAcidResult(bool reacted)
+        {
+            if (reacted)
+            {
+                MessageBox.Show($"{selectedMineral.Name} fizzled! A reaction happened.");
+            }
+            else
+            {
+                MessageBox.Show($"{selectedMineral.Name} got wet, no reaction happened.");
+            }
+        }
+
+        private void showMagnetResult(bool areAttracted)
+        {
+            if (areAttracted)
+            {
+                MessageBox.Show($"{selectedMineral.Name} was stuck to the magnet!");
+            }
+
+            else
+            {
+                MessageBox.Show($"{selectedMineral.Name} did not stick to the magnet.");
+            }
+        }
+
+        private void showScratchResults(bool scratched)
+        {
+            if (scratched)
+            {
+
+                MessageBox.Show($"{selectedMineral.Name} was scratched!");
+            }
+            else
+            {
+                MessageBox.Show($"Nothing happened. The {selectedTester.Name} left no scratch");
+            }
+
         }
 
         private bool collisonCheck(Ellipse mineral, Ellipse tester)
@@ -228,7 +252,7 @@ namespace MineralTester.UI
         private void Playgroud_PreviewMouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             this.dragObj = null;
-            this.Playground.ReleaseMouseCapture(); 
+            this.Playground.ReleaseMouseCapture();
         }
 
         /// <summary>
@@ -271,7 +295,7 @@ namespace MineralTester.UI
         {
             List<Tester> list = new List<Tester>();
 
-            Tester fingerNail = new Tester("Finger Nail", (float)2.5, (Enums.TestType) 1);
+            Tester fingerNail = new Tester("Finger Nail", (float)2.5, (Enums.TestType)1);
             list.Add(fingerNail);
 
             Tester copperPenny = new Tester("Copper Penny", (float)3.5, (Enums.TestType)1);
