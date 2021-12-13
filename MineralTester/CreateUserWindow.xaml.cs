@@ -44,6 +44,10 @@ namespace MineralTester.UI
             {
                 EntryErrors(validFields);
             }
+            else if(cbAccountType.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a account type and try again.");
+            }
             else
             {
                 IUserManager userManager = new UserManager();
@@ -68,7 +72,7 @@ namespace MineralTester.UI
                     if(result == 1)
                     {
                         MessageBox.Show("The update was successful");
-                        Close();
+                        ExitUserInfo(sender, e);
                     }
                     else
                     {
