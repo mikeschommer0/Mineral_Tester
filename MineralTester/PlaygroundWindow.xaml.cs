@@ -22,9 +22,10 @@ namespace MineralTester.UI
         UIElement dragObj = null; // Global varibles used for mineral movement.
         Point offset;
 
-        Ellipse mineral = new Ellipse();
         ImageBrush brush = new ImageBrush(); // Global varibles for setting image to ellipse.
         BitmapImage bitmap = new BitmapImage();
+
+        Ellipse mineral = new Ellipse();
         Mineral selectedMineral = new Mineral();
 
         Ellipse tester = new Ellipse();
@@ -167,16 +168,20 @@ namespace MineralTester.UI
 
                 if(collisonCheck(mineral, tester))
                 {
-                    if(selectedMineral.Hardness < selectedTester.Hardness)
+                    if (selectedTester.TestType == Enums.TestType.Scratch)
                     {
-                        Canvas.SetTop(mineral, 150);
-                        Canvas.SetLeft(mineral, 75);
-                        MessageBox.Show($"{selectedMineral.Name} was scratched!");
-                    } else
-                    {
-                        Canvas.SetTop(mineral, 150);
-                        Canvas.SetLeft(mineral, 75);
-                        MessageBox.Show($"Nothing happened. The {selectedTester.Name} left no scratch");
+                        if (selectedMineral.Hardness < selectedTester.Hardness)
+                        {
+                            Canvas.SetTop(mineral, 150);
+                            Canvas.SetLeft(mineral, 75);
+                            MessageBox.Show($"{selectedMineral.Name} was scratched!");
+                        }
+                        else
+                        {
+                            Canvas.SetTop(mineral, 150);
+                            Canvas.SetLeft(mineral, 75);
+                            MessageBox.Show($"Nothing happened. The {selectedTester.Name} left no scratch");
+                        }
                     }
                     this.dragObj = null;
                     this.Playground.ReleaseMouseCapture();
@@ -246,19 +251,19 @@ namespace MineralTester.UI
         {
             List<Tester> list = new List<Tester>();
 
-            Tester fingerNail = new Tester("Finger Nail", (float)2.5);
+            Tester fingerNail = new Tester("Finger Nail", (float)2.5, (Enums.TestType) 1);
             list.Add(fingerNail);
 
-            Tester copperPenny = new Tester("Copper Penny", (float)3.5);
+            Tester copperPenny = new Tester("Copper Penny", (float)3.5, (Enums.TestType)1);
             list.Add(copperPenny);
 
-            Tester knife = new Tester("Knife", (float)5.5);
+            Tester knife = new Tester("Knife", (float)5.5, (Enums.TestType)1);
             list.Add(knife);
 
-            Tester steelNail = new Tester("Steel Nail", (float)6.5);
+            Tester steelNail = new Tester("Steel Nail", (float)6.5, (Enums.TestType)1);
             list.Add(steelNail);
 
-            Tester drillBit = new Tester("Masonry Drill Bit", (float)8.5);
+            Tester drillBit = new Tester("Masonry Drill Bit", (float)8.5, (Enums.TestType)1);
             list.Add(drillBit);
 
             refList = list;
@@ -266,7 +271,8 @@ namespace MineralTester.UI
 
         private void AcidTestButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ScratchTesters.IsEnabled = false;
+            //Tester acid
         }
 
         private void MagnetismTestButton_Click(object sender, RoutedEventArgs e)

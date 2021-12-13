@@ -20,10 +20,29 @@ namespace MineralTester.Classes
             set;
         }
 
-        public Tester (string name, float hardness)
+        public Enums.TestType TestType
+        {
+            get;
+            set;
+        }
+
+        public bool IsMagnetic
+        {
+            get;
+            set;
+        }
+
+        public bool AcidReaction
+        {
+            get;
+            set;
+        }
+
+        public Tester(string name, float hardness, Enums.TestType testType)
         {
             Name = name;
             Hardness = hardness;
+            TestType = testType;
         }
 
         public Tester()

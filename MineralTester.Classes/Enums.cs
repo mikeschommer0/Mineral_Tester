@@ -8,5 +8,12 @@
             Assistant = 2,
             Student = 3
         }
+
+        public enum TestType
+        {
+            Scratch = 1,
+            Magnestism = 2,
+            AcidReaction = 3
+        }
     }
 }
