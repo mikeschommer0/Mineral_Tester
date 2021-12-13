@@ -158,14 +158,33 @@ namespace MineralTester.UI
                 return;
             }
 
-            if (e.GetPosition(sender as IInputElement).X < Playground.ActualWidth - 50 &&
-                e.GetPosition(sender as IInputElement).Y < Playground.ActualHeight - 50 &&
-                e.GetPosition(sender as IInputElement).X > 50 && e.GetPosition(sender as IInputElement).Y > 50) // Used for setting collison of playground canvas.
+            var position = e.GetPosition(sender as IInputElement); // Get position of the cursor.
+
+            if (position.X < Playground.ActualWidth - 50 && position.Y < Playground.ActualHeight - 50 && position.X > 50 && position.Y > 50) // Used for setting collison of playground canvas.
             {
-                var position = e.GetPosition(sender as IInputElement); // Get position of the cursor.
                 Canvas.SetTop(this.dragObj, position.Y - this.offset.Y);
                 Canvas.SetLeft(this.dragObj, position.X - this.offset.X);  // Move ellipse to where cursor is.
+
+                if(collisonCheck(mineral, tester))
+                {
+                    MessageBox.Show("hit");
+                    this.Playground.ReleaseMouseCapture();
+                }
             }
+        }
+
+        private bool collisonCheck(Ellipse mineral, Ellipse tester)
+        {
+            var r1 = mineral.ActualWidth / 2;
+            var x1 = Canvas.GetLeft(mineral) + r1;
+            var y1 = Canvas.GetTop(mineral) + r1;
+
+            var r2 = tester.ActualWidth / 2;
+            var x2 = Canvas.GetLeft(tester) + r2;
+            var y2 = Canvas.GetTop(tester) + r2;
+
+            var d = new Vector(x2 - x1, y2 - y1);
+            return d.Length <= r1 + r2;
         }
 
         /// <summary>
