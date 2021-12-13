@@ -60,7 +60,7 @@ namespace MineralTester.Classes
                 validFields[3] = false;
             }
 
-            //added to check if username is in use
+            // Added to check if username is in use.
             if (db.CheckUserExists(username))
             {
                 validFields[4] = false;
