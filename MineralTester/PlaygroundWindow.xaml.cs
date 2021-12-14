@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,14 +23,16 @@ namespace MineralTester.UI
         UIElement dragObj = null; // Global varibles used for mineral movement.
         Point offset;
 
-        ImageBrush brush = new ImageBrush(); // Global varibles for setting image to ellipse.
-        BitmapImage bitmap = new BitmapImage();
+        ImageBrush _brush = new ImageBrush(); // Global varibles for setting image to ellipse.
+        BitmapImage _bitmap = new BitmapImage();
 
-        Ellipse mineral = new Ellipse();
-        Mineral selectedMineral = new Mineral();
+        Ellipse _mineral = new Ellipse();
+        Mineral _selectedMineral = new Mineral();
 
-        Ellipse tester = new Ellipse();
-        Tester selectedTester = new Tester();
+        Ellipse _tester = new Ellipse();
+        Tester _selectedTester = new Tester();
+
+        Timer _colorTimer = new Timer();
 
         /// <summary>
         /// Initial the screen. Get all minerals from database.
@@ -75,15 +78,15 @@ namespace MineralTester.UI
         /// <param name="e"> Contains event data.</param>
         private void MineralList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Playground.Children.Remove(mineral); // Clear screen of any mineral/test off screen.
+            Playground.Children.Remove(_mineral); // Clear screen of any mineral/test off screen.
 
 
-            selectedMineral = (Mineral)MineralList.SelectedItem;
+            _selectedMineral = (Mineral)MineralList.SelectedItem;
 
-            if (!(selectedMineral.Image is null)) // If mineral has an image
+            if (!(_selectedMineral.Image is null)) // If mineral has an image
             {
-                bitmap = ByteArrayToBitmap(selectedMineral.Image); // Get bitmap from array and save it to global bitmap.
-                DisplayMineral(bitmap, selectedMineral);
+                _bitmap = ByteArrayToBitmap(_selectedMineral.Image); // Get bitmap from array and save it to global bitmap.
+                DisplayMineral(_bitmap, _selectedMineral);
             }
 
         }
@@ -114,23 +117,23 @@ namespace MineralTester.UI
         /// <param name="displayMineral"> The mineral currently displayed.</param>
         private void DisplayMineral(BitmapImage bitmap, Mineral displayMineral)
         {
-            brush.ImageSource = bitmap; // Set image source to global bitmap.
+            _brush.ImageSource = bitmap; // Set image source to global bitmap.
             if ((bool)HideMineral.IsChecked == true)
             {
-                mineral.Fill = Brushes.Black; // If mineral is hidden, fill it with black.
+                _mineral.Fill = Brushes.Black; // If mineral is hidden, fill it with black.
             }
             else
             {
-                mineral.Fill = brush; // Else, fill it with background image.
+                _mineral.Fill = _brush; // Else, fill it with background image.
             }
-            mineral.Width = 150;
-            mineral.Height = 150;
-            Canvas.SetTop(mineral, 150);
-            Canvas.SetLeft(mineral, 75);
-            mineral.PreviewMouseDown += Mineral_PreviewMouseDown; // Setting ellipse size and starting point. Add mouse down event.
+            _mineral.Width = 150;
+            _mineral.Height = 150;
+            Canvas.SetTop(_mineral, 150);
+            Canvas.SetLeft(_mineral, 75);
+            _mineral.PreviewMouseDown += Mineral_PreviewMouseDown; // Setting ellipse size and starting point. Add mouse down event.
 
 
-            Playground.Children.Add(mineral);
+            Playground.Children.Add(_mineral);
         }
 
         /// <summary>
@@ -152,7 +155,7 @@ namespace MineralTester.UI
         /// </summary>
         /// <param name="sender"> Reference to the control/object that raised the event.</param>
         /// <param name="e"> Contains event data.</param>
-        private void Playgroud_PreviewMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        private void Playgroud_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (this.dragObj == null)
             {
@@ -166,27 +169,25 @@ namespace MineralTester.UI
                 Canvas.SetTop(this.dragObj, position.Y - this.offset.Y);
                 Canvas.SetLeft(this.dragObj, position.X - this.offset.X);  // Move ellipse to where cursor is.
 
-                if (collisonCheck(mineral, tester)) // Check if there is a collison.
+                if (CollisonCheck(_mineral, _tester)) // Check if there is a collison.
                 {
-                    Canvas.SetTop(mineral, 150);
-                    Canvas.SetLeft(mineral, 75); // Reset minerals if there is *FIX ME*.
-                    if (selectedTester.TestType == Enums.TestType.Scratch)
+
+                    if (_selectedTester.TestType == Enums.TestType.Scratch)
                     {
-                        showScratchResults(selectedMineral.Hardness < selectedTester.Hardness); // Hardness check.
+                        ShowScratchResults(_selectedMineral.Hardness < _selectedTester.Hardness); // Hardness check.
 
                     }
-                    else if (selectedTester.TestType == Enums.TestType.Magnestism)
+                    else if (_selectedTester.TestType == Enums.TestType.Magnestism)
                     {
-                        showMagnetResult(selectedMineral.IsMagnetic == selectedTester.Magnet); // Magnet check.
+                        ShowMagnetResult(_selectedMineral.IsMagnetic == _selectedTester.Magnet); // Magnet check.
 
                     }
                     else
                     {
-                        showAcidResult(selectedMineral.AcidReaction == selectedTester.Acid); // Acid check.
+                        ShowAcidResult(_selectedMineral.AcidReaction == _selectedTester.Acid); // Acid check.
 
                     }
-                    this.dragObj = null;
-                    this.Playground.ReleaseMouseCapture();
+
                 }
             }
         }
@@ -195,52 +196,96 @@ namespace MineralTester.UI
         /// Shows message box result. 
         /// </summary>
         /// <param name="reacted">Result of test.</param>
-        private void showAcidResult(bool reacted)
+        private void ShowAcidResult(bool reacted)
         {
             if (reacted)
             {
-                MessageBox.Show($"{selectedMineral.Name} fizzled! A reaction happened.");
+                _mineral.Fill = Brushes.Green;
             }
             else
             {
-                MessageBox.Show($"{selectedMineral.Name} got wet, no reaction happened.");
+                _mineral.Fill = Brushes.Red;
             }
+            ResultTimer();
         }
 
         /// <summary>
         /// Shows message box result.
         /// </summary>
         /// <param name="areAttracted">Result of test.</param>
-        private void showMagnetResult(bool areAttracted)
+        private void ShowMagnetResult(bool areAttracted)
         {
             if (areAttracted)
             {
-                MessageBox.Show($"{selectedMineral.Name} was stuck to the magnet!");
+                _mineral.Fill = Brushes.Green;
             }
 
             else
             {
-                MessageBox.Show($"{selectedMineral.Name} did not stick to the magnet.");
+                _mineral.Fill = Brushes.Red;
             }
+            ResultTimer();
         }
 
         /// <summary>
         /// Shows message box result.
         /// </summary>
         /// <param name="scratched">Result of test.</param>
-        private void showScratchResults(bool scratched)
+        private void ShowScratchResults(bool scratched)
         {
             if (scratched)
             {
 
-                MessageBox.Show($"{selectedMineral.Name} was scratched!");
+                _mineral.Fill = Brushes.Green;
             }
             else
             {
-                MessageBox.Show($"Nothing happened. The {selectedTester.Name} left no scratch");
+                _mineral.Fill = Brushes.Red;
             }
-
+            ResultTimer();
         }
+
+        /// <summary>
+        /// Starts timer to display results of test.
+        /// </summary>
+        private void ResultTimer()
+        {
+            _colorTimer.Elapsed += new ElapsedEventHandler(StopTimer);
+            _colorTimer.Interval = 2000;
+            _colorTimer.Enabled = true;
+            _colorTimer.Start();
+        }
+
+        /// <summary>
+        /// Stops result timer.
+        /// </summary>
+        /// <param name="sender">Reference to the control/object that raised the event.</param>
+        /// <param name="e">Contains event data.</param>
+        private void StopTimer(object sender, ElapsedEventArgs e)
+        {
+            _colorTimer.Stop();
+            RevertMineral();
+        }
+
+        /// <summary>
+        /// Reverts mineral back to its original display.
+        /// </summary>
+        private void RevertMineral()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if ((bool)HideMineral.IsChecked)
+                {
+                    _mineral.Fill = Brushes.Black;
+                }
+                else
+                {
+                    _brush.ImageSource = _bitmap;
+                    _mineral.Fill = _brush;
+                }
+            });
+        }
+
 
         /// <summary>
         /// Calculates position and does a collision check based on the their radii length and distance between them.
@@ -248,18 +293,18 @@ namespace MineralTester.UI
         /// <param name="mineral">Mineral ellipse.</param>
         /// <param name="tester">Tester ellipse.</param>
         /// <returns></returns>
-        private bool collisonCheck(Ellipse mineral, Ellipse tester)
+        private bool CollisonCheck(Ellipse mineral, Ellipse tester)
         {
             var r1 = mineral.ActualWidth / 2; // Find radius of mineral ellipse.
-            var x1 = Canvas.GetLeft(mineral) + r1; // Find x-coordinate.
-            var y1 = Canvas.GetTop(mineral) + r1; // Find y-coordinate.
+            var x1 = Canvas.GetLeft(mineral) + r1; // Find x-coordinate of edge.
+            var y1 = Canvas.GetTop(mineral) + r1; // Find y-coordinate of edge.
 
             var r2 = tester.ActualWidth / 2; // Find radius of tester ellipse.
             var x2 = Canvas.GetLeft(tester) + r2;
             var y2 = Canvas.GetTop(tester) + r2;
 
-            var d = new Vector(x2 - x1, y2 - y1); // Caluculate distance between the two.
-            return d.Length <= r1 + r2; // If the length between their two radii is greater than the distance between them, then they must be touching.
+            var d = new Vector(x2 - x1, y2 - y1); // Caluculate distance between the two edges.
+            return d.Length < r1 + r2; // If the length between their two radii is less than or equal to the distance between the edges, then they must be touching.
         }
 
         /// <summary>
@@ -267,28 +312,28 @@ namespace MineralTester.UI
         /// </summary>
         /// <param name="sender"> Reference to the control/object that raised the event.</param>
         /// <param name="e"> Contains event data.</param>
-        private void Playgroud_PreviewMouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Playgroud_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             this.dragObj = null;
             this.Playground.ReleaseMouseCapture();
         }
 
         /////////////////////////////////////////////////////////// TESTERS ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
         /// <summary>
         /// Displays tester ellipse with appropriate image as background.
         /// </summary>
         /// <param name="source">The file path name.</param>
-        public void displayTester(string source)
+        public void DisplayTester(string source)
         {
-            tester.Width = 175;
-            tester.Height = 175;
+            _tester.Width = 175;
+            _tester.Height = 175;
             ImageBrush img = new ImageBrush();
             img.ImageSource = new BitmapImage(new Uri($"pack://application:,,,/MineralTester.UI;component{source}", UriKind.Absolute));
-            tester.Fill = img;
-            Canvas.SetLeft(tester, 550);
-            Canvas.SetTop(tester, 150);
-            Playground.Children.Add(tester);
+            _tester.Fill = img;
+            Canvas.SetLeft(_tester, 550);
+            Canvas.SetTop(_tester, 150);
+            Playground.Children.Add(_tester);
         }
 
         /// <summary>
@@ -298,9 +343,9 @@ namespace MineralTester.UI
         /// <param name="e">Contains event data.</param>
         private void ScratchTesters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Playground.Children.Remove(tester);
-            selectedTester = (Tester)ScratchTesters.SelectedItem;
-            displayTester(selectedTester.ImgSource);
+            Playground.Children.Remove(_tester);
+            _selectedTester = (Tester)ScratchTesters.SelectedItem;
+            DisplayTester(_selectedTester.ImgSource);
         }
 
         /// <summary>
@@ -310,21 +355,21 @@ namespace MineralTester.UI
         /// <param name="e">Contains event data.</param>
         private void ScratchTestButton_Click(object sender, RoutedEventArgs e)
         {
-            if(Playground.Children.Contains(tester))
+            if (Playground.Children.Contains(_tester))
             {
-                Playground.Children.Remove(tester);
+                Playground.Children.Remove(_tester);
             }
 
             if (ScratchTesters.Items.Count == 0)
             {
                 List<Tester> testers = new List<Tester>();
-                fillTesters(ref testers);
+                FillTesters(ref testers);
                 ScratchTesters.IsEnabled = true;
                 ScratchTesters.ItemsSource = testers;
                 ScratchTesters.DisplayMemberPath = "Name";
             }
 
-            if(ScratchTesters.IsEnabled == false)
+            if (ScratchTesters.IsEnabled == false)
             {
                 ScratchTesters.IsEnabled = true;
             }
@@ -334,7 +379,7 @@ namespace MineralTester.UI
         /// Initializes all the tester information.
         /// </summary>
         /// <param name="refList">The mineral list to be filled.</param>
-        private void fillTesters(ref List<Tester> refList)
+        private void FillTesters(ref List<Tester> refList)
         {
             List<Tester> list = new List<Tester>();
 
@@ -364,11 +409,11 @@ namespace MineralTester.UI
         private void MagnetismTestButton_Click(object sender, RoutedEventArgs e)
         {
             ScratchTesters.IsEnabled = false;
-            Playground.Children.Remove(tester);
+            Playground.Children.Remove(_tester);
 
             Tester magnet = new Tester((Enums.TestType)2, "/images/magnet.png");
-            selectedTester = magnet;
-            displayTester(magnet.ImgSource);
+            _selectedTester = magnet;
+            DisplayTester(magnet.ImgSource);
         }
 
         /// <summary>
@@ -379,11 +424,11 @@ namespace MineralTester.UI
         private void AcidTestButton_Click(object sender, RoutedEventArgs e)
         {
             ScratchTesters.IsEnabled = false;
-            Playground.Children.Remove(tester);
+            Playground.Children.Remove(_tester);
 
             Tester acid = new Tester((Enums.TestType)3, "/images/dropper.png");
-            selectedTester = acid;
-            displayTester(acid.ImgSource);
+            _selectedTester = acid;
+            DisplayTester(acid.ImgSource);
         }
 
         /////////////////////////////////////////////////////////// OPTIONS ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -415,7 +460,7 @@ namespace MineralTester.UI
         /// <param name="e"> Contains event data.</param>
         private void HideMineral_Checked(object sender, RoutedEventArgs e)
         {
-            mineral.Fill = Brushes.Black;
+            _mineral.Fill = Brushes.Black;
         }
 
         /// <summary>
@@ -425,8 +470,8 @@ namespace MineralTester.UI
         /// <param name="e"> Contains event data.</param>
         private void HideMineral_Unchecked(object sender, RoutedEventArgs e)
         {
-            brush.ImageSource = bitmap;
-            mineral.Fill = brush;
+            _brush.ImageSource = _bitmap;
+            _mineral.Fill = _brush;
         }
 
         /// <summary>
