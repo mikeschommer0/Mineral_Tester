@@ -14,8 +14,8 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Content="Mineral Name" HorizontalAlignment="Left" Margin="80,65,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <Label Content="Hardness" HorizontalAlignment="Left" Margin="80,113,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <TextBox Name="MineralNameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,78,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <Label Content="Hardness (0.1-10.0)" HorizontalAlignment="Left" Margin="80,113,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <TextBox Name="MineralNameTextBox" MaxLength="30" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,78,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
         <TextBox Name="MineralHardnessTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,126,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"  Width="180" Height="25"/>
 
         <Button Content="Add Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="AddAnotherMineral"/>
@@ -25,5 +25,6 @@
         <Button Content="Add An Image"  FontSize="16" HorizontalAlignment="Left" Margin="565,275,0,0" Width="180" Height="35" Background="White" VerticalAlignment="Top" Click="AddAnImageButton_Click"/>
 
         <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
+        <Label Content="You must add a valid &#xD;&#xA;jpg or png file." HorizontalAlignment="Left" Height="61" Margin="565,315,0,0" VerticalAlignment="Top" Width="180" FontSize="16"/>
     </Grid>
 </Window>
