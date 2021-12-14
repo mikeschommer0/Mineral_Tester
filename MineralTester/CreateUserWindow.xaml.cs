@@ -30,8 +30,6 @@ namespace MineralTester.UI
 
         private void SubmitUserInfo(object sender, RoutedEventArgs e)
         {
-            FeedBackBox.Visibility = Visibility.Hidden;
-            FeedBackBox.Text = "";
             List<string> fields = new List<string>();
             string firstName = FirstNameTextBox.Text;
             fields.Add(firstName);
@@ -45,8 +43,7 @@ namespace MineralTester.UI
 
             if (validFields.Contains(false)) // If any invalid fields, show message box for appropriate invalid field.
             {
-                FeedBackBox.Visibility = Visibility.Visible;
-                FeedBackBox.Text = EntryErrors(validFields);
+                MessageBox.Show(EntryErrors(validFields));
             }
             else if(cbAccountType.SelectedItem == null)
             {
