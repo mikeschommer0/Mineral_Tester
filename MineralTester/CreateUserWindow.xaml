@@ -7,10 +7,6 @@
         mc:Ignorable="d"
         Title="Create New User" Height="416" Width="546"  WindowStartupLocation="CenterScreen">
     <Grid Background="#FF3E3E42">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="215*"/>
-            <ColumnDefinition Width="58*"/>
-        </Grid.ColumnDefinitions>
         <Label Content="User Information" Margin="164,28,0,0" FontSize="30"/>
         <Label Content="First Name" Margin="40,80,0,0" Width="148"/>
         <Label Content="Last Name" Margin="40,119,0,0" Width="148"/>
