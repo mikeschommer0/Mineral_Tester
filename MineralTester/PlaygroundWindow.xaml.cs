@@ -42,28 +42,13 @@ namespace MineralTester.UI
         /// The current user who accessed the screen.
         /// </param>
         /// 
-
-        /// <summary>
-        /// Centers the screen and disables resizing, just prevents UI weirdness when the window size is adjusted.
-        /// </summary>
-        /// <param name="sender"> Reference to the control/object that raised the event.</param>
-        /// <param name="e"> Contains event data.</param>
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.ResizeMode = ResizeMode.NoResize;
-        }
-
         public PlaygroundWindow(User currentUser)
         {
             InitializeComponent();
             _user = currentUser;
-
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
             List<Mineral> minerals = new List<Mineral>();
             Database db = new Database();
             minerals = db.GetMinerals(); // Get all minerals from database.
-
             MineralList.ItemsSource = minerals;
             MineralList.DisplayMemberPath = "Name";
             ShowName.IsEnabled = false; // Initially set this to disabled as names are already shown.
@@ -197,6 +182,7 @@ namespace MineralTester.UI
                 Mineral selectedMineral = (Mineral)MineralList.SelectedItem;
                 Color color = (Color)ColorConverter.ConvertFromString(selectedMineral.StreakColor);
                 line.Stroke = new SolidColorBrush(color);
+                line.StrokeThickness = 3;
                 line.X1 = current.X;
                 line.Y1 = current.Y;
                 line.X2 = e.GetPosition(Playground).X;

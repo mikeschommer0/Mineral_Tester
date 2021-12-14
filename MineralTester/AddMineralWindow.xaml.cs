@@ -25,7 +25,6 @@ namespace MineralTester.UI
 
         private void AddAnotherMineral(object sender, RoutedEventArgs e)
         {
-            FeedBackBox.Text = "";
             List<object> fields = new List<object>();
             String name = MineralNameTextBox.Text;
             fields.Add(name);
@@ -38,7 +37,7 @@ namespace MineralTester.UI
 
             if (validFields.Contains(false)) // If any invaild fields, show in text box for appropriate invalid field.
             {
-                FeedBackBox.Text = EntryErrors(validFields);
+                MessageBox.Show(EntryErrors(validFields));
             }
             else
             {
@@ -56,7 +55,7 @@ namespace MineralTester.UI
                 }
                 else
                 {
-                    FeedBackBox.Text = "Please select a photo and try again.";
+                    MessageBox.Show("Please select a photo and try again.");
                 }
             }
         }

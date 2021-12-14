@@ -5,17 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="FacultyWindow" Height="227" Width="338" Closing="Window_Closing">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="CornflowerBlue" Offset="1"/>
-                <GradientStop Color="White"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Button Content="Manage Users" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="80" Width="140" Click="ManageUsersClick"/>
-        <Button Content="Manage Minerals" HorizontalAlignment="Left" Margin="155,10,0,0" VerticalAlignment="Top" Height="80" Width="140" Click="ManageMineralsClick"/>
-        <Button Content="Manage Questions" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Height="80" Width="140" Click="ManageQuestionsClick"/>
-        <Button Content="Exit" HorizontalAlignment="Left" Margin="155,95,0,0" VerticalAlignment="Top" Height="80" Width="140" Click="ExitClick"/>
+        Height="264" Width="392" Closing="Window_Closing"  WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF3E3E42">
+        <Button Content="Manage Users" Margin="10,10,0,0" Height="100" Width="175" Click="ManageUsersClick"/>
+        <Button Content="Manage Minerals" Margin="190,10,0,0" Height="100" Width="175" Click="ManageMineralsClick"/>
+        <Button Content="Manage Questions" Margin="10,115,0,0" Height="100" Width="175" Click="ManageQuestionsClick"/>
+        <Button Content="Exit" Margin="190,115,0,0" Height="100" Width="175" Click="ExitClick"/>
     </Grid>
 </Window>

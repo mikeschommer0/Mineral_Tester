@@ -5,17 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="UsersWindow" Height="450" Width="585">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="CornflowerBlue" Offset="1"/>
-                <GradientStop Color="White"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        Title="Manage Users" Height="450" Width="595" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF3E3E42">
         <DataGrid Name="dgUsers" HorizontalAlignment="Left" AutoGenerateColumns="True" AutoGeneratingColumn="dgUsers_AutoGeneratingColumn" Margin="10,10,0,24" Width="438"/>
-        <Button Content="Add user" HorizontalAlignment="Left" Margin="453,10,0,0" VerticalAlignment="Top" Width="87" Click="AddUserClick"/>
-        <Button Content="Update user" HorizontalAlignment="Left" Margin="453,35,0,0" VerticalAlignment="Top" Width="87" Click="UpdateUserClick"/>
-        <Button Content="Delete user" HorizontalAlignment="Left" Margin="453,60,0,0" VerticalAlignment="Top" Width="87" Click="DeleteUserClick"/>
+        <Button Content="Add user" Margin="453,10,0,0" Width="114" Click="AddUserClick"/>
+        <Button Content="Update user" Margin="453,55,0,0" Width="114" Click="UpdateUserClick"/>
+        <Button Content="Delete user" Margin="453,100,0,0" Width="114" Click="DeleteUserClick"/>
+        <Button Content="Exit" Margin="453,145,0,0" Width="114" Click="ExitClick"/>
     </Grid>
 </Window>

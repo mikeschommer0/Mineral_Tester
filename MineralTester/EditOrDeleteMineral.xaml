@@ -6,29 +6,22 @@
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="Edit Mineral" Height="450" Width="800">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="CornflowerBlue" Offset="1"/>
-                <GradientStop Color="White"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Label Content="Mineral Name" HorizontalAlignment="Left" Margin="80,65,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <Label Content="Hardness (0.1-10.0)" HorizontalAlignment="Left" Margin="80,113,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <TextBox Name="MineralNameTextBox" MaxLength="30" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,78,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
-        <TextBox Name="MineralHardnessTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,126,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"  Width="180" Height="25"/>
+        Title="Edit Mineral" Height="450" Width="665" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF3E3E42">
+        <Label Content="Mineral Name" Margin="10,10,0,0"/>
+        <Label Content="Hardness (0.1-10.0)" Margin="10,49,0,0"/>
+        <TextBox Name="MineralNameTextBox" MaxLength="30" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="239,15,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <TextBox Name="MineralHardnessTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="239,54,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"  Width="180" Height="25"/>
 
-        <Button Content="Update Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="UpdateMineral"/>
-        <Button Content="Cancel" FontSize="16" HorizontalAlignment="Center" Margin="0,359,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitMineralWindow"/>
-        <CheckBox x:Name="AcidReaction" Content="Reacts With Acid" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,175,0,0" VerticalAlignment="Top" FontSize="25" Checked="ReactsWithAcid" Unchecked="DoesntReactWithAcid"/>
-        <CheckBox x:Name="MagneticReaction" Content="Magnetic" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,231,0,0" VerticalAlignment="Top" FontSize="25" Checked="IsMagnetic" Unchecked="IsntMagnetic"/>
-        <Button Content="New Image"  FontSize="16" HorizontalAlignment="Left" Margin="565,275,0,0" Width="180" Height="35" Background="White" VerticalAlignment="Top" Click="AddAnImageButton_Click"/>
+        <Button Content="Update Mineral" Margin="457,15,0,0" Width="180" Click="UpdateMineral"/>
+        <Button Content="Exit" Margin="457,61,0,0"  Width="180" Click="ExitMineralWindow"/>
+        <CheckBox x:Name="AcidReaction" Content="Reacts With Acid" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Checked="ReactsWithAcid" Unchecked="DoesntReactWithAcid" Width="180"/>
+        <CheckBox x:Name="MagneticReaction" Content="Magnetic" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="239,170,0,0" VerticalAlignment="Top" Checked="IsMagnetic" Unchecked="IsntMagnetic" Width="180"/>
+        <Button Content="New Image" Margin="239,217,0,0" Width="180" Click="AddAnImageButton_Click"/>
 
-        <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
-        <Label Content="If no image is provided,&#xD;&#xA;the image will stay &#xD;&#xA;the same. (jpg/png)" HorizontalAlignment="Left" Height="84" Margin="570,310,0,0" VerticalAlignment="Top" Width="175" FontSize="16"/>
-        <TextBox Name="FeedBackBox" Text="" TextWrapping="Wrap" Margin="80,319,515,40" TextAlignment="Center"/>
-        <wpfTool:ColorPicker x:Name="cpColor" DisplayColorAndName="True" Margin="310,271,310,130"/>
-        <Label Content="Streak Color" HorizontalAlignment="Left" Margin="92,263,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <Image Name ="MineralImage" HorizontalAlignment="Left" Height="185" Margin="10,217,0,0" VerticalAlignment="Top" Width="210"/>
+        <Label Content="If no image is provided,&#xD;&#xA;the image will stay &#xD;&#xA;the same. (jpg/png)" Height="84" Margin="239,262,0,0" Width="175" FontSize="16"/>
+        <wpfTool:ColorPicker HorizontalAlignment="Left" x:Name="cpColor" DisplayColorAndName="True" Margin="239,97,0,289" Width="180"/>
+        <Label Content="Streak Color" Margin="10,102,0,0"/>
     </Grid>
 </Window>

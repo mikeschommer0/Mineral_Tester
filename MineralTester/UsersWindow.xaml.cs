@@ -44,6 +44,10 @@ namespace MineralTester.UI
             {
                 e.Column.Header = "Account Type";
             }
+            if (e.Column.Header.ToString() == "Salt")
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
             e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
@@ -78,6 +82,11 @@ namespace MineralTester.UI
             IUserManager userManager = new UserManager();
             userManager.DeleteUser(userToDelete);
             DisplayUsers();
+        }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
