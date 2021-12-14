@@ -37,8 +37,8 @@
         <CheckBox Name="HideMineral" Content="Hide Mineral" HorizontalAlignment="Left" Margin="521,483,0,0" VerticalAlignment="Top" Unchecked="HideMineral_Unchecked" Checked="HideMineral_Checked"/>
         <CheckBox Name="ShowName" Content="Show Name" HorizontalAlignment="Left" Margin="521,504,0,0" VerticalAlignment="Top" Unchecked="ShowName_Unchecked" Checked="ShowName_Checked"/>
         <Button Content="Random Mineral" HorizontalAlignment="Left" Margin="521,524,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="RandomMineralButton"/>
-        <Button Content="Reset" HorizontalAlignment="Left" Margin="521,552,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="ResetPlaygroundButton"/>
-        <ListBox Name="ScratchTesters" SelectionChanged="ScratchTesters_SelectionChanged" Margin="815,70,10,215" IsEnabled="False"/>
+        <Button Content="Clear" HorizontalAlignment="Left" Margin="521,552,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="ResetPlaygroundButton"/>
+        <ListBox Name="ScratchTesters" SelectionChanged="ScratchTesters_SelectionChanged" Margin="805,70,10,215" IsEnabled="False"/>
 
     </Grid>
 </Window>

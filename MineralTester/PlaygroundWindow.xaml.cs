@@ -304,7 +304,7 @@ namespace MineralTester.UI
             var y2 = Canvas.GetTop(tester) + r2;
 
             var d = new Vector(x2 - x1, y2 - y1); // Caluculate distance between the two edges.
-            return d.Length < r1 + r2; // If the length between their two radii is less than or equal to the distance between the edges, then they must be touching.
+            return d.Length < r1 + r2; // If the length between their two radii is greater than to the distance between the edges, then they must be touching.
         }
 
         /// <summary>
@@ -383,19 +383,19 @@ namespace MineralTester.UI
         {
             List<Tester> list = new List<Tester>();
 
-            Tester fingerNail = new Tester("Finger Nail", (float)2.5, (Enums.TestType)1, "/images/fingernail.png");
+            Tester fingerNail = new Tester("Finger Nail (Hardness: 2.5)", (float)2.5, (Enums.TestType)1, "/images/fingernail.png");
             list.Add(fingerNail);
 
-            Tester copperPenny = new Tester("Copper Penny", (float)3.5, (Enums.TestType)1, "/images/penny.png");
+            Tester copperPenny = new Tester("Copper Penny (Hardness: 3.5)", (float)3.5, (Enums.TestType)1, "/images/penny.png");
             list.Add(copperPenny);
 
-            Tester knife = new Tester("Knife", (float)5.5, (Enums.TestType)1, "/images/knife.png");
+            Tester knife = new Tester("Knife (Hardness: 5.5)", (float)5.5, (Enums.TestType)1, "/images/knife.png");
             list.Add(knife);
 
-            Tester steelNail = new Tester("Steel Nail", (float)6.5, (Enums.TestType)1, "/images/nail.png");
+            Tester steelNail = new Tester("Steel Nail (Hardness: 6.5)", (float)6.5, (Enums.TestType)1, "/images/nail.png");
             list.Add(steelNail);
 
-            Tester drillBit = new Tester("Masonry Drill Bit", (float)8.5, (Enums.TestType)1, "/images/drillbit.png");
+            Tester drillBit = new Tester("Masonry Drill Bit (Hardness: 8.5)", (float)8.5, (Enums.TestType)1, "/images/drillbit.png");
             list.Add(drillBit);
 
             refList = list;
@@ -444,11 +444,14 @@ namespace MineralTester.UI
             Random random = new Random();
             int randomIndex = random.Next(MineralList.Items.Count);
             var randomItem = MineralList.Items[randomIndex];
-            MineralList.SelectedItem = randomItem;
-            if ((bool)ShowName.IsChecked == false)
+            if ((bool)ShowName.IsChecked)
             {
-                MineralList.DisplayMemberPath = "Mineral";
+                MineralList.DisplayMemberPath = "Name";
+            } else
+            {
+                MineralList.DisplayMemberPath = "Hidden";
             }
+            MineralList.SelectedItem = randomItem;
             // I use this if statement because choosing random list item still leaves it highlighted.
             // I made it up to the user if they want to see the names of the random mineral.
         }
@@ -481,7 +484,7 @@ namespace MineralTester.UI
         /// <param name="e"> Contains event data.</param>
         private void ShowName_Unchecked(object sender, RoutedEventArgs e)
         {
-            MineralList.DisplayMemberPath = "Mineral";
+            MineralList.DisplayMemberPath = "Hidden";
         }
         /// <summary>
         /// Set listbox display to mineral name.
@@ -501,7 +504,7 @@ namespace MineralTester.UI
         /// 
         private void ResetPlaygroundButton(object sender, RoutedEventArgs e)
         {
-
+            Playground.Children.Clear();
         }
 
         /////////////////////////////////////////////////////////// QUESTIONS ///////////////////////////////////////////////////////////////////////////////////////////////////////

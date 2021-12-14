@@ -3,6 +3,7 @@
     public class Mineral
     {
         private int _ID;
+        private string _Hidden;
 
         public int ID
         {
@@ -46,6 +47,18 @@
             set;
         }
 
+        public string Hidden
+        {
+            get
+            {
+                return _Hidden;
+            }
+            set
+            {
+                _Hidden = "";
+            }
+        }
+
         public Mineral()
         {
 
@@ -63,6 +76,7 @@
             IsMagnetic = isMagnetic;
             AcidReaction = acidReaction;
             Image = image;
+            Hidden = _Hidden;
         }
 
     }
