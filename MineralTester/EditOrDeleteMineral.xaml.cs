@@ -61,7 +61,7 @@ namespace MineralTester.UI
 
                 if (validFields[0] == false || validFields[1] == false)
                 {
-                    MessageBox.Show(EntryErrors(validFields));
+                    FeedBack.Text = EntryErrors(validFields);
                 }
 
                 else
