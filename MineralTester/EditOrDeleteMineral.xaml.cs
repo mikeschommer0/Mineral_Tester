@@ -42,6 +42,7 @@ namespace MineralTester.UI
 
         private void UpdateMineral(object sender, RoutedEventArgs e)
         {
+            FeedBackBox.Text = "";
             if (mineralToModify != null)
             {
                 mineralToModify = bl.GetMineral(mineralToModify.Name);
@@ -60,7 +61,7 @@ namespace MineralTester.UI
 
                 if (validFields[0] == false || validFields[1] == false)
                 {
-                    MessageBox.Show(EntryErrors(validFields));
+                    FeedBackBox.Text = EntryErrors(validFields);
                 }
                 else
                 {
@@ -76,7 +77,6 @@ namespace MineralTester.UI
 
                         bl.UpdateMineral(mineralToModify);
 
-                        MessageBox.Show("MINERAL MODIFIED: \n" + mineralToModify.Name + ".");
                         ExitMineralWindow(sender, e);
                     }
 
@@ -88,28 +88,23 @@ namespace MineralTester.UI
 
                         bl.UpdateMineral(mineralToModify);
 
-                        MessageBox.Show("MINERAL MODIFIED: \n" + mineralToModify.Name + "\n(Image was not updated).");
                         ExitMineralWindow(sender, e);
                     }
                 }
-            }
-            else
-            {
-                MessageBox.Show("MODIFICATION FAILED: A Mineral must be select to modify.");
             }
         }
 
         private string EntryErrors(List<bool> validFields)
         {
-            string errors = "Error(s) while updating Mineral:\n";
+            string errors = "Error(s) while updating Mineral:";
 
             if (validFields[0] == false)
             {
-                errors += "\nInvalidNameLength";
+                errors += "\nInvalid Name Length";
             }
             if (validFields[1] == false)
             {
-                errors += "\nInvalidHardnessLevel";
+                errors += "\nInvalid Hardness Level";
             }
 
             return errors;

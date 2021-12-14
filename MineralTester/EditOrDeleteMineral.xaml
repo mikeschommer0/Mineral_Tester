@@ -14,8 +14,8 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Content="Mineral Name" HorizontalAlignment="Left" Margin="80,65,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <Label Content="Hardness" HorizontalAlignment="Left" Margin="80,113,0,0" VerticalAlignment="Top" FontSize="25"/>
-        <TextBox Name="MineralNameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,78,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <Label Content="Hardness (0.1-10.0)" HorizontalAlignment="Left" Margin="80,113,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <TextBox Name="MineralNameTextBox" MaxLength="30" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,78,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
         <TextBox Name="MineralHardnessTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,126,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"  Width="180" Height="25"/>
 
         <Button Content="Update Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="UpdateMineral"/>
@@ -25,6 +25,7 @@
         <Button Content="New Image"  FontSize="16" HorizontalAlignment="Left" Margin="565,275,0,0" Width="180" Height="35" Background="White" VerticalAlignment="Top" Click="AddAnImageButton_Click"/>
 
         <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
-        <Label Content="If no image is provided,&#xD;&#xA;the image will stay the same." HorizontalAlignment="Left" Height="44" Margin="570,310,0,0" VerticalAlignment="Top" Width="170"/>
+        <Label Content="If no image is provided,&#xD;&#xA;the image will stay &#xD;&#xA;the same. (jpg/png)" HorizontalAlignment="Left" Height="84" Margin="570,310,0,0" VerticalAlignment="Top" Width="175" FontSize="16"/>
+        <TextBox Name="FeedBackBox" Text="" TextWrapping="Wrap" Margin="80,319,515,40" TextAlignment="Center"/>
     </Grid>
 </Window>
