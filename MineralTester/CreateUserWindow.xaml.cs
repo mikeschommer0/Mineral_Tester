@@ -30,6 +30,8 @@ namespace MineralTester.UI
 
         private void SubmitUserInfo(object sender, RoutedEventArgs e)
         {
+            FeedBackBox.Visibility = Visibility.Hidden;
+            FeedBackBox.Text = "";
             List<string> fields = new List<string>();
             string firstName = FirstNameTextBox.Text;
             fields.Add(firstName);
@@ -41,9 +43,10 @@ namespace MineralTester.UI
             fields.Add(password);
             List<bool> validFields = bl.ValidateUserData(fields);
 
-            if (validFields.Contains(false) && _userToUpdate == null) // If any invalid fields, show message box for appropriate invalid field.
+            if (validFields.Contains(false)) // If any invalid fields, show message box for appropriate invalid field.
             {
-                EntryErrors(validFields);
+                FeedBackBox.Visibility = Visibility.Visible;
+                FeedBackBox.Text = EntryErrors(validFields);
             }
             else if(cbAccountType.SelectedItem == null)
             {
@@ -87,29 +90,31 @@ namespace MineralTester.UI
             }
         }
 
-        private void EntryErrors(List<bool> validFields)
+        private string EntryErrors(List<bool> validFields)
         {
+            string errors = "Error(s) while updating User:";
+
             if (validFields[0] == false)
             {
-                MessageBox.Show("Error while adding user:\nInvalidFirstNameLength");
+                errors += "\nInvalidFirstNameLength";
             }
             if (validFields[1] == false)
             {
-                MessageBox.Show("Error while adding user:\nInvalidLastNameLength");
+                errors += "\nInvalidLastNameLength";
             }
             if (validFields[2] == false)
             {
-                MessageBox.Show("Error while adding user:\nInvalidUsernameLength");
+                errors += "\nInvalidUsernameLength";
             }
             if (validFields[3] == false)
             {
-                MessageBox.Show("Error while adding user:\nInvalidPasswordLength");
+                errors += "\nInvalidPasswordLength";
             }
             if (validFields[4] == false)
             {
-                MessageBox.Show("Error while adding user:\nUsernameAlreadyTaken");
+                errors += "\nUsernameAlreadyTaken";
             }
-
+            return errors;
         }
 
         private void ExitUserInfo(object sender, RoutedEventArgs e)

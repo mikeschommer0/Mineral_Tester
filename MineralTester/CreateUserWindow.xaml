@@ -27,5 +27,6 @@
         <Label Content="Account Type" HorizontalAlignment="Left" Margin="258,276,0,0" VerticalAlignment="Top" FontSize="20"/>
         <ComboBox Name="cbAccountType" HorizontalAlignment="Left" Margin="400,283,0,0" VerticalAlignment="Top" Width="180"/>
         <Label Content="(must be 8 characters&#xD;&#xA;or longer)" HorizontalAlignment="Left" Height="42" Margin="258,242,0,0" VerticalAlignment="Top" Width="124"/>
+        <TextBox Text="" Name="FeedBackBox" TextWrapping="Wrap" Margin="597,114,20,109" Visibility="Hidden"/>
     </Grid>
 </Window>
