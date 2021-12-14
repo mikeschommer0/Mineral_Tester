@@ -11,6 +11,7 @@ namespace MineralTester.Classes
             {
                 //salt password
                 User user = db.GetUser(username);
+                password = SecurityHelper.HashPassword(password, user.Salt);
                 if (user.Password.Equals(password))
                 {
                     return user;
