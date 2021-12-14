@@ -63,5 +63,16 @@
             Salt = SecurityHelper.GenerateSalt();
             Password = SecurityHelper.HashPassword(password, Salt);
         }
+
+        public User(int id, string firstName, string lastName, string username, string password, Enums.AccountType accountType, string salt)
+        {
+            _ID = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Username = username;
+            AccountType = accountType;
+            Salt = salt;
+            Password = password;
+        }
     }
 }
