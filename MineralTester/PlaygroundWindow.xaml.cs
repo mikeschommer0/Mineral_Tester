@@ -15,6 +15,7 @@ namespace MineralTester.UI
 {
     /// <summary>
     /// Interaction logic for PlaygroundWindow.xaml
+    /// Written by: Mike Schommer
     /// </summary>
     public partial class PlaygroundWindow : Window
     {
@@ -535,6 +536,12 @@ namespace MineralTester.UI
             {
                 ScratchTesters.IsEnabled = true;
             }
+
+            TestLabel.Content = new TextBlock()
+            {
+                Text = "Current Test Selction: Hardness",
+                TextWrapping = TextWrapping.Wrap
+            };
         }
 
         /// <summary>
@@ -579,6 +586,12 @@ namespace MineralTester.UI
             Tester magnet = new Tester((Enums.TestType)2, "/images/magnet.png");
             _selectedTester = magnet;
             DisplayTester(magnet.ImgSource);
+
+            TestLabel.Content = new TextBlock()
+            {
+                Text = "Current Test Selction: Magnet",
+                TextWrapping = TextWrapping.Wrap
+            };
         }
 
         private void StreakPlateButton_Click(object sender, RoutedEventArgs e)
@@ -588,7 +601,14 @@ namespace MineralTester.UI
             ScratchTesters.IsEnabled = false;
             drawstreak = true;
             _selectedTester = null;
+
             Playground.Background = new ImageBrush(new BitmapImage(new Uri($"pack://application:,,,/MineralTester.UI;component/images/plate.png", UriKind.Absolute)));
+
+            TestLabel.Content = new TextBlock()
+            {
+                Text = "Current Test Selction: Streak",
+                TextWrapping = TextWrapping.Wrap
+            };
         }
 
         /// <summary>
@@ -607,6 +627,12 @@ namespace MineralTester.UI
             Tester acid = new Tester((Enums.TestType)3, "/images/dropper.png");
             _selectedTester = acid;
             DisplayTester(acid.ImgSource);
+
+            TestLabel.Content = new TextBlock()
+            {
+                Text = "Current Test Selction: Acid",
+                TextWrapping = TextWrapping.Wrap
+            };
         }
 
         /////////////////////////////////////////////////////////// OPTIONS ///////////////////////////////////////////////////////////////////////////////////////////////////////

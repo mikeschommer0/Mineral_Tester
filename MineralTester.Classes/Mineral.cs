@@ -1,5 +1,9 @@
 ﻿namespace MineralTester.Classes
 {
+    /// <summary>
+    /// Mineral Class.
+    /// Written by: Mike Schommer
+    /// </summary>
     public class Mineral
     {
         private int _ID;

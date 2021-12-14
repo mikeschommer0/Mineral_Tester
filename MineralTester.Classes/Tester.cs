@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Tester class.
+/// Written by: Mike Schommer
+/// </summary>
 namespace MineralTester.Classes
 {
     public class Tester

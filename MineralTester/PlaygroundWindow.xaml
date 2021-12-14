@@ -35,13 +35,14 @@
                 <Image Source="images/dropper.png" Width="87" Height="53"/>
             </StackPanel>
         </Button>
-        <Label Content="Mineral Tests" Margin="588,469,0,0"/>
+        <Label HorizontalContentAlignment="Center" Content="Mineral Tests" Margin="534,469,0,0" Width="223"/>
+        <Label Name="TestLabel" Margin="770,579,0,0" Width="203" Height="100" VerticalContentAlignment="Top"/>
         <CheckBox Name="HideMineral" FontSize="16" Content="Hide Mineral" HorizontalAlignment="Left" Margin="534,640,0,0" VerticalAlignment="Top" Unchecked="HideMineral_Unchecked" Checked="HideMineral_Checked" Width="109"/>
         <CheckBox Name="ShowName" FontSize="16" Content="Show Name" HorizontalAlignment="Left" Margin="648,640,0,0" VerticalAlignment="Top" Unchecked="ShowName_Unchecked" Checked="ShowName_Checked" Width="109"/>
         <Button Content="Random Mineral" Margin="10,469,0,0" Width="180" Click="RandomMineralButton"/>
         <Button Content="Clear" Margin="11,559,0,0" Width="180" Click="ResetPlaygroundButton"/>
         <ListBox Name="ScratchTesters" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="ScratchTesters_SelectionChanged" Margin="196,469,0,0" IsEnabled="False" Width="281" Height="175"/>
-        <Label Name="Result" FontSize="14" Margin="770,469,0,0" Width="203" Height="187"/>
+        <Label Name="Result" Margin="770,469,0,0" Width="203" Height="100"/>
 
     </Grid>
 </Window>
