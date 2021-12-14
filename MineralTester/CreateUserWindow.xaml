@@ -14,17 +14,18 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Content="User Information" HorizontalAlignment="Center" Margin="0,41,0,0" VerticalAlignment="Top" FontSize="30"/>
-        <Label Content="First Name" HorizontalAlignment="Left" Margin="253,114,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Last Name" HorizontalAlignment="Left" Margin="253,154,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Username" HorizontalAlignment="Left" Margin="253,194,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="253,234,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox Name="FirstNameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,120,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
-        <TextBox Name="LastNameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,160,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
-        <TextBox Name="UsernameTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,200,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="258,114,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="258,154,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="258,194,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="258,220,0,0" VerticalAlignment="Top" FontSize="20" Height="32"/>
+        <TextBox Name="FirstNameTextBox" MaxLength="50" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,120,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <TextBox Name="LastNameTextBox" MaxLength="50" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,160,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
+        <TextBox Name="UsernameTextBox" MaxLength="50" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,200,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
         <PasswordBox Name="PasswordTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="400,240,0,0" VerticalAlignment="Top" Width="180" Height="25"/>
         <Button Name="btnSubmit" Content="Submit" FontSize="16" HorizontalAlignment="Left" Margin="200,349,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="SubmitUserInfo"/>
         <Button Content="Exit" FontSize="16" HorizontalAlignment="Left" Margin="385,349,0,0" VerticalAlignment="Top" Width="180" Height="35" Background="White" Click="ExitUserInfo"/>
-        <Label Content="Account Type" HorizontalAlignment="Left" Margin="253,276,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Account Type" HorizontalAlignment="Left" Margin="258,276,0,0" VerticalAlignment="Top" FontSize="20"/>
         <ComboBox Name="cbAccountType" HorizontalAlignment="Left" Margin="400,283,0,0" VerticalAlignment="Top" Width="180"/>
+        <Label Content="(must be 8 characters&#xD;&#xA;or longer)" HorizontalAlignment="Left" Height="42" Margin="258,242,0,0" VerticalAlignment="Top" Width="124"/>
     </Grid>
 </Window>

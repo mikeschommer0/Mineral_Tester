@@ -17,6 +17,7 @@ namespace MineralTester.UI
         {
             InitializeComponent();
             cbAccountType.ItemsSource = Enum.GetValues(typeof(Enums.AccountType)).Cast<Enums.AccountType>();
+            cbAccountType.SelectedIndex = 2;
             if (userToUpdate != null)
             {
                 _userToUpdate = userToUpdate;
