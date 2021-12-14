@@ -38,6 +38,7 @@ namespace MineralTester.UI
             AcidReaction.IsChecked = mineral.AcidReaction;
             MagneticReaction.IsChecked = mineral.IsMagnetic;
             MineralImage.Source = (BitmapSource)new ImageSourceConverter().ConvertFrom(mineral.Image);
+            cpColor.SelectedColor = (Color)ColorConverter.ConvertFromString(mineral.StreakColor);
         }
 
         private void UpdateMineral(object sender, RoutedEventArgs e)
@@ -74,7 +75,8 @@ namespace MineralTester.UI
                         FileStream stream = new FileStream(selectedFileName, FileMode.Open, FileAccess.Read);
                         BinaryReader br = new BinaryReader(stream);
                         imgBytes = br.ReadBytes((int)stream.Length);
-                        mineralToModify = new Mineral(mineralToModify.ID, name, hardness, magnetic, acidReaction, imgBytes);
+                        string streakColor = cpColor.SelectedColor.ToString();
+                        mineralToModify = new Mineral(mineralToModify.ID, name, hardness, magnetic, acidReaction, imgBytes, streakColor);
 
                         bl.UpdateMineral(mineralToModify);
 
@@ -85,7 +87,7 @@ namespace MineralTester.UI
                     else
                     {
                         mineralToModify = new Mineral(mineralToModify.ID, name, hardness,
-                            magnetic, acidReaction, mineralToModify.Image);
+                            magnetic, acidReaction, mineralToModify.Image, cpColor.SelectedColor.ToString());
 
                         bl.UpdateMineral(mineralToModify);
 

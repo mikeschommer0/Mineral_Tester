@@ -74,6 +74,10 @@ namespace MineralTester.UI
             {
                 e.Column.Header = "Reacts to acid";
             }
+            if (e.Column.Header.ToString() == "Hidden")
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
             e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
     }

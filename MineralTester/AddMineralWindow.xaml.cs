@@ -6,7 +6,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-
 namespace MineralTester.UI
 {
     /// <summary>
@@ -51,7 +50,7 @@ namespace MineralTester.UI
                     FileStream stream = new FileStream(selectedFileName, FileMode.Open, FileAccess.Read);
                     BinaryReader br = new BinaryReader(stream);
                     imgBytes = br.ReadBytes((int)stream.Length);
-                    Mineral toAdd = new Mineral(0, name, hardness, magnetic, acidReaction, imgBytes);
+                    Mineral toAdd = new Mineral(0, name, hardness, magnetic, acidReaction, imgBytes, cpColor.SelectedColor.ToString());
                     bl.AddMineral(toAdd);
                     Close();
                 }

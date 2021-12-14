@@ -13,7 +13,8 @@
         {
             Scratch = 1,
             Magnestism = 2,
-            AcidReaction = 3
+            AcidReaction = 3,
+            Streak = 4
         }
     }
 }

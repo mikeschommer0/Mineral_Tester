@@ -59,16 +59,22 @@
             }
         }
 
+        public string StreakColor
+        {
+            get;
+            set;
+        }
+
         public Mineral()
         {
 
         }
 
-        public Mineral(string name, float hardness, bool isMagnetic, bool acidReaction, byte[] image)
+        public Mineral(string name, float hardness, bool isMagnetic, bool acidReaction, byte[] image, string streakColor)
         {
 
         }
-        public Mineral(int id, string name, float hardness, bool isMagnetic, bool acidReaction, byte[] image) // Image object cannot be used as a parameter as per our class diagram.
+        public Mineral(int id, string name, float hardness, bool isMagnetic, bool acidReaction, byte[] image, string streakColor) // Image object cannot be used as a parameter as per our class diagram.
         {
             _ID = id;
             Name = name;
@@ -77,6 +83,7 @@
             AcidReaction = acidReaction;
             Image = image;
             Hidden = _Hidden;
+            StreakColor = streakColor;
         }
 
     }

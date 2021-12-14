@@ -5,32 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="PlaygroundWindow" Height="600" Width="1000" Loaded="Window_Loaded">
+        Title="PlaygroundWindow" Height="696" Width="1027" Loaded="Window_Loaded">
     <Grid>
-        <Canvas x:Name="Playground" Margin="50,20,202,120" PreviewMouseMove="Playgroud_PreviewMouseMove" PreviewMouseUp="Playgroud_PreviewMouseUp">
+        <Canvas x:Name="Playground"  Margin="196,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="Playground_MouseDown" MouseUp="Playground_MouseUp" MouseMove="Playground_MouseMove"  PreviewMouseMove="Playgroud_PreviewMouseMove" PreviewMouseUp="Playgroud_PreviewMouseUp" Height="454" Width="777">
             <Canvas.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="CornflowerBlue" Offset="1"/>
-                    <GradientStop Color="White"/>
-                </LinearGradientBrush>
+                <SolidColorBrush Color="SlateGray"/>
             </Canvas.Background>
         </Canvas>
         <Button Content="Practice Questions" FontSize="16" HorizontalAlignment="Left" Margin="50,504,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="DisplayPracticeQuestions" />
         <Button Content="Exit" FontSize="16" HorizontalAlignment="Left" Margin="50,544,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitPlayground" />
-        <ListBox Name="MineralList" Height="110" Width="267" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="244,475,490,-1"/>
-        <Button Margin="636,511,265,10" Background="White" Click="ScratchTestButton_Click">
-            <StackPanel Orientation="Horizontal" Height="53" Width="114">
-                <Image Source="images/penny.png" RenderTransformOrigin="0.479,0.75" Width="94" Height="55"/>
+        <ListBox Name="MineralList" Height="370" HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="10,10,0,0"/>
+        <Button Margin="636,511,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Click="ScratchTestButton_Click" Height="61" Width="109">
+            <StackPanel Orientation="Horizontal" Height="57" Width="106">
+                <Image Source="images/penny.png" Width="107" Height="55"/>
             </StackPanel>
         </Button>
-        <Button Margin="750,511,155,10" Background="White" Click="MagnetismTestButton_Click">
-            <StackPanel Orientation="Horizontal" Height="53" Width="92">
-                <Image Source="images/magnet.png" RenderTransformOrigin="0.479,0.75" Width="91" Height="54"/>
+        <Button Margin="637,577,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Click="StreakPlateButton_Click" Height="61" Width="109">
+            <StackPanel Orientation="Horizontal" Height="57" Width="106">
+                <Image Source="images/streak-plate.png" Width="107" Height="55"/>
             </StackPanel>
         </Button>
-        <Button Margin="859,511,50,10" Background="White" Click="AcidTestButton_Click">
+        <Button Margin="750,511,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Click="MagnetismTestButton_Click" Height="61" Width="109">
             <StackPanel Orientation="Horizontal" Height="53" Width="92">
-                <Image Source="images/dropper.png" RenderTransformOrigin="0.479,0.75" Width="87" Height="53"/>
+                <Image Source="images/magnet.png" Width="91" Height="54"/>
+            </StackPanel>
+        </Button>
+        <Button Margin="864,511,0,0" Background="White" Click="AcidTestButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="61" Width="109">
+            <StackPanel Orientation="Horizontal" Height="53" Width="92">
+                <Image Source="images/dropper.png" Width="87" Height="53"/>
             </StackPanel>
         </Button>
         <Label Content="Mineral Tests" FontSize="16" HorizontalAlignment="Left" Margin="747,475,0,0" VerticalAlignment="Top"/>
@@ -38,8 +40,8 @@
         <CheckBox Name="ShowName" Content="Show Name" HorizontalAlignment="Left" Margin="521,504,0,0" VerticalAlignment="Top" Unchecked="ShowName_Unchecked" Checked="ShowName_Checked"/>
         <Button Content="Random Mineral" HorizontalAlignment="Left" Margin="521,524,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="RandomMineralButton"/>
         <Button Content="Clear" HorizontalAlignment="Left" Margin="521,552,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="ResetPlaygroundButton"/>
-        <ListBox Name="ScratchTesters" SelectionChanged="ScratchTesters_SelectionChanged" Margin="805,70,10,215" IsEnabled="False"/>
-        <Label Name="Result" FontSize="14" HorizontalAlignment="Left" Margin="805,385,0,0" VerticalAlignment="Top" Width="167" Height="79"/>
+        <ListBox Name="ScratchTesters" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="ScratchTesters_SelectionChanged" Margin="235,483,0,0" IsEnabled="False" Width="281" Height="155"/>
+        <Label Name="Result" FontSize="14" HorizontalAlignment="Left" Margin="11,385,0,0" VerticalAlignment="Top" Width="167" Height="79"/>
 
     </Grid>
 </Window>

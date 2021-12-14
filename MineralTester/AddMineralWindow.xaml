@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
         Title="AddMineralWindow" Height="450" Width="800">
@@ -27,5 +28,7 @@
         <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
         <Label Content="You must add a valid &#xD;&#xA;jpg or png file." HorizontalAlignment="Left" Height="61" Margin="565,315,0,0" VerticalAlignment="Top" Width="180" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox Name="FeedBackBox" Text="" TextWrapping="Wrap" Margin="80,319,515,40" TextAlignment="Center"/>
+        <wpfTool:ColorPicker x:Name="cpColor" DisplayColorAndName="True" Margin="310,271,310,130"/>
+        <Label Content="Streak Color" HorizontalAlignment="Left" Margin="92,263,0,0" VerticalAlignment="Top" FontSize="25"/>
     </Grid>
 </Window>

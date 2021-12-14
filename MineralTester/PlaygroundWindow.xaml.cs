@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,7 +50,6 @@ namespace MineralTester.UI
         /// <param name="e"> Contains event data.</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.WindowStyle = WindowStyle.None;
             this.ResizeMode = ResizeMode.NoResize;
         }
 
@@ -79,8 +79,7 @@ namespace MineralTester.UI
         private void MineralList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Playground.Children.Remove(_mineral); // Clear screen of any mineral/test off screen.
-
-
+            ClearLines();
             _selectedMineral = (Mineral)MineralList.SelectedItem;
 
             if (!(_selectedMineral.Image is null)) // If mineral has an image
@@ -150,6 +149,65 @@ namespace MineralTester.UI
             this.Playground.CaptureMouse();
         }
 
+        Point current;
+        bool drawstreak = false;
+
+        private void Playground_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (MineralList.SelectedIndex > -1 && drawstreak)
+            {
+                if (e.ButtonState == MouseButtonState.Pressed)
+                    current = new Point(e.GetPosition(Playground).X, e.GetPosition(Playground).Y);
+            }
+        }
+
+        private void Playground_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            current = new Point();
+            Playground.Children.Remove(_mineral);
+            Playground.Children.Add(_mineral);
+        }
+
+        private void ClearLines()
+        {
+            List<int> children = new List<int>();
+            for (int i = 0; i < Playground.Children.Count; i++)
+            {
+                if (Playground.Children[i] is Line)
+                {
+                    children.Add(i);
+                }
+            }
+            children.Reverse();
+            for (int i = 0; i < children.Count; i++)
+            {
+                Playground.Children.RemoveAt(children[i]);
+            }
+        }
+
+        private void Playground_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragObj == null)
+            {
+                return;
+            }
+            if (e.LeftButton == MouseButtonState.Pressed && current.X != 0 && current.Y != 0 && drawstreak)
+            {
+                Line line = new Line();
+                Mineral selectedMineral = (Mineral)MineralList.SelectedItem;
+                Color color = (Color)ColorConverter.ConvertFromString(selectedMineral.StreakColor);
+                line.Stroke = new SolidColorBrush(color);
+                line.X1 = current.X;
+                line.Y1 = current.Y;
+                line.X2 = e.GetPosition(Playground).X;
+                line.Y2 = e.GetPosition(Playground).Y;
+
+                current = e.GetPosition(Playground);
+
+                Playground.Children.Add(line);
+            }
+        }
+
         /// <summary>
         /// Moves ellipse to where cursor is. Checks if there is a collision.
         /// </summary>
@@ -169,7 +227,7 @@ namespace MineralTester.UI
                 Canvas.SetTop(this.dragObj, position.Y - this.offset.Y);
                 Canvas.SetLeft(this.dragObj, position.X - this.offset.X);  // Move ellipse to where cursor is.
 
-                if (CollisonCheck(_mineral, _tester)) // Check if there is a collison.
+                if (CollisonCheck(_mineral, _tester) && _selectedTester != null) // Check if there is a collison.
                 {
 
                     if (_selectedTester.TestType == Enums.TestType.Scratch)
@@ -329,7 +387,7 @@ namespace MineralTester.UI
                     Result.Content = new TextBlock()
                     {
                         // This string formats the tester name to be more visually appealing.
-                        Text = $"{_selectedMineral.Name} was scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd().ToLower()}!", 
+                        Text = $"{_selectedMineral.Name} was scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd().ToLower()}!",
                         TextWrapping = TextWrapping.Wrap
                     };
                 }
@@ -457,6 +515,7 @@ namespace MineralTester.UI
         /// <param name="e">Contains event data.</param>
         private void ScratchTesters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            drawstreak = false;
             Playground.Children.Remove(_tester);
             _selectedTester = (Tester)ScratchTesters.SelectedItem;
             DisplayTester(_selectedTester.ImgSource);
@@ -469,6 +528,9 @@ namespace MineralTester.UI
         /// <param name="e">Contains event data.</param>
         private void ScratchTestButton_Click(object sender, RoutedEventArgs e)
         {
+            ClearLines();
+            Playground.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
+            drawstreak = false;
             if (Playground.Children.Contains(_tester))
             {
                 Playground.Children.Remove(_tester);
@@ -522,12 +584,25 @@ namespace MineralTester.UI
         /// <param name="e">Contains event data.</param>
         private void MagnetismTestButton_Click(object sender, RoutedEventArgs e)
         {
+            ClearLines();
+            drawstreak = false;
+            Playground.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
             ScratchTesters.IsEnabled = false;
             Playground.Children.Remove(_tester);
 
             Tester magnet = new Tester((Enums.TestType)2, "/images/magnet.png");
             _selectedTester = magnet;
             DisplayTester(magnet.ImgSource);
+        }
+
+        private void StreakPlateButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearLines();
+            Playground.Children.Remove(_tester);
+            ScratchTesters.IsEnabled = false;
+            drawstreak = true;
+            _selectedTester = null;
+            Playground.Background = new ImageBrush(new BitmapImage(new Uri($"pack://application:,,,/MineralTester.UI;component/images/plate.png", UriKind.Absolute)));
         }
 
         /// <summary>
@@ -537,6 +612,9 @@ namespace MineralTester.UI
         /// <param name="e">Contains event data.</param>
         private void AcidTestButton_Click(object sender, RoutedEventArgs e)
         {
+            ClearLines();
+            drawstreak = false;
+            Playground.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
             ScratchTesters.IsEnabled = false;
             Playground.Children.Remove(_tester);
 
@@ -620,6 +698,7 @@ namespace MineralTester.UI
         private void ResetPlaygroundButton(object sender, RoutedEventArgs e)
         {
             Playground.Children.Clear();
+            Playground.Children.Add(_mineral);
         }
 
         /////////////////////////////////////////////////////////// QUESTIONS ///////////////////////////////////////////////////////////////////////////////////////////////////////

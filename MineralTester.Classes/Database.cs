@@ -445,13 +445,14 @@ namespace MineralTester.Classes
 
                 // Create command to insert new mineral and populate.
                 MySqlCommand addNewMineral = new MySqlCommand("INSERT INTO minerals " +
-                    "(name, hardness, is_magnetic, acid_reaction, image)" +
-                    " VALUES(@name, @hardness, @is_magnetic, @acid_reaction, @image)", connection);
+                    "(name, hardness, is_magnetic, acid_reaction, image, streak_color)" +
+                    " VALUES(@name, @hardness, @is_magnetic, @acid_reaction, @image, @streak_color)", connection);
                 addNewMineral.Parameters.Add(new MySqlParameter("name", toAdd.Name));
                 addNewMineral.Parameters.Add(new MySqlParameter("hardness", toAdd.Hardness));
                 addNewMineral.Parameters.Add(new MySqlParameter("is_magnetic", toAdd.IsMagnetic));
                 addNewMineral.Parameters.Add(new MySqlParameter("acid_reaction", toAdd.AcidReaction));
                 addNewMineral.Parameters.Add(new MySqlParameter("image", toAdd.Image));
+                addNewMineral.Parameters.Add(new MySqlParameter("streak_color", toAdd.StreakColor));
 
                 // Run insert and close connection
                 // ExecuteNonQuery is used as it will be useful in
@@ -486,7 +487,7 @@ namespace MineralTester.Classes
                 // int hardness, bool IsMagnetic,
                 // bool AcidReaction, byte[] Image).
                 Mineral result = new Mineral(reader.GetInt32(0), reader.GetString(1), reader.GetFloat(2),
-                    reader.GetBoolean(3), reader.GetBoolean(4), (byte[])reader["image"]);
+                    reader.GetBoolean(3), reader.GetBoolean(4), (byte[])reader["image"], reader.GetString(6));
 
                 // Close reader & conn and return user.
                 reader.Close();
@@ -541,13 +542,14 @@ namespace MineralTester.Classes
                 connection.Open();
 
                 MySqlCommand updateMineral = new MySqlCommand("UPDATE minerals SET name = @newName, hardness = @newHardness," +
-                    " is_magnetic = @newMagnetic, acid_reaction = @newAcidReact, image = @newImg" +
+                    " is_magnetic = @newMagnetic, acid_reaction = @newAcidReact, image = @newImg, streak_color = @newStreakColor" +
                    " WHERE mineral_id = @mineral_id", connection);
                 updateMineral.Parameters.Add(new MySqlParameter("newName", newMineral.Name));
                 updateMineral.Parameters.Add(new MySqlParameter("newHardness", newMineral.Hardness));
                 updateMineral.Parameters.Add(new MySqlParameter("newMagnetic", newMineral.IsMagnetic));
                 updateMineral.Parameters.Add(new MySqlParameter("newAcidReact", newMineral.AcidReaction));
                 updateMineral.Parameters.Add(new MySqlParameter("newImg", newMineral.Image));
+                updateMineral.Parameters.Add(new MySqlParameter("newStreakColor", newMineral.StreakColor));
                 updateMineral.Parameters.Add(new MySqlParameter("mineral_id", newMineral.ID));
 
                 _rowsEffected = updateMineral.ExecuteNonQuery();
@@ -579,6 +581,7 @@ namespace MineralTester.Classes
                     mineral.Hardness = (float)Convert.ToDouble(reader["hardness"]);
                     mineral.IsMagnetic = Convert.ToBoolean(reader["is_magnetic"]);
                     mineral.AcidReaction = Convert.ToBoolean(reader["acid_reaction"]);
+                    mineral.StreakColor = (string)reader["streak_color"];
 
                     if (reader["image"] == DBNull.Value)
                     {
