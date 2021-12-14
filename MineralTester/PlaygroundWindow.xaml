@@ -5,43 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="PlaygroundWindow" Height="696" Width="1027" Loaded="Window_Loaded">
-    <Grid>
-        <Canvas x:Name="Playground"  Margin="196,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="Playground_MouseDown" MouseUp="Playground_MouseUp" MouseMove="Playground_MouseMove"  PreviewMouseMove="Playgroud_PreviewMouseMove" PreviewMouseUp="Playgroud_PreviewMouseUp" Height="454" Width="777">
+        Title="Mineral Playground" Height="706" Width="1005" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF3E3E42">
+        <Canvas x:Name="Playground" ClipToBounds="True" Margin="196,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="Playground_MouseDown" MouseUp="Playground_MouseUp" MouseMove="Playground_MouseMove"  PreviewMouseMove="Playgroud_PreviewMouseMove" PreviewMouseUp="Playgroud_PreviewMouseUp" Height="454" Width="777">
             <Canvas.Background>
                 <SolidColorBrush Color="SlateGray"/>
             </Canvas.Background>
         </Canvas>
-        <Button Content="Practice Questions" FontSize="16" HorizontalAlignment="Left" Margin="50,504,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="DisplayPracticeQuestions" />
-        <Button Content="Exit" FontSize="16" HorizontalAlignment="Left" Margin="50,544,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitPlayground" />
-        <ListBox Name="MineralList" Height="370" HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="10,10,0,0"/>
-        <Button Margin="636,511,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Click="ScratchTestButton_Click" Height="61" Width="109">
+        <Button Content="Practice Questions" Margin="10,514,0,0"  Width="180" Click="DisplayPracticeQuestions" />
+        <Button Content="Exit" Margin="11,604,0,0"  Width="180" Click="ExitPlayground" />
+        <ListBox Name="MineralList" Height="454" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Canvas.Left="353" Canvas.Top="464" SelectionChanged="MineralList_SelectionChanged" Margin="10,10,0,0"/>
+        <Button Margin="534,508,0,0" Background="White" Click="ScratchTestButton_Click" Height="61" Width="109">
             <StackPanel Orientation="Horizontal" Height="57" Width="106">
                 <Image Source="images/penny.png" Width="107" Height="55"/>
             </StackPanel>
         </Button>
-        <Button Margin="637,577,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Click="StreakPlateButton_Click" Height="61" Width="109">
+        <Button Margin="534,574,0,0" Background="White" Click="StreakPlateButton_Click" Height="61" Width="109">
             <StackPanel Orientation="Horizontal" Height="57" Width="106">
                 <Image Source="images/streak-plate.png" Width="107" Height="55"/>
             </StackPanel>
         </Button>
-        <Button Margin="750,511,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Click="MagnetismTestButton_Click" Height="61" Width="109">
+        <Button Margin="648,508,0,0" Background="White" Click="MagnetismTestButton_Click" Height="61" Width="109">
             <StackPanel Orientation="Horizontal" Height="53" Width="92">
                 <Image Source="images/magnet.png" Width="91" Height="54"/>
             </StackPanel>
         </Button>
-        <Button Margin="864,511,0,0" Background="White" Click="AcidTestButton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="61" Width="109">
+        <Button Margin="648,574,0,0" Background="White" Click="AcidTestButton_Click" Height="61" Width="109">
             <StackPanel Orientation="Horizontal" Height="53" Width="92">
                 <Image Source="images/dropper.png" Width="87" Height="53"/>
             </StackPanel>
         </Button>
-        <Label Content="Mineral Tests" FontSize="16" HorizontalAlignment="Left" Margin="747,475,0,0" VerticalAlignment="Top"/>
-        <CheckBox Name="HideMineral" Content="Hide Mineral" HorizontalAlignment="Left" Margin="521,483,0,0" VerticalAlignment="Top" Unchecked="HideMineral_Unchecked" Checked="HideMineral_Checked"/>
-        <CheckBox Name="ShowName" Content="Show Name" HorizontalAlignment="Left" Margin="521,504,0,0" VerticalAlignment="Top" Unchecked="ShowName_Unchecked" Checked="ShowName_Checked"/>
-        <Button Content="Random Mineral" HorizontalAlignment="Left" Margin="521,524,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="RandomMineralButton"/>
-        <Button Content="Clear" HorizontalAlignment="Left" Margin="521,552,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="ResetPlaygroundButton"/>
-        <ListBox Name="ScratchTesters" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="ScratchTesters_SelectionChanged" Margin="235,483,0,0" IsEnabled="False" Width="281" Height="155"/>
-        <Label Name="Result" FontSize="14" HorizontalAlignment="Left" Margin="11,385,0,0" VerticalAlignment="Top" Width="167" Height="79"/>
+        <Label Content="Mineral Tests" Margin="588,469,0,0"/>
+        <CheckBox Name="HideMineral" FontSize="16" Content="Hide Mineral" HorizontalAlignment="Left" Margin="534,640,0,0" VerticalAlignment="Top" Unchecked="HideMineral_Unchecked" Checked="HideMineral_Checked" Width="109"/>
+        <CheckBox Name="ShowName" FontSize="16" Content="Show Name" HorizontalAlignment="Left" Margin="648,640,0,0" VerticalAlignment="Top" Unchecked="ShowName_Unchecked" Checked="ShowName_Checked" Width="109"/>
+        <Button Content="Random Mineral" Margin="10,469,0,0" Width="180" Click="RandomMineralButton"/>
+        <Button Content="Clear" Margin="11,559,0,0" Width="180" Click="ResetPlaygroundButton"/>
+        <ListBox Name="ScratchTesters" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="ScratchTesters_SelectionChanged" Margin="196,469,0,0" IsEnabled="False" Width="281" Height="175"/>
+        <Label Name="Result" FontSize="14" Margin="770,469,0,0" Width="203" Height="187"/>
 
     </Grid>
 </Window>

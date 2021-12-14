@@ -43,7 +43,6 @@ namespace MineralTester.UI
 
         private void UpdateMineral(object sender, RoutedEventArgs e)
         {
-            FeedBackBox.Text = "";
             if (mineralToModify != null)
             {
                 mineralToModify = bl.GetMineral(mineralToModify.Name);
@@ -62,7 +61,7 @@ namespace MineralTester.UI
 
                 if (validFields[0] == false || validFields[1] == false)
                 {
-                    FeedBackBox.Text = EntryErrors(validFields);
+                    MessageBox.Show(EntryErrors(validFields));
                 }
 
                 else

@@ -5,20 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="Questions" Height="455" Width="698">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="CornflowerBlue" Offset="1"/>
-                <GradientStop Color="White"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Label Content="Questions:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="65" Height="26"/>
-        <ListView x:Name="lvQuestions" HorizontalAlignment="Left" SelectionChanged="lvQuestions_SelectionChanged" Height="329" Margin="10,41,0,0" VerticalAlignment="Top" Width="340" SelectionMode="Single"/>
-        <Button Content="Add new question" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Click="InsertQuestionClick" Width="110"/>
-        <Button Content="Delete question" HorizontalAlignment="Left" Margin="240,375,0,0" VerticalAlignment="Top" Click="DeleteQuestionClick" Width="110"/>
-        <DataGrid x:Name="dgAnswers" AutoGenerateColumns="True" AutoGeneratingColumn="dgAnswers_AutoGeneratingColumn" HorizontalAlignment="Left" Height="329" Margin="355,41,0,0" VerticalAlignment="Top" Width="303" SelectionMode="Single"/>
-        <Label Content="Answers:" HorizontalAlignment="Left" Margin="355,10,0,0" VerticalAlignment="Top" Width="65" Height="26"/>
-        <Button Content="Update question" HorizontalAlignment="Left" Margin="125,375,0,0" VerticalAlignment="Top" Click="UpdateQuestionClick" Width="110"/>
+        Title="Manage Questions" Height="479" Width="716"  WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF3E3E42">
+        <Label Content="Questions" Margin="10,10,0,0" Width="110" Height="35"/>
+        <ListView x:Name="lvQuestions" HorizontalAlignment="Left" SelectionChanged="lvQuestions_SelectionChanged" Height="329" Margin="9,50,0,0" VerticalAlignment="Top" Width="330" SelectionMode="Single"/>
+        <Button Content="Add new question" Margin="10,389,0,0" Click="InsertQuestionClick" Width="160"/>
+        <Button Content="Delete question" Click="DeleteQuestionClick" Width="160" Margin="355,389,0,0"/>
+        <DataGrid x:Name="dgAnswers" AutoGenerateColumns="True" AutoGeneratingColumn="dgAnswers_AutoGeneratingColumn" HorizontalAlignment="Left" Height="329" Margin="355,50,0,0" VerticalAlignment="Top" Width="330" SelectionMode="Single"/>
+        <Label Content="Answers" Margin="355,10,0,0" Width="101" Height="35"/>
+        <Button Content="Update question"  Margin="189,389,0,0" Click="UpdateQuestionClick" Width="150"/>
+        <Button Content="Exit" Click="ExitClick" Width="160" Margin="525,389,0,0"/>
     </Grid>
 </Window>

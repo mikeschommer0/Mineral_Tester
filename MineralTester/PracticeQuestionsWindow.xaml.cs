@@ -60,5 +60,10 @@ namespace MineralTester.UI
                 MessageBox.Show("Incorrect, try again.");
             }
         }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

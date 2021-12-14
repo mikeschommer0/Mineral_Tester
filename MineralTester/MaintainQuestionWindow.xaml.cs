@@ -233,5 +233,10 @@ namespace MineralTester.UI
             }
             return true;
         }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

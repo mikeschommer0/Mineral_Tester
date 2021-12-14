@@ -80,5 +80,10 @@ namespace MineralTester.UI
             }
             e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

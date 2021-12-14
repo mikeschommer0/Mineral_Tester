@@ -5,17 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="MineralsWindow" Height="450" Width="712">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="CornflowerBlue" Offset="1"/>
-                <GradientStop Color="White"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        Title="Manage Minerals" Height="451" Width="725"  WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF3E3E42">
         <DataGrid Name="dgMinerals" HorizontalAlignment="Left" AutoGenerateColumns="True" AutoGeneratingColumn="dgMinerals_AutoGeneratingColumn" Margin="10,10,0,24" Width="528"/>
-        <Button Content="Add mineral" HorizontalAlignment="Left" Margin="564,17,0,0" VerticalAlignment="Top" Width="101" Click="AddMineralClick"/>
-        <Button Content="Update mineral" HorizontalAlignment="Left" Margin="564,42,0,0" VerticalAlignment="Top" Width="101" Click="UpdateMineralClick"/>
-        <Button Content="Delete mineral" HorizontalAlignment="Left" Margin="564,67,0,0" VerticalAlignment="Top" Width="101" Click="DeleteMineralClick"/>
+        <Button Content="Add mineral" Margin="543,10,0,0" Width="150" Click="AddMineralClick"/>
+        <Button Content="Update mineral" Margin="543,55,0,0" Width="150" Click="UpdateMineralClick"/>
+        <Button Content="Delete mineral" Margin="543,100,0,0" Width="150" Click="DeleteMineralClick"/>
+        <Button Content="Exit" Margin="543,145,0,0" Width="150" Click="ExitClick"/>
     </Grid>
 </Window>
