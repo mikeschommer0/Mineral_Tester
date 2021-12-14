@@ -94,23 +94,23 @@ namespace MineralTester.UI
 
             if (validFields[0] == false)
             {
-                errors += "\nInvalidFirstNameLength";
+                errors += "\nInvalid First\nName Length";
             }
             if (validFields[1] == false)
             {
-                errors += "\nInvalidLastNameLength";
+                errors += "\nInvalid Last\nName Length";
             }
             if (validFields[2] == false)
             {
-                errors += "\nInvalidUsernameLength";
+                errors += "\nInvalid Username\nLength";
             }
             if (validFields[3] == false)
             {
-                errors += "\nInvalidPasswordLength";
+                errors += "\nInvalid Password\nLength";
             }
             if (validFields[4] == false)
             {
-                errors += "\nUsernameAlreadyTaken";
+                errors += "\nUsername Already\nTaken";
             }
             return errors;
         }
