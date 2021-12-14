@@ -1,5 +1,9 @@
 ﻿namespace MineralTester.Classes
 {
+    /// <summary>
+    /// User class.
+    /// Written by Quinn Nimmer.
+    /// </summary>
     public class User
     {
         private int _ID;

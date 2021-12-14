@@ -2,6 +2,10 @@
 
 namespace MineralTester.Classes
 {
+    /// <summary>
+    /// Class for handling logins.
+    /// Salting by: Quinn Nimmer.
+    /// </summary>
     public class LoginManager : ILoginManager
     {
         public User Login(string username, string password)

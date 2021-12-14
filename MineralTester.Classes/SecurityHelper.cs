@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace MineralTester.Classes
 {
+    /// <summary>
+    /// Class for generating salt and hashing passwords.
+    /// Written by: Quinn Nimmer
+    /// </summary>
     class SecurityHelper
     {
         public static string GenerateSalt()

@@ -6,6 +6,11 @@ using System.Linq;
 
 namespace MineralTester.Classes
 {
+    /// <summary>
+    /// Database interaction class.
+    /// User and Mineral methods coded by Quinn Nimmer.
+    /// Question methods coded by Rick Bowman.
+    /// </summary>
     public class Database : IDatabase
     {
         private string connectionStringToDB = ConfigurationManager.ConnectionStrings["MySQLDB"].ConnectionString;
