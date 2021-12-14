@@ -8,6 +8,8 @@ namespace MineralTester.UI
 {
     /// <summary>
     /// Interaction logic for CreateUserWindow.xaml
+    /// 
+    /// Coded by: Quinn Nimmer.
     /// </summary>
     public partial class CreateUserWindow : Window
     {

@@ -11,6 +11,8 @@ namespace MineralTester.UI
 {
     /// <summary>
     /// Interaction logic for EditOrDeleteMineral.xaml
+    /// 
+    /// Coded by: Quinn Nimmer
     /// </summary>
     public partial class EditOrDeleteMineral : Window
     {

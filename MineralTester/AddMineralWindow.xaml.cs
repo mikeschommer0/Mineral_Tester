@@ -10,6 +10,8 @@ namespace MineralTester.UI
 {
     /// <summary>
     /// Interaction logic for AddMineralWindow.xaml
+    /// 
+    /// Coded by: Quinn Nimmer.
     /// </summary>
     public partial class AddMineralWindow : Window
     {
