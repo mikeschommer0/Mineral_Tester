@@ -6,7 +6,7 @@
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="Edit Mineral" Height="450" Width="665" WindowStartupLocation="CenterScreen">
+        Title="Edit Mineral" Height="465" Width="665" WindowStartupLocation="CenterScreen">
     <Grid Background="#FF3E3E42">
         <Label Content="Mineral Name" Margin="10,10,0,0"/>
         <Label Content="Hardness (0.1-10.0)" Margin="10,49,0,0"/>
@@ -23,5 +23,6 @@
         <Label Content="If no image is provided,&#xD;&#xA;the image will stay &#xD;&#xA;the same. (jpg/png)" Height="84" Margin="239,262,0,0" Width="175" FontSize="16"/>
         <wpfTool:ColorPicker HorizontalAlignment="Left" x:Name="cpColor" DisplayColorAndName="True" Margin="239,97,0,289" Width="180"/>
         <Label Content="Streak Color" Margin="10,102,0,0"/>
+        <TextBox Name="FeedBack" HorizontalAlignment="Left" Height="68" Margin="239,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
     </Grid>
 </Window>
