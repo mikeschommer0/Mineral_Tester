@@ -193,7 +193,7 @@ namespace MineralTester.UI
         }
 
         /// <summary>
-        /// Shows message box result. 
+        /// Shows acid result. 
         /// </summary>
         /// <param name="reacted">Result of test.</param>
         private void ShowAcidResult(bool reacted)
@@ -210,14 +210,15 @@ namespace MineralTester.UI
         }
 
         /// <summary>
-        /// Shows message box result.
+        /// Shows magnetism result.
         /// </summary>
         /// <param name="areAttracted">Result of test.</param>
         private void ShowMagnetResult(bool areAttracted)
         {
             if (areAttracted)
             {
-                _mineral.Fill = Brushes.Green;
+                Canvas.SetLeft(_mineral, 500);
+                Canvas.SetTop(_mineral, 80);
             }
 
             else
@@ -228,7 +229,7 @@ namespace MineralTester.UI
         }
 
         /// <summary>
-        /// Shows message box result.
+        /// Shows scratch result.
         /// </summary>
         /// <param name="scratched">Result of test.</param>
         private void ShowScratchResults(bool scratched)
