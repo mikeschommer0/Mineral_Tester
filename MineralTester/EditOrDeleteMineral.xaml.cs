@@ -63,6 +63,7 @@ namespace MineralTester.UI
                 {
                     FeedBackBox.Text = EntryErrors(validFields);
                 }
+
                 else
                 {
                     byte[] imgBytes = null;
