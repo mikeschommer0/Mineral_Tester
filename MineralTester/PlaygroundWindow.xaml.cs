@@ -473,7 +473,7 @@ namespace MineralTester.UI
             var y2 = Canvas.GetTop(tester) + r2;
 
             var d = new Vector(x2 - x1, y2 - y1); // Caluculate distance between the two edges.
-            return d.Length < r1 + r2; // If the length between their two radii is greater than to the distance between the edges, then they must be touching.
+            return d.Length < r1 + r2; // If the length between their two radii is greater than to the distance between the radii, then they must be touching.
         }
 
         /////////////////////////////////////////////////////////// TESTERS ///////////////////////////////////////////////////////////////////////////////////////////////////////
