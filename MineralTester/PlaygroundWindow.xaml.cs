@@ -328,7 +328,8 @@ namespace MineralTester.UI
                 {
                     Result.Content = new TextBlock()
                     {
-                        Text = $"{_selectedMineral.Name} was scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd()}!",
+                        // This string formats the tester name to be more visually appealing.
+                        Text = $"{_selectedMineral.Name} was scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd().ToLower()}!", 
                         TextWrapping = TextWrapping.Wrap
                     };
                 }
@@ -337,7 +338,7 @@ namespace MineralTester.UI
                 {
                     Result.Content = new TextBlock()
                     {
-                        Text = $"The mineral was scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd()}!",
+                        Text = $"The mineral was scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd().ToLower()}!",
                         TextWrapping = TextWrapping.Wrap
                     };
                 }
@@ -351,7 +352,7 @@ namespace MineralTester.UI
                 {
                     Result.Content = new TextBlock()
                     {
-                        Text = $"{_selectedMineral.Name} was not scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd()}!",
+                        Text = $"{_selectedMineral.Name} was not scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd().ToLower()}!",
                         TextWrapping = TextWrapping.Wrap
                     };
                 }
@@ -360,7 +361,7 @@ namespace MineralTester.UI
                 {
                     Result.Content = new TextBlock()
                     {
-                        Text = $"The mineral was not scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd()}!",
+                        Text = $"The mineral was not scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd().ToLower()}!",
                         TextWrapping = TextWrapping.Wrap
                     };
                 }
