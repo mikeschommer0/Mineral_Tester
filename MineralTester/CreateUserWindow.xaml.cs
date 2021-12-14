@@ -30,6 +30,7 @@ namespace MineralTester.UI
 
         private void SubmitUserInfo(object sender, RoutedEventArgs e)
         {
+            FeedBack.Text = "";
             List<string> fields = new List<string>();
             string firstName = FirstNameTextBox.Text;
             fields.Add(firstName);
@@ -43,7 +44,7 @@ namespace MineralTester.UI
 
             if (validFields.Contains(false)) // If any invalid fields, show message box for appropriate invalid field.
             {
-                MessageBox.Show(EntryErrors(validFields));
+                FeedBack.Text = EntryErrors(validFields);
             }
             else if(cbAccountType.SelectedItem == null)
             {
@@ -57,7 +58,7 @@ namespace MineralTester.UI
                     Enums.AccountType accountType = (Enums.AccountType)cbAccountType.SelectedItem;
                     User newUser = new User(0, firstName, lastName, username, password, accountType);
                     userManager.AddUser(newUser);
-                    MessageBox.Show("A new user was added.");
+                    FeedBack.Text = "A new user was added.";
                     ExitUserInfo(sender, e);
                 }
                 else
@@ -75,12 +76,12 @@ namespace MineralTester.UI
                     int result = userManager.UpdateUser(_userToUpdate);
                     if(result == 1)
                     {
-                        MessageBox.Show("The update was successful" + passwordUpdatedText);
+                        FeedBack.Text = "The update was successful" + passwordUpdatedText;
                         ExitUserInfo(sender, e);
                     }
                     else
                     {
-                        MessageBox.Show("Something went wrong.");
+                        FeedBack.Text = "Something went wrong.";
                     }
                     
                 }
