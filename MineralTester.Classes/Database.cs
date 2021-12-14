@@ -71,9 +71,9 @@ namespace MineralTester.Classes
 
                 // Create user (int id, string firstName,
                 // String lastName, string username,
-                // String password, int accountType).
+                // String password, int accountType, salt).
                 User result = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
-                    reader.GetString(3), reader.GetString(4), (Enums.AccountType)reader.GetInt32(5));
+                    reader.GetString(3), reader.GetString(4), (Enums.AccountType)reader.GetInt32(5), reader.GetString(6));
 
                 // Close reader & conn and return user.
                 reader.Close();
@@ -137,12 +137,13 @@ namespace MineralTester.Classes
                 // Create command to insert new user and populate.
                 MySqlCommand addNewUser = new MySqlCommand("INSERT INTO users " +
                     "(first_name, last_name, user_name, password, account_type)" +
-                    " VALUES(@first_name, @last_name, @user_name, @password, @account_type)", connection);
+                    " VALUES(@first_name, @last_name, @user_name, @password, @account_type, @salt)", connection);
                 addNewUser.Parameters.Add(new MySqlParameter("first_name", newUser.FirstName));
                 addNewUser.Parameters.Add(new MySqlParameter("last_name", newUser.LastName));
                 addNewUser.Parameters.Add(new MySqlParameter("user_name", newUser.Username));
                 addNewUser.Parameters.Add(new MySqlParameter("password", newUser.Password));
                 addNewUser.Parameters.Add(new MySqlParameter("account_type", newUser.AccountType));
+                addNewUser.Parameters.Add(new MySqlParameter("salt", newUser.Salt));
 
                 // Run insert and close connection
                 // ExecuteNonQuery is used as it will be useful in

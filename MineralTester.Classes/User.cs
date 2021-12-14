@@ -47,14 +47,21 @@
             set;
         }
 
+        public string Salt
+        {
+            get;
+            set;
+        }
+
         public User(int id, string firstName, string lastName, string username, string password, Enums.AccountType accountType)
         {
             _ID = id;
             FirstName = firstName;
             LastName = lastName;
             Username = username;
-            Password = password;
             AccountType = accountType;
+            Salt = SecurityHelper.GenerateSalt();
+            Password = SecurityHelper.HashPassword(password, Salt);
         }
     }
 }
