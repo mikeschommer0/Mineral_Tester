@@ -9,9 +9,11 @@ namespace MineralTester.Classes
             Database db = new Database();
             if (db.CheckUserExists(username))
             {
-                //salt password
                 User user = db.GetUser(username);
+
+                // Salt password.
                 password = SecurityHelper.HashPassword(password, user.Salt);
+
                 if (user.Password.Equals(password))
                 {
                     return user;

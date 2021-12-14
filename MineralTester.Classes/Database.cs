@@ -102,7 +102,7 @@ namespace MineralTester.Classes
                 while (reader.Read())
                 {
                     User user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
-                    reader.GetString(3), reader.GetString(4), (Enums.AccountType)reader.GetInt32(5));
+                    reader.GetString(3), reader.GetString(4), (Enums.AccountType)reader.GetInt32(5), reader.GetString(6));
 
                     users.Add(user);
                 }
@@ -136,7 +136,7 @@ namespace MineralTester.Classes
 
                 // Create command to insert new user and populate.
                 MySqlCommand addNewUser = new MySqlCommand("INSERT INTO users " +
-                    "(first_name, last_name, user_name, password, account_type)" +
+                    "(first_name, last_name, user_name, password, account_type, salt)" +
                     " VALUES(@first_name, @last_name, @user_name, @password, @account_type, @salt)", connection);
                 addNewUser.Parameters.Add(new MySqlParameter("first_name", newUser.FirstName));
                 addNewUser.Parameters.Add(new MySqlParameter("last_name", newUser.LastName));
@@ -173,13 +173,14 @@ namespace MineralTester.Classes
                 connection.Open();
 
                 MySqlCommand updateUser = new MySqlCommand("UPDATE users SET first_name = @first_name, last_name = @last_name, user_name = @user_name, " +
-                   "password = @password, account_type = @account_type WHERE user_id = @user_id", connection);
+                   "password = @password, account_type = @account_type, salt = @salt WHERE user_id = @user_id", connection);
                 updateUser.Parameters.Add(new MySqlParameter("first_name", userToUpdate.FirstName));
                 updateUser.Parameters.Add(new MySqlParameter("last_name", userToUpdate.LastName));
                 updateUser.Parameters.Add(new MySqlParameter("user_name", userToUpdate.Username));
                 updateUser.Parameters.Add(new MySqlParameter("password", userToUpdate.Password));
                 updateUser.Parameters.Add(new MySqlParameter("account_type", userToUpdate.AccountType));
                 updateUser.Parameters.Add(new MySqlParameter("user_id", userToUpdate.ID));
+                updateUser.Parameters.Add(new MySqlParameter("salt", userToUpdate.Salt));
 
                 _rowsEffected = updateUser.ExecuteNonQuery();
                 connection.Close();
