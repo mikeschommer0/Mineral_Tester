@@ -21,6 +21,8 @@ namespace MineralTester.Classes
         }
         public int UpdateUser(User userToUpdate)
         {
+            userToUpdate.Salt = SecurityHelper.GenerateSalt();
+            userToUpdate.Password = SecurityHelper.HashPassword(userToUpdate.Password, userToUpdate.Salt);
             Database db = new Database();
             int result = 0;
             try
