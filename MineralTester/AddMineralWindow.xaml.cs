@@ -25,19 +25,19 @@ namespace MineralTester.UI
 
         private void AddAnotherMineral(object sender, RoutedEventArgs e)
         {
+            FeedBack.Text = "";
             List<object> fields = new List<object>();
             String name = MineralNameTextBox.Text;
             fields.Add(name);
 
             // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
             float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0;
-            //possible combine these 2
             fields.Add(hardness);
             List<bool> validFields = bl.ValidateMineralData(fields);
 
             if (validFields.Contains(false)) // If any invaild fields, show in text box for appropriate invalid field.
             {
-                MessageBox.Show(EntryErrors(validFields));
+                FeedBack.Text = EntryErrors(validFields);
             }
             else
             {
@@ -55,7 +55,7 @@ namespace MineralTester.UI
                 }
                 else
                 {
-                    MessageBox.Show("Please select a photo and try again.");
+                    FeedBack.Text = "Please select a photo and try again.";
                 }
             }
         }

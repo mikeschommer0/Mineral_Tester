@@ -23,5 +23,6 @@
         <Label Content="You must add a valid &#xD;&#xA;jpg or png file." HorizontalAlignment="Left" Height="84" Margin="239,262,0,0" VerticalAlignment="Top" Width="180" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <wpfTool:ColorPicker HorizontalAlignment="Left" x:Name="cpColor" DisplayColorAndName="True" Margin="239,97,0,289" Width="180"/>
         <Label Content="Streak Color" Margin="10,102,0,0"/>
+        <TextBox Name="FeedBack"  HorizontalAlignment="Left" Height="68" Margin="239,337,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
     </Grid>
 </Window>
