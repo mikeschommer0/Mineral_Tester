@@ -25,6 +25,6 @@
         <Button Content="Add An Image"  FontSize="16" HorizontalAlignment="Left" Margin="565,275,0,0" Width="180" Height="35" Background="White" VerticalAlignment="Top" Click="AddAnImageButton_Click"/>
 
         <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
-        <Label Content="You must add a valid &#xD;&#xA;jpg or png file." HorizontalAlignment="Left" Height="61" Margin="565,315,0,0" VerticalAlignment="Top" Width="180" FontSize="16"/>
+        <Label Content="You must add a valid &#xD;&#xA;jpg or png file." HorizontalAlignment="Left" Height="61" Margin="565,315,0,0" VerticalAlignment="Top" Width="180" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
     </Grid>
 </Window>
