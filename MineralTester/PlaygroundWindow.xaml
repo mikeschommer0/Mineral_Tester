@@ -39,6 +39,7 @@
         <Button Content="Random Mineral" HorizontalAlignment="Left" Margin="521,524,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="RandomMineralButton"/>
         <Button Content="Clear" HorizontalAlignment="Left" Margin="521,552,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="ResetPlaygroundButton"/>
         <ListBox Name="ScratchTesters" SelectionChanged="ScratchTesters_SelectionChanged" Margin="805,70,10,215" IsEnabled="False"/>
+        <Label Name="Result" FontSize="14" HorizontalAlignment="Left" Margin="805,403,0,0" VerticalAlignment="Top" Width="167" Height="72"/>
 
     </Grid>
 </Window>

@@ -193,6 +193,17 @@ namespace MineralTester.UI
         }
 
         /// <summary>
+        /// Releases mouse capture when user is done dragging mineral.
+        /// </summary>
+        /// <param name="sender"> Reference to the control/object that raised the event.</param>
+        /// <param name="e"> Contains event data.</param>
+        private void Playgroud_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.dragObj = null;
+            this.Playground.ReleaseMouseCapture();
+        }
+
+        /// <summary>
         /// Shows acid result. 
         /// </summary>
         /// <param name="reacted">Result of test.</param>
@@ -201,10 +212,47 @@ namespace MineralTester.UI
             if (reacted)
             {
                 _mineral.Fill = Brushes.Green;
+
+                // If the user wants to learn results by mineral name.
+                if ((bool)ShowName.IsChecked || !ShowName.IsEnabled)
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = $"{_selectedMineral.Name} reacted with the Hydrochloric acid!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
+                else
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = "The mineral reacted with the Hydrochloric acid!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
             }
             else
             {
                 _mineral.Fill = Brushes.Red;
+
+                // If the user wants to learn results by mineral name.
+                if ((bool)ShowName.IsChecked || !ShowName.IsEnabled)
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = $"{_selectedMineral.Name} did not react with the Hydrochloric acid!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
+                else
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = "The mineral did not react with the Hydrochloric acid!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
+
             }
             ResultTimer();
         }
@@ -219,11 +267,48 @@ namespace MineralTester.UI
             {
                 Canvas.SetLeft(_mineral, 500);
                 Canvas.SetTop(_mineral, 80);
-            }
 
+                // If the user wants to learn results by mineral name.
+                if ((bool)ShowName.IsChecked || !ShowName.IsEnabled)
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = $"{_selectedMineral.Name} was attracted to the magnet!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
+                // If the user wants to learn results without knowing name of mineral.
+                else
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = "The mineral was attracted to the magnet!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
+            }
             else
             {
                 _mineral.Fill = Brushes.Red;
+
+                // If the user wants to learn results by mineral name.
+                if ((bool)ShowName.IsChecked || !ShowName.IsEnabled)
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = $"{_selectedMineral.Name} was not attracted to the magnet!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
+                // If the user wants to learn results without knowing name of mineral.
+                else
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = "The mineral was not attracted to the magnet!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
             }
             ResultTimer();
         }
@@ -236,12 +321,49 @@ namespace MineralTester.UI
         {
             if (scratched)
             {
-
                 _mineral.Fill = Brushes.Green;
+
+                // If the user wants to learn results by mineral name.
+                if ((bool)ShowName.IsChecked || !ShowName.IsEnabled)
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = $"{_selectedMineral.Name} was scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd()}!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
+                // If the user wants to learn results without knowing name of mineral.
+                else
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = $"The mineral was scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd()}!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
             }
             else
             {
                 _mineral.Fill = Brushes.Red;
+
+                // If the user wants to learn results by mineral name.
+                if ((bool)ShowName.IsChecked || !ShowName.IsEnabled)
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = $"{_selectedMineral.Name} was not scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd()}!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
+                // If the user wants to learn results without knowing name of mineral.
+                else
+                {
+                    Result.Content = new TextBlock()
+                    {
+                        Text = $"The mineral was not scratched by a {_selectedTester.Name.Split('(')[0].TrimEnd()}!",
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                }
             }
             ResultTimer();
         }
@@ -284,6 +406,7 @@ namespace MineralTester.UI
                     _brush.ImageSource = _bitmap;
                     _mineral.Fill = _brush;
                 }
+                Result.Content = "";
             });
         }
 
@@ -306,17 +429,6 @@ namespace MineralTester.UI
 
             var d = new Vector(x2 - x1, y2 - y1); // Caluculate distance between the two edges.
             return d.Length < r1 + r2; // If the length between their two radii is greater than to the distance between the edges, then they must be touching.
-        }
-
-        /// <summary>
-        /// Releases mouse capture when user is done dragging mineral.
-        /// </summary>
-        /// <param name="sender"> Reference to the control/object that raised the event.</param>
-        /// <param name="e"> Contains event data.</param>
-        private void Playgroud_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            this.dragObj = null;
-            this.Playground.ReleaseMouseCapture();
         }
 
         /////////////////////////////////////////////////////////// TESTERS ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -448,7 +560,8 @@ namespace MineralTester.UI
             if ((bool)ShowName.IsChecked)
             {
                 MineralList.DisplayMemberPath = "Name";
-            } else
+            }
+            else
             {
                 MineralList.DisplayMemberPath = "Hidden";
             }
