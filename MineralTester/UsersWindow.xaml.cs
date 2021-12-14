@@ -7,7 +7,9 @@ namespace MineralTester.UI
 {
 
     /// <summary>
-    /// Interaction logic for UsersWindow.xaml
+    /// Interaction logic for UserWindow.xaml
+    /// 
+    /// Coded by: Seth Frevert
     /// </summary>
     public partial class UsersWindow : Window
     {
