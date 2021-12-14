@@ -26,6 +26,7 @@ namespace MineralTester.UI
 
         private void AddAnotherMineral(object sender, RoutedEventArgs e)
         {
+            FeedBackBox.Text = "";
             List<object> fields = new List<object>();
             String name = MineralNameTextBox.Text;
             fields.Add(name);
@@ -36,9 +37,9 @@ namespace MineralTester.UI
             fields.Add(hardness);
             List<bool> validFields = bl.ValidateMineralData(fields);
 
-            if (validFields.Contains(false)) // If any invaild fields, show message box for appropriate invalid field.
+            if (validFields.Contains(false)) // If any invaild fields, show in text box for appropriate invalid field.
             {
-                MessageBox.Show(EntryErrors(validFields));
+                FeedBackBox.Text = EntryErrors(validFields);
             }
             else
             {
@@ -56,30 +57,30 @@ namespace MineralTester.UI
                 }
                 else
                 {
-                    MessageBox.Show("Please select a photo and try again.");
+                    FeedBackBox.Text = "Please select a photo and try again.";
                 }
             }
         }
 
         private string EntryErrors(List<bool> validFields)
         {
-            string errors = "Error(s) while adding Mineral:\n";
+            string errors = "Error(s) while adding Mineral:";
 
             if (validFields[0] == false)
             {
-                errors += "\nInvalidNameLength";
+                errors += "\nInvalid Name Length";
             }
             if (validFields[1] == false)
             {
-                errors += "\nInvalidHardnessLevel";
+                errors += "\nInvalid Hardness Level";
             }
             if (MineralImage.Source == null)
             {
-                errors += "\nNoPhotoChosen";
+                errors += "\nNo Photo Chosen";
             }
             if (validFields[2] == false)
             {
-                errors += "\nMineralNameAlreadyExists";
+                errors += "\nMineral Name Already Exists";
             }
 
             return errors;
@@ -102,6 +103,7 @@ namespace MineralTester.UI
                 selectedFileName = dlg.FileName;
                 Uri fileUri = new Uri(selectedFileName);
                 MineralImage.Source = new BitmapImage(fileUri);
+                AddMineral.IsEnabled = true;
             }
         }
 

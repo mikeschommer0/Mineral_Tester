@@ -18,7 +18,7 @@
         <TextBox Name="MineralNameTextBox" MaxLength="30" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,78,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
         <TextBox Name="MineralHardnessTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="305,126,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"  Width="180" Height="25"/>
 
-        <Button Content="Add Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="AddAnotherMineral"/>
+        <Button Name="AddMineral" Content="Add Mineral" FontSize="16" HorizontalAlignment="Center" Margin="0,319,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="AddAnotherMineral" IsEnabled="False"/>
         <Button Content="Cancel" FontSize="16" HorizontalAlignment="Center" Margin="0,359,0,0" VerticalAlignment="Top"  Width="180" Height="35" Background="White" Click="ExitMineralWindow"/>
         <CheckBox x:Name="AcidReaction" Content="Reacts With Acid" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,175,0,0" VerticalAlignment="Top" FontSize="25" Checked="ReactsWithAcid" Unchecked="DoesntReactWithAcid"/>
         <CheckBox x:Name="MagneticReaction" Content="Magnetic" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,231,0,0" VerticalAlignment="Top" FontSize="25" Checked="IsMagnetic" Unchecked="IsntMagnetic"/>
@@ -26,5 +26,6 @@
 
         <Image Name ="MineralImage" HorizontalAlignment="Left" Height="180" Margin="512,78,0,0" VerticalAlignment="Top" Width="278"/>
         <Label Content="You must add a valid &#xD;&#xA;jpg or png file." HorizontalAlignment="Left" Height="61" Margin="565,315,0,0" VerticalAlignment="Top" Width="180" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Name="FeedBackBox" Text="" TextWrapping="Wrap" Margin="80,319,515,40" TextAlignment="Center"/>
     </Grid>
 </Window>
