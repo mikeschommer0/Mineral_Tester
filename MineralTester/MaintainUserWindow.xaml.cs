@@ -13,12 +13,12 @@ namespace MineralTester.UI
     /// <summary>
     /// Interaction logic for CreateUserWindow.xaml
     /// </summary>
-    public partial class ManageUserWindow : Window
+    public partial class MaintainUserWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
         User _userToUpdate = null;
 
-        public ManageUserWindow(User userToUpdate = null)
+        public MaintainUserWindow(User userToUpdate = null)
         {
             InitializeComponent();
             cbAccountType.ItemsSource = Enum.GetValues(typeof(Enums.AccountType)).Cast<Enums.AccountType>();
@@ -52,7 +52,7 @@ namespace MineralTester.UI
             string password = PasswordTextBox.Password;
             fields.Add(password);
             List<bool> validFields = bl.ValidateUserData(fields);
-            if (validFields[0] == false || validFields[1] == false || validFields[2] == false || validFields[3] == false)
+            if (validFields.Contains(false))
             {
                 FeedBack.Text = EntryErrors(validFields);
             }

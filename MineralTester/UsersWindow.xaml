@@ -4,12 +4,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Manage Users" Height="450" Width="595" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Manage Users" Height="464" Width="595" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Background="#FF3E3E42">
-        <DataGrid Name="dgUsers" HorizontalAlignment="Left" AutoGenerateColumns="True" AutoGeneratingColumn="dgUsers_AutoGeneratingColumn" Margin="10,10,0,24" Width="438"/>
+        <DataGrid Name="dgUsers" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="True" AutoGeneratingColumn="dgUsers_AutoGeneratingColumn" Margin="10,10,0,0" Width="438" Height="380"/>
         <Button Content="Add user" Margin="453,10,0,0" Width="114" Click="AddUserClick"/>
         <Button Content="Update user" Margin="453,55,0,0" Width="114" Click="UpdateUserClick"/>
         <Button Content="Delete user" Margin="453,100,0,0" Width="114" Click="DeleteUserClick"/>
         <Button Content="Exit" Margin="453,145,0,0" Width="114" Click="ExitClick"/>
+        <CheckBox Name="chkConfirm" Content="Show deletion confirmation" IsChecked="True" HorizontalAlignment="Left" Margin="10,395,0,0" VerticalAlignment="Top" Width="253"/>
     </Grid>
 </Window>

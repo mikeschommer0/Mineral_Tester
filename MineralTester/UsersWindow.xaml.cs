@@ -70,7 +70,7 @@ namespace MineralTester.UI
         /// <param name="e"></param>
         private void AddUserClick(object sender, RoutedEventArgs e)
         {
-            ManageUserWindow createUserWindow = new ManageUserWindow();
+            MaintainUserWindow createUserWindow = new MaintainUserWindow();
             createUserWindow.ShowDialog();
             DisplayUsers();
         }
@@ -88,7 +88,7 @@ namespace MineralTester.UI
                 MessageBox.Show("Select a user to update.");
                 return;
             }
-            ManageUserWindow createUserWindow = new ManageUserWindow(userToUpdate);
+            MaintainUserWindow createUserWindow = new MaintainUserWindow(userToUpdate);
             createUserWindow.ShowDialog();
             DisplayUsers();
         }
@@ -103,12 +103,28 @@ namespace MineralTester.UI
             User userToDelete = dgUsers.SelectedItem as User;
             if (userToDelete == null)
             {
-                MessageBox.Show("Select a user to delete.");
+                MessageBox.Show("Select a user to delete");
                 return;
             }
             IUserManager userManager = new UserManager();
-            userManager.DeleteUser(userToDelete);
-            DisplayUsers();
+            if (chkConfirm.IsChecked == true)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete this account?", "Deletion Confirmation", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    userManager.DeleteUser(userToDelete);
+                    DisplayUsers();
+                }
+                else
+                {
+                    DisplayUsers();
+                }
+            }
+            else
+            {
+                userManager.DeleteUser(userToDelete);
+                DisplayUsers();
+            }
         }
 
         /// <summary>
