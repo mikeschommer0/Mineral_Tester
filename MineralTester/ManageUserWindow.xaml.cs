@@ -13,18 +13,19 @@ namespace MineralTester.UI
     /// <summary>
     /// Interaction logic for CreateUserWindow.xaml
     /// </summary>
-    public partial class CreateUserWindow : Window
+    public partial class ManageUserWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
         User _userToUpdate = null;
 
-        public CreateUserWindow(User userToUpdate = null)
+        public ManageUserWindow(User userToUpdate = null)
         {
             InitializeComponent();
             cbAccountType.ItemsSource = Enum.GetValues(typeof(Enums.AccountType)).Cast<Enums.AccountType>();
             cbAccountType.SelectedIndex = 2;
             if (userToUpdate != null)
             {
+                Title = "Update user";
                 _userToUpdate = userToUpdate;
                 FirstNameTextBox.Text = _userToUpdate.FirstName;
                 LastNameTextBox.Text = _userToUpdate.LastName;
