@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
+/// <summary>
+/// Written by Rick Bowman
+/// XAML styling by Rick Bowman
+/// </summary>
 namespace MineralTester.UI
 {
+    /// <summary>
+    /// Interaction logic for MaintainQuestionWindow.xaml
+    /// </summary>
     public partial class MaintainQuestionWindow : Window
     {
         IDatabase database = new Database();
@@ -234,6 +241,11 @@ namespace MineralTester.UI
             return true;
         }
 
+        /// <summary>
+        /// Exits the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitClick(object sender, RoutedEventArgs e)
         {
             Close();

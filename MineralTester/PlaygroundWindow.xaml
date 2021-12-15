@@ -1,11 +1,10 @@
 ﻿<Window x:Class="MineralTester.UI.PlaygroundWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="Mineral Playground" Height="706" Width="1005" WindowStartupLocation="CenterScreen">
+        Title="Mineral Playground" Height="706" Width="1005" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Background="#FF3E3E42">
         <Canvas x:Name="Playground" ClipToBounds="True" Margin="196,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="Playground_MouseDown" MouseUp="Playground_MouseUp" MouseMove="Playground_MouseMove"  PreviewMouseMove="Playgroud_PreviewMouseMove" PreviewMouseUp="Playgroud_PreviewMouseUp" Height="454" Width="777">
             <Canvas.Background>
@@ -43,6 +42,5 @@
         <Button Content="Clear" Margin="11,559,0,0" Width="180" Click="ResetPlaygroundButton"/>
         <ListBox Name="ScratchTesters" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="ScratchTesters_SelectionChanged" Margin="196,469,0,0" IsEnabled="False" Width="281" Height="175"/>
         <Label Name="Result" Margin="770,469,0,0" Width="203" Height="100"/>
-
     </Grid>
 </Window>

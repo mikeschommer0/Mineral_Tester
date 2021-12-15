@@ -1,7 +1,13 @@
 ﻿using System.Collections.Generic;
 
+/// <summary>
+/// Written by: Rick Bowman
+/// </summary>
 namespace MineralTester.Classes
 {
+    /// <summary>
+    /// Class representing a question
+    /// </summary>
     public class Question
     {
         public int QuestionID { get; set; }

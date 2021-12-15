@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MineralTester.UI", "Mineral
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MineralTester.Classes", "..\MineralTester.Classes\MineralTester.Classes.csproj", "{92496F44-656C-47AC-93C0-F142E8E85D3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralTester.Tests", "..\MineralTester.Tests\MineralTester.Tests.csproj", "{2EABF274-CCE0-4E33-9250-08DBF3A59CF7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{92496F44-656C-47AC-93C0-F142E8E85D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92496F44-656C-47AC-93C0-F142E8E85D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92496F44-656C-47AC-93C0-F142E8E85D3D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EABF274-CCE0-4E33-9250-08DBF3A59CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EABF274-CCE0-4E33-9250-08DBF3A59CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EABF274-CCE0-4E33-9250-08DBF3A59CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EABF274-CCE0-4E33-9250-08DBF3A59CF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

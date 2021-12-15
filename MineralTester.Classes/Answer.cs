@@ -1,5 +1,12 @@
-﻿namespace MineralTester.Classes
+﻿/// <summary>
+/// Written by: Rick Bowman
+/// </summary>
+
+namespace MineralTester.Classes
 {
+    /// <summary>
+    /// Class representing an answer to a question.
+    /// </summary>
     public class Answer
     {
         public string Description { get; set; }

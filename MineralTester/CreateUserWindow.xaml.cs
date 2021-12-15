@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
+/// <summary>
+/// Coded by: Quinn Nimmer
+/// XAML styling by Rick Bowman
+/// </summary>
 namespace MineralTester.UI
 {
     /// <summary>
     /// Interaction logic for CreateUserWindow.xaml
-    /// 
-    /// Coded by: Quinn Nimmer.
     /// </summary>
     public partial class CreateUserWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
         User _userToUpdate = null;
+
         public CreateUserWindow(User userToUpdate = null)
         {
             InitializeComponent();
@@ -30,6 +33,11 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Handles the submission of user information
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SubmitUserInfo(object sender, RoutedEventArgs e)
         {
             FeedBack.Text = "";
@@ -43,12 +51,11 @@ namespace MineralTester.UI
             string password = PasswordTextBox.Password;
             fields.Add(password);
             List<bool> validFields = bl.ValidateUserData(fields);
-
-            if (validFields.Contains(false)) // If any invalid fields, show message box for appropriate invalid field.
+            if (validFields.Contains(false))
             {
                 FeedBack.Text = EntryErrors(validFields);
             }
-            else if(cbAccountType.SelectedItem == null)
+            else if (cbAccountType.SelectedItem == null)
             {
                 MessageBox.Show("Please select a account type and try again.");
             }
@@ -76,7 +83,7 @@ namespace MineralTester.UI
                     }
                     _userToUpdate.AccountType = (Enums.AccountType)cbAccountType.SelectedItem;
                     int result = userManager.UpdateUser(_userToUpdate);
-                    if(result == 1)
+                    if (result == 1)
                     {
                         FeedBack.Text = "The update was successful" + passwordUpdatedText;
                         ExitUserInfo(sender, e);
@@ -85,11 +92,16 @@ namespace MineralTester.UI
                     {
                         FeedBack.Text = "Something went wrong.";
                     }
-                    
+
                 }
             }
         }
 
+        /// <summary>
+        /// Builds a string representation of the errors encountered during input sanitation.
+        /// </summary>
+        /// <param name="validFields"> Represents a list of valid or invalid inputs. </param>
+        /// <returns> A string representation of sanitation errors. </returns>
         private string EntryErrors(List<bool> validFields)
         {
             string errors = "Error(s) while updating User:";

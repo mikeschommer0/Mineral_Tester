@@ -1,11 +1,10 @@
 ﻿<Window x:Class="MineralTester.UI.QuestionsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="Manage Questions" Height="479" Width="716"  WindowStartupLocation="CenterScreen">
+        Title="Manage Questions" Height="479" Width="716"  WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Background="#FF3E3E42">
         <Label Content="Questions" Margin="10,10,0,0" Width="110" Height="35"/>
         <ListView x:Name="lvQuestions" HorizontalAlignment="Left" SelectionChanged="lvQuestions_SelectionChanged" Height="329" Margin="9,50,0,0" VerticalAlignment="Top" Width="330" SelectionMode="Single"/>
@@ -13,7 +12,7 @@
         <Button Content="Delete question" Click="DeleteQuestionClick" Width="160" Margin="355,389,0,0"/>
         <DataGrid x:Name="dgAnswers" AutoGenerateColumns="True" AutoGeneratingColumn="dgAnswers_AutoGeneratingColumn" HorizontalAlignment="Left" Height="329" Margin="355,50,0,0" VerticalAlignment="Top" Width="330" SelectionMode="Single"/>
         <Label Content="Answers" Margin="355,10,0,0" Width="101" Height="35"/>
-        <Button Content="Update question"  Margin="189,389,0,0" Click="UpdateQuestionClick" Width="150"/>
+        <Button Content="Update question"  Margin="179,389,0,0" Click="UpdateQuestionClick" Width="160"/>
         <Button Content="Exit" Click="ExitClick" Width="160" Margin="525,389,0,0"/>
     </Grid>
 </Window>

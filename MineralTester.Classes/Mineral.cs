@@ -1,8 +1,10 @@
-﻿namespace MineralTester.Classes
+﻿/// <summary>
+/// Written by: Mike Schommer
+/// </summary>
+namespace MineralTester.Classes
 {
     /// <summary>
-    /// Mineral Class.
-    /// Written by: Mike Schommer
+    /// Mineral class.
     /// </summary>
     public class Mineral
     {
@@ -78,7 +80,7 @@
         {
 
         }
-        public Mineral(int id, string name, float hardness, bool isMagnetic, bool acidReaction, byte[] image, string streakColor) // Image object cannot be used as a parameter as per our class diagram.
+        public Mineral(int id, string name, float hardness, bool isMagnetic, bool acidReaction, byte[] image, string streakColor)
         {
             _ID = id;
             Name = name;

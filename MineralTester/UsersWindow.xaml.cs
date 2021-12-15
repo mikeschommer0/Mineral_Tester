@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
+/// <summary>
+/// Written by Seth Frevert
+/// XAML styling by Rick Bowman
+/// </summary>
 namespace MineralTester.UI
 {
 
     /// <summary>
     /// Interaction logic for UserWindow.xaml
-    /// 
-    /// Coded by: Seth Frevert
     /// </summary>
     public partial class UsersWindow : Window
     {
@@ -21,6 +23,9 @@ namespace MineralTester.UI
             DisplayUsers();
         }
 
+        /// <summary>
+        /// Displays the users
+        /// </summary>
         private void DisplayUsers()
         {
             List<User> users = database.GetAllUsers();
@@ -28,6 +33,11 @@ namespace MineralTester.UI
             dgUsers.ItemsSource = users;
         }
 
+        /// <summary>
+        /// Formats data grid columns
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgUsers_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "ID" || e.Column.Header.ToString() == "FullName" || e.Column.Header.ToString() == "Password")
@@ -53,6 +63,11 @@ namespace MineralTester.UI
             e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
+        /// <summary>
+        /// Handles a user selecting add user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddUserClick(object sender, RoutedEventArgs e)
         {
             CreateUserWindow createUserWindow = new CreateUserWindow();
@@ -60,6 +75,11 @@ namespace MineralTester.UI
             DisplayUsers();
         }
 
+        /// <summary>
+        /// Handles a user selecting to update a user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateUserClick(object sender, RoutedEventArgs e)
         {
             User userToUpdate = dgUsers.SelectedItem as User;
@@ -73,6 +93,11 @@ namespace MineralTester.UI
             DisplayUsers();
         }
 
+        /// <summary>
+        /// Handles a user selecting delete a user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteUserClick(object sender, RoutedEventArgs e)
         {
             User userToDelete = dgUsers.SelectedItem as User;
@@ -86,6 +111,11 @@ namespace MineralTester.UI
             DisplayUsers();
         }
 
+        /// <summary>
+        /// Exits the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitClick(object sender, RoutedEventArgs e)
         {
             Close();

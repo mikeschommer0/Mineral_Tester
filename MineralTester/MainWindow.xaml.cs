@@ -1,12 +1,14 @@
 ﻿using MineralTester.Classes;
 using System.Windows;
 
+/// <summary>
+/// Written by Quinn Nimmer
+/// </summary>
 namespace MineralTester.UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
-    /// 
-    /// Coded by: Quinn Nimmer
+    /// XAML styling by Rick bowman
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -15,6 +17,11 @@ namespace MineralTester.UI
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Ensures user inputs correct account information and handles loggin them in
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SignInButton(object sender, RoutedEventArgs e)
         {
             if (txtUsername.Text == string.Empty)

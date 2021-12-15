@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
+/// <summary>
+/// Written by Rick Bowman
+/// XAML styling by Rick Bowman
+/// </summary>
 namespace MineralTester.UI
 {
     /// <summary>
@@ -26,6 +30,11 @@ namespace MineralTester.UI
             dgMinerals.ItemsSource = minerals;
         }
 
+        /// <summary>
+        /// Handles a user selecting to add a new mineral
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddMineralClick(object sender, RoutedEventArgs e)
         {
             AddMineralWindow addMineral = new AddMineralWindow();
@@ -33,6 +42,11 @@ namespace MineralTester.UI
             DisplayMinerals();
         }
 
+        /// <summary>
+        /// Handles a user selecting to update a mineral
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateMineralClick(object sender, RoutedEventArgs e)
         {
             Mineral mineralToUpdate = dgMinerals.SelectedItem as Mineral;
@@ -42,11 +56,16 @@ namespace MineralTester.UI
                 return;
             }
             mineralToUpdate = businessLogic.GetMineral(mineralToUpdate.Name);
-            EditOrDeleteMineral editOrDeleteMineral = new EditOrDeleteMineral(mineralToUpdate);
+            UpdateMineralWindow editOrDeleteMineral = new UpdateMineralWindow(mineralToUpdate);
             editOrDeleteMineral.ShowDialog();
             DisplayMinerals();
         }
 
+        /// <summary>
+        /// Handles a user selecting to delete a mineral
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteMineralClick(object sender, RoutedEventArgs e)
         {
             Mineral mineralToDelete = dgMinerals.SelectedItem as Mineral;
@@ -60,6 +79,11 @@ namespace MineralTester.UI
             DisplayMinerals();
         }
 
+        /// <summary>
+        /// Formats data grid columns
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgMinerals_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "ID" || e.Column.Header.ToString() == "Image")
@@ -78,9 +102,18 @@ namespace MineralTester.UI
             {
                 e.Column.Visibility = Visibility.Hidden;
             }
+            if (e.Column.Header.ToString() == "StreakColor")
+            {
+                e.Column.Header = "Streak Color";
+            }
             e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
+        /// <summary>
+        /// Exits the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitClick(object sender, RoutedEventArgs e)
         {
             Close();

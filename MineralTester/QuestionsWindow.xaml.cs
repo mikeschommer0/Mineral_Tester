@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
+/// <summary>
+/// Written by Rick Bowman
+/// XAML styling by Rick Bowman
+/// </summary>
 namespace MineralTester.UI
 {
     /// <summary>
@@ -114,6 +118,11 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Exits the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitClick(object sender, RoutedEventArgs e)
         {
             Close();

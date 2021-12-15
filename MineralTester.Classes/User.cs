@@ -1,8 +1,10 @@
-﻿namespace MineralTester.Classes
+﻿/// <summary>
+/// Written by Quinn Nimmer
+/// </summary>
+namespace MineralTester.Classes
 {
     /// <summary>
     /// User class.
-    /// Written by Quinn Nimmer.
     /// </summary>
     public class User
     {

@@ -1,115 +1,115 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-
+/// <summary>
+/// Written by Quinn Nimmer & Mike Schommer
+/// </summary>
 namespace MineralTester.Classes
 {
     public class BusinessLogic : IBusinessLogic
     {
         IDatabase db = new Database();
-        public List<bool> ValidateMineralData(List<object> fields)
+
+        /// <summary>
+        /// Validates mineral related data to ensure it matches database column requirements.
+        /// </summary>
+        /// <param name="fieldsToValidate"> The fields being validated. </param>
+        /// <returns> A list of booleans representing which fields are valid and which are not. </returns>
+        public List<bool> ValidateMineralData(List<object> fieldsToValidate)
         {
             List<bool> validFields = new List<bool> { true, true, true };
-            string name = (String)fields[0];
-            float hardness = (float)fields[1];
-
+            string name = (string)fieldsToValidate[0];
+            float hardness = (float)fieldsToValidate[1];
             if (name.Length == 0 || name.Length > 30)
             {
                 validFields[0] = false;
             }
-
             if (hardness == 0 || hardness > 10.0)
             {
                 validFields[1] = false;
             }
-
             if (db.CheckMineralExists(name))
             {
                 validFields[2] = false;
             }
-
-
             return validFields;
         }
 
-        public List<bool> ValidateUserData(List<string> fields)
+        /// <summary>
+        /// Validates user related data to ensure it matches database column requirements
+        /// </summary>
+        /// <param name="fieldsToValidate"> The fields being validated.</param>
+        /// <returns></returns>
+        public List<bool> ValidateUserData(List<string> fieldsToValidate)
         {
             List<bool> validFields = new List<bool> { true, true, true, true, true };
-            string firstName = fields[0];
-            string lastName = fields[1];
-            string username = fields[2];
-            string password = fields[3];
-
+            string firstName = fieldsToValidate[0];
+            string lastName = fieldsToValidate[1];
+            string username = fieldsToValidate[2];
+            string password = fieldsToValidate[3];
             if (firstName.Length == 0 || firstName.Length > 50)
             {
                 validFields[0] = false;
             }
-
             if (lastName.Length == 0 || lastName.Length > 50)
             {
                 validFields[1] = false;
             }
-
             if (username.Length == 0 || username.Length > 50)
             {
                 validFields[2] = false;
             }
-
             if (password.Length < 8)
             {
                 validFields[3] = false;
             }
-
-            // Added to check if username is in use.
             if (db.CheckUserExists(username))
             {
                 validFields[4] = false;
             }
-
             return validFields;
         }
 
         /// <summary>
-        /// Call to DB to add mineral.
+        /// Adds a mineral to the database.
         /// </summary>
-        /// <param name="toAdd"> Mineral to add to db. </param>
-        public void AddMineral(Mineral toAdd)
+        /// <param name="mineralToAdd"> The mineral to add to the database. </param>
+        public void AddMineral(Mineral mineralToAdd)
         {
-            db.AddMineral(toAdd);
+            db.AddMineral(mineralToAdd);
         }
 
         /// <summary>
-        /// Call to DB to delete mineral.
+        /// Deletes a mineral from the database.
         /// </summary>
-        /// <param name="toDelete"> Mineral to delete from db. </param>
-        public void DeleteMineral(Mineral toDelete)
+        /// <param name="mineralToDelete"> The mineral to delete. </param>
+        public void DeleteMineral(Mineral mineralToDelete)
         {
-            db.DeleteMineral(toDelete);
+            db.DeleteMineral(mineralToDelete);
         }
 
         /// <summary>
-        /// Get Mineral from DB.
+        /// Gets a specific mineral from the database.
         /// </summary>
-        /// <param name="mineralName"></param>
-        /// <returns></returns>
+        /// <param name="mineralName"> The name of the mineral to retrieve. </param>
+        /// <returns> The mineral specified mineral. </returns>
         public Mineral GetMineral(string mineralName)
         {
             return db.GetMineral(mineralName);
         }
 
         /// <summary>
-        /// Update mineral in DB (Based on ID).
+        /// Updates a mineral in the database.
         /// </summary>
-        /// <param name="toUpdate"></param>
-        public void UpdateMineral(Mineral toUpdate)
+        /// <param name="mineralToUpdate"> The mineral to update. </param>
+        public void UpdateMineral(Mineral mineralToUpdate)
         {
-            db.UpdateMineral(toUpdate);
+            db.UpdateMineral(mineralToUpdate);
         }
 
         /// <summary>
-        /// Get list of minerals from DB.
+        /// Gets a list of all minerals from the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns> A list of minerals. </returns>
         public List<Mineral> GetMinerals()
         {
             return db.GetMinerals();

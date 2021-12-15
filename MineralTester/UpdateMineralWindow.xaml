@@ -1,24 +1,21 @@
-﻿<Window x:Class="MineralTester.UI.EditOrDeleteMineral"
+﻿<Window x:Class="MineralTester.UI.UpdateMineralWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-        xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="Edit Mineral" Height="465" Width="665" WindowStartupLocation="CenterScreen">
+        Title="Edit Mineral" Height="465" Width="665" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Background="#FF3E3E42">
         <Label Content="Mineral Name" Margin="10,10,0,0"/>
         <Label Content="Hardness (0.1-10.0)" Margin="10,49,0,0"/>
         <TextBox Name="MineralNameTextBox" MaxLength="30" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="239,15,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="25"/>
         <TextBox Name="MineralHardnessTextBox" VerticalContentAlignment="Center" Padding="2" HorizontalAlignment="Left" Margin="239,54,0,0"  TextWrapping="Wrap" VerticalAlignment="Top"  Width="180" Height="25"/>
-
         <Button Content="Update Mineral" Margin="457,15,0,0" Width="180" Click="UpdateMineral"/>
         <Button Content="Exit" Margin="457,61,0,0"  Width="180" Click="ExitMineralWindow"/>
         <CheckBox x:Name="AcidReaction" Content="Reacts With Acid" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Checked="ReactsWithAcid" Unchecked="DoesntReactWithAcid" Width="180"/>
         <CheckBox x:Name="MagneticReaction" Content="Magnetic" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="239,170,0,0" VerticalAlignment="Top" Checked="IsMagnetic" Unchecked="IsntMagnetic" Width="180"/>
         <Button Content="New Image" Margin="239,217,0,0" Width="180" Click="AddAnImageButton_Click"/>
-
         <Image Name ="MineralImage" HorizontalAlignment="Left" Height="185" Margin="10,217,0,0" VerticalAlignment="Top" Width="210"/>
         <Label Content="If no image is provided,&#xD;&#xA;the image will stay &#xD;&#xA;the same. (jpg/png)" Height="84" Margin="239,262,0,0" Width="175" FontSize="16"/>
         <wpfTool:ColorPicker HorizontalAlignment="Left" x:Name="cpColor" DisplayColorAndName="True" Margin="239,97,0,289" Width="180"/>

@@ -1,11 +1,10 @@
 ﻿<Window x:Class="MineralTester.UI.UsersWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MineralTester.UI"
         mc:Ignorable="d"
-        Title="Manage Users" Height="450" Width="595" WindowStartupLocation="CenterScreen">
+        Title="Manage Users" Height="450" Width="595" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Background="#FF3E3E42">
         <DataGrid Name="dgUsers" HorizontalAlignment="Left" AutoGenerateColumns="True" AutoGeneratingColumn="dgUsers_AutoGeneratingColumn" Margin="10,10,0,24" Width="438"/>
         <Button Content="Add user" Margin="453,10,0,0" Width="114" Click="AddUserClick"/>

@@ -7,23 +7,24 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
+/// <summary>
+/// Coded by: Quinn Nimmer
+/// XAML styling by Rick Bowman
+/// </summary>
 namespace MineralTester.UI
 {
     /// <summary>
-    /// Interaction logic for EditOrDeleteMineral.xaml
-    /// 
-    /// Coded by: Quinn Nimmer
+    /// Interaction logic for UpdateMineralWindow.xaml
     /// </summary>
-    public partial class EditOrDeleteMineral : Window
+    public partial class UpdateMineralWindow : Window
     {
         IBusinessLogic bl = new BusinessLogic();
-
         private Mineral mineralToModify;
-
         private string selectedFileName = "";
         private bool magnetic;
         private bool acidReaction;
-        public EditOrDeleteMineral(Mineral mineralToUpdate = null)
+
+        public UpdateMineralWindow(Mineral mineralToUpdate = null)
         {
             InitializeComponent();
             if (mineralToUpdate != null)
@@ -33,6 +34,10 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Populates the interface with mineral data.
+        /// </summary>
+        /// <param name="mineral"> The mineral to pull data from. </param>
         private void PopulateInterface(Mineral mineral)
         {
             MineralNameTextBox.Text = mineral.Name;
@@ -43,34 +48,30 @@ namespace MineralTester.UI
             cpColor.SelectedColor = (Color)ColorConverter.ConvertFromString(mineral.StreakColor);
         }
 
+        /// <summary>
+        /// Gets information from the UI to update a mineral's data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateMineral(object sender, RoutedEventArgs e)
         {
             if (mineralToModify != null)
             {
                 mineralToModify = bl.GetMineral(mineralToModify.Name);
                 mineralToModify.Name = MineralNameTextBox.Text;
-
                 List<object> fields = new List<object>();
-
-                String name = MineralNameTextBox.Text;
+                string name = MineralNameTextBox.Text;
                 fields.Add(name);
-
-                // Try to parse as float, if it fails it will default to zero. Validator will fail any value of 0.
                 float hardness = float.TryParse(MineralHardnessTextBox.Text.Trim(), out hardness) ? hardness : 0;
                 fields.Add(hardness);
-
                 List<bool> validFields = bl.ValidateMineralData(fields);
-
                 if (validFields[0] == false || validFields[1] == false)
                 {
                     FeedBack.Text = EntryErrors(validFields);
                 }
-
                 else
                 {
-                    byte[] imgBytes = null;
-
-                    // Only read file if exists.
+                    byte[] imgBytes;
                     if (!selectedFileName.Equals(""))
                     {
                         FileStream stream = new FileStream(selectedFileName, FileMode.Open, FileAccess.Read);
@@ -78,30 +79,27 @@ namespace MineralTester.UI
                         imgBytes = br.ReadBytes((int)stream.Length);
                         string streakColor = cpColor.SelectedColor.ToString();
                         mineralToModify = new Mineral(mineralToModify.ID, name, hardness, magnetic, acidReaction, imgBytes, streakColor);
-
                         bl.UpdateMineral(mineralToModify);
-
                         ExitMineralWindow(sender, e);
                     }
-
-                    // Should use the same img.
                     else
                     {
-                        mineralToModify = new Mineral(mineralToModify.ID, name, hardness,
-                            magnetic, acidReaction, mineralToModify.Image, cpColor.SelectedColor.ToString());
-
+                        mineralToModify = new Mineral(mineralToModify.ID, name, hardness, magnetic, acidReaction, mineralToModify.Image, cpColor.SelectedColor.ToString());
                         bl.UpdateMineral(mineralToModify);
-
                         ExitMineralWindow(sender, e);
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Builds a string representation of the errors encountered during input sanitation.
+        /// </summary>
+        /// <param name="validFields"> Represents a list of valid or invalid inputs. </param>
+        /// <returns> A string representation of sanitation errors. </returns>
         private string EntryErrors(List<bool> validFields)
         {
             string errors = "Error(s) while updating Mineral:";
-
             if (validFields[0] == false)
             {
                 errors += "\nInvalid Name Length";
@@ -110,17 +108,20 @@ namespace MineralTester.UI
             {
                 errors += "\nInvalid Hardness Level";
             }
-
             return errors;
         }
 
+        /// <summary>
+        /// Handles the addition of a mineral image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddAnImageButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.InitialDirectory = "c:\\";
-            dlg.Filter = "Image files (*.jpg)|*.jpg|(*.png)|*.png"; // Allows user to only choose jpeg or png files.
+            dlg.Filter = "Image files (*.jpg)|*.jpg|(*.png)|*.png";
             dlg.RestoreDirectory = true;
-
             if (dlg.ShowDialog() == true)
             {
                 selectedFileName = dlg.FileName;
@@ -129,26 +130,51 @@ namespace MineralTester.UI
             }
         }
 
+        /// <summary>
+        /// Mineral reacts with acid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReactsWithAcid(object sender, RoutedEventArgs e)
         {
-            this.acidReaction = true;
+            acidReaction = true;
         }
 
+        /// <summary>
+        /// Mineral does not react with acid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DoesntReactWithAcid(object sender, RoutedEventArgs e)
         {
-            this.acidReaction = false;
+            acidReaction = false;
         }
 
+        /// <summary>
+        /// Mineral is magnetic
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void IsMagnetic(object sender, RoutedEventArgs e)
         {
-            this.magnetic = true;
+            magnetic = true;
         }
 
+        /// <summary>
+        /// Mineral is not magnetic
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void IsntMagnetic(object sender, RoutedEventArgs e)
         {
-            this.magnetic = false;
+            magnetic = false;
         }
 
+        /// <summary>
+        /// Exits the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitMineralWindow(object sender, RoutedEventArgs e)
         {
             Close();

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-/// <summary>
-/// Tester class.
+﻿/// <summary>
 /// Written by: Mike Schommer
 /// </summary>
 namespace MineralTester.Classes
 {
+    /// <summary>
+    /// Tester class used in the mineral playground
+    /// </summary>
     public class Tester
     {
         public string Name
