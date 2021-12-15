@@ -51,7 +51,7 @@ namespace MineralTester.UI
             string password = PasswordTextBox.Password;
             fields.Add(password);
             List<bool> validFields = bl.ValidateUserData(fields);
-            if (validFields.Contains(false))
+            if (validFields[0] == false || validFields[1] == false || validFields[2] == false || validFields[3] == false)
             {
                 FeedBack.Text = EntryErrors(validFields);
             }
